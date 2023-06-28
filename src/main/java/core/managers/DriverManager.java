@@ -7,8 +7,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import core.utils.enums.WebDriverTypes;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import test.context.TestContext;;
+import io.github.bonigarcia.wdm.WebDriverManager;;
 
 public class DriverManager {
 
@@ -24,12 +23,12 @@ public class DriverManager {
 			setDriver();
 
 		}
-
 		return webdriver;
 	}
 
 	private void setDriver() {
-		//setDriver(WebDriverTypes.valueOf(TestContext.getConfigReader().getDefaultDriver()));
+
+		// setDriver(WebDriverTypes.valueOf(TestContext.getConfigReader().getDefaultDriver()));
 		setDriver(WebDriverTypes.valueOf("CHROME"));
 	}
 
@@ -45,7 +44,9 @@ public class DriverManager {
 		}
 		case CHROME:
 		default: {
+
 			webdriver = new ChromeDriver(new ChromeOptions().addArguments("--remote-allow-origins=*"));
+
 			break;
 		}
 		}
