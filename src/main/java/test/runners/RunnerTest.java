@@ -10,13 +10,15 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 		features = { "src/test/resources/login.feature" },
 
-		glue = { "business.steps", "hooks" },
+		glue = { "business.steps", "test.hooks" },
 
-		plugin = { "summary" },
+		plugin = { "summary", "pretty" },
+
+		monochrome = true,
 
 		snippets = SnippetType.CAMELCASE,
 
-		tags = "@ID_0001",
+		tags = "@ID_0001 or @ID_0002",
 
 		dryRun = false
 

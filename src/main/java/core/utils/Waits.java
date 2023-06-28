@@ -10,11 +10,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 public class Waits {
-	private WebDriver webdriver;
+
 	private FluentWait<WebDriver> wait;
 
 	public Waits(WebDriver webdriver) {
-		this.webdriver = webdriver;
+
 		this.wait = new FluentWait<WebDriver>(webdriver);
 	}
 

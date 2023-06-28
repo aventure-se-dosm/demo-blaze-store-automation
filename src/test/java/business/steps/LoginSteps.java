@@ -7,22 +7,18 @@ import io.cucumber.java.pt.Quando;
 
 public class LoginSteps {
 
-	Page page = new LoginPage();
-	
+	private LoginPage page;
+
 	@Dado("que estou na página inicial")
 	public void queEstouNaPáginaInicial() throws InterruptedException {
-		
-		
+		page = new LoginPage();
 		page.startBrowser();
 		Thread.sleep(3000);
-		page.closeBrowser();
-		
-		throw new io.cucumber.java.PendingException();
 	}
 
 	@Quando("clico no link {string} em {string}")
 	public void clicoNoLinkEm(String string, String string2) {
-	
+		// Write code here that turns the phrase above into concrete actions
 		throw new io.cucumber.java.PendingException();
 	}
 
@@ -41,6 +37,6 @@ public class LoginSteps {
 	@Então("o usuário foi logado com sucesso")
 	public void oUsuárioFoiLogadoComSucesso() {
 		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		//throw new io.cucumber.java.PendingException();
 	}
 }

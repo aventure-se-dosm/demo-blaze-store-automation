@@ -1,5 +1,7 @@
 package business.steps;
 
+import org.openqa.selenium.WebDriver;
+
 import core.actions.PageActions;
 import core.utils.Waits;
 import test.context.TestContext;
@@ -8,16 +10,14 @@ public abstract class Page {
 
 	protected PageActions actions;
 	protected Waits waits;
+	protected WebDriver driver;
 
-	protected Page() {
+	public Page() {
 		this.actions = new PageActions();
-	}
-
-	public void startBrowser() {
-		TestContext.getDriver().get(TestContext.getConfigReader().getStartingUrl());
+		this.driver = TestContext.getDriver();
 	}
 
 	public void closeBrowser() {
-		TestContext.getDriver().close();
+		TestContext.getDriverManager();
 	}
 }

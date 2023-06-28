@@ -10,10 +10,12 @@ public class LoginPage extends Page {
 	public LoginPage() {
 		super();
 		PageFactory.initElements(TestContext.getDriver(), this);
+
 	}
 
-	void login() {
-		startBrowser();
+	public void startBrowser() {
+		// driver.get(TestContext.getConfigReader().getStartingUrl());
+		driver.get(TestContext.getConfigReader().getStartingUrl());
 	}
 
 }

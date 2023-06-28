@@ -13,32 +13,37 @@ public class TestContext {
 	public static ConfigFileReader getConfigReader() {
 		if (configFileReader == null) {
 			configFileReader = new ConfigFileReader();
-			driverManager = new DriverManager();
+			// driverManager = new DriverManager();
 		}
 		return configFileReader;
 	}
 
-//	public static ConfigFileReader getExcelReader() {
-////		if (excelReader == null) {
-////			excelReader = new excelReader();
-////		}
-////		return excelReader;
-//		return null;
-//	}
+	public static DriverManager getDriverManager() {
+		return driverManager;
+	}
 
 	public static WebDriver getDriver() {
-		if (driverManager == null)
-			driverManager = new DriverManager();
-		return driverManager.getDriver();
+		if (getDriverManager() == null) {
+			setDriverManager(new DriverManager());
+		}
+		return getDriverManager().getDriver();
+	}
+
+	private static void setDriverManager(DriverManager driverManager) {
+		TestContext.driverManager = driverManager;
 	}
 
 	public static void finishApplication() {
-		// TODO Auto-generated method stub
-
+		getDriverManager().finishDriver();
 	}
 
 	public static void setupApplication() {
+		driverManager = new DriverManager();
+		configFileReader = new ConfigFileReader();
+	}
 
+	public static void closeBrowser() {
+		driverManager.closeDriver();
 	}
 
 }
