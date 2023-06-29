@@ -1,7 +1,6 @@
 package business.steps;
 
 import org.openqa.selenium.WebDriver;
-
 import core.actions.PageActions;
 import core.utils.Waits;
 import test.context.TestContext;

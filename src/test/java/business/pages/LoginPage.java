@@ -14,7 +14,6 @@ public class LoginPage extends Page {
 	}
 
 	public void startBrowser() {
-		// driver.get(TestContext.getConfigReader().getStartingUrl());
 		driver.get(TestContext.getConfigReader().getStartingUrl());
 	}
 
