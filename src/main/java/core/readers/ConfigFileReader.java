@@ -32,12 +32,17 @@ public class ConfigFileReader {
 	}
 
 	private String getproperty(ConfigKeys configKey) {
-		
+
 		return getProperties().getProperty(configKey.getValue().toLowerCase()).toUpperCase();
 	}
 
-	public String getStartingUrl() {
+	public String getHomePage() {
 		// TODO Auto-generated method stub
-		return getproperty(ConfigKeys.STARTING_URL);
+		return getproperty(ConfigKeys.HOMEPAGE_URL);
+	}
+
+	public String getDataSetFormat() {
+		// TODO Auto-generated method stub
+		return getproperty(ConfigKeys.WORKBOOK_FORMAT);
 	}
 }

@@ -2,15 +2,11 @@ package core.utils.enums;
 
 public enum ConfigKeys {
 
-	WEBDRIVER_TYPE("webdriver.type"), STARTING_URL("starting.url");
-	
-	private String propertyKey;
+	WEBDRIVER_TYPE, HOMEPAGE_URL,
+	// DATASET_FORMAT,
+	WORKBOOK_FORMAT;
 
-	ConfigKeys(String propertyKey){
-		this.propertyKey = propertyKey;
-	}
-	
-	public String getValue(){
-		return this.propertyKey;
+	public String getValue() {
+		return this.toString().toLowerCase().replaceAll("_", ".");
 	}
 }

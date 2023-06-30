@@ -1,4 +1,4 @@
-package business.pages;
+package business.video_page;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
