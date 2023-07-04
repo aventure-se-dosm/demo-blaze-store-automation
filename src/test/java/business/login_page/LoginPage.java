@@ -9,20 +9,19 @@ import test.context.TestContext;
 public class LoginPage {
 
 	@FindBy(id = "login2")
-	WebElement loginLink;
+	private WebElement loginLink;
 	@FindBy(id = "loginusername")
-	WebElement txtUsername;
+	private WebElement txtUsername;
 	@FindBy(id = "loginusername")
-	WebElement txtPassword;
-	
-	//aparentemente A MELHOR solução
+	private WebElement txtPassword;
+
+	// aparentemente A MELHOR solução
 	@FindBy(id = "loginpassword")
-	WebElement btnEntrar;
-	
-	//aparentemente NÃO compensa
-	@FindBy (xpath = "//div[@id='logInModal']//form")
-	WebElement loginForm;
-	
+	private WebElement btnEntrar;
+
+	// aparentemente NÃO compensa
+	@FindBy(xpath = "//div[@id='logInModal']//form")
+	private WebElement loginForm;
 
 	public LoginPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);

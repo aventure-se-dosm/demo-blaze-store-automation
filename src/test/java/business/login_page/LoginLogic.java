@@ -2,6 +2,7 @@ package business.login_page;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import core.actions.PageActions;
 import test.context.TestContext;
@@ -13,15 +14,17 @@ public class LoginLogic {
 	private LoginModel loginModel;
 	private Row currentRow;
 
-	LoginLogic() {
+	// se o pico reclamar
+	// tira o construtor
+	public LoginLogic() {
 		setupLoginLogic();
 	}
 
-	void setupLoginLogic() {
-		setRow();
+	public void setupLoginLogic() {
 		setPage();
 		setActions(new PageActions());
-		setLoginModel();
+		setRow();
+//		setLoginModel();
 	}
 
 	private void setRow() {
@@ -29,10 +32,8 @@ public class LoginLogic {
 	}
 
 	private void setLoginModel() {
-		this.loginModel = new LoginModel(
-				getCurrentRow().getCell(0).getStringCellValue(),
-				getCurrentRow().getCell(1).getStringCellValue()
-			);
+		this.loginModel = new LoginModel(getCurrentRow().getCell(0).getStringCellValue(),
+				getCurrentRow().getCell(1).getStringCellValue());
 	}
 
 	LoginModel getModel() {
@@ -57,14 +58,23 @@ public class LoginLogic {
 		this.actions = pageActions;
 	}
 
-	// ok... mas passar da página pra cá...
-	// como evitar tantos parâmetros?
-	// hardcodado só pra ver se chega msm
-	void preencherUsuarioLogin(LoginModel loginModel) {
+	public void startNavigation() {
+		setupLoginLogic();
+		actions.getUrl(TestContext.getConfigReader().getHomePage());
+	}
+
+	public String startLogin() {
+		WebElement loginButton = getPage().getBtnEntrar();
+		String linkText = loginButton.getText();
+		actions.click(loginButton);
+		return linkText;
+	}
+
+	public void preencherUsuarioLogin(LoginModel loginModel) {
 		actions.write(getPage().getTxtUsername(), getModel().getUsername());
 	}
 
-	void preencherSenhaLogin(LoginModel loginModel) {
+	public void preencherSenhaLogin(LoginModel loginModel) {
 		actions.write(getPage().getTxtPassword(), "mmm");
 
 	}
@@ -85,4 +95,10 @@ public class LoginLogic {
 	protected WebDriver getDriver() {
 		return TestContext.getDriver();
 	}
+
+	public boolean isUserProperlyLogged() {
+
+		return false;
+	}
+
 }

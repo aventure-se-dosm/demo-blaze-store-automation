@@ -28,12 +28,11 @@ public class ConfigFileReader {
 	}
 
 	public String getDefaultDriver() {
-		return getproperty(ConfigKeys.WEBDRIVER_TYPE);
+		return getproperty(ConfigKeys.WEBDRIVER_TYPE).toUpperCase();
 	}
 
 	private String getproperty(ConfigKeys configKey) {
-
-		return getProperties().getProperty(configKey.getValue().toLowerCase()).toUpperCase();
+		return getProperties().getProperty(configKey.getValue().toLowerCase());
 	}
 
 	public String getHomePage() {
@@ -41,8 +40,22 @@ public class ConfigFileReader {
 		return getproperty(ConfigKeys.HOMEPAGE_URL);
 	}
 
+	public String getDataSetPath() {
+		return getproperty(ConfigKeys.DATASET_PATH);
+	}
+
+	public String getDataFileName() {
+		return getproperty(ConfigKeys.DATASET_FILENAME);
+	}
+
 	public String getDataSetFormat() {
 		// TODO Auto-generated method stub
-		return getproperty(ConfigKeys.WORKBOOK_FORMAT);
+		return getproperty(ConfigKeys.DATASET_FORMAT);
+	}
+
+	public String getDataSetFullPath() {
+		String s = (getDataSetPath() + "/" + getDataFileName() + "." + getDataSetFormat()).replaceAll("[\\.]+", ".")
+				.replaceAll("[\\/]+", "/").replaceAll("[\\\\]+", "\\");
+		return s;
 	}
 }

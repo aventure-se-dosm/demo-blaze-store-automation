@@ -9,7 +9,7 @@ public class ValidFileFormats {
 		JPG, PNG, BMP, JPEG,
 	}
 
-	public enum WorkbookFormats {
+	public enum DataSourceFormats {
 		XLS, XLSX,
 	}
 	

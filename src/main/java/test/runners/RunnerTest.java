@@ -10,7 +10,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 		features = { "src/test/resources/login.feature" },
 
-		glue = { "business.login_page", "test.hooks" },
+		glue = { "business.steps", "test.hooks" },
 
 		plugin = { "summary", "pretty" },
 
@@ -20,7 +20,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 		tags = "@ID_0001",
 
-		dryRun = false
+		dryRun = true
 
 )
 

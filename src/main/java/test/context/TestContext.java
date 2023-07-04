@@ -1,9 +1,10 @@
 package test.context;
 
+import java.util.Collection;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.openqa.selenium.WebDriver;
 
-import core.actions.ExcelActions;
 import core.managers.DriverManager;
 import core.readers.ConfigFileReader;
 import core.readers.data_readers.ExcelReader;
@@ -18,11 +19,35 @@ public class TestContext {
 	private static ExcelReader excelReader;
 
 	public static void setupApplication(Scenario scenario) {
-		setScenarioContext(new ScenarioContext());
+		// lembre-se: será uma leitura por cenário:
+		// aqui não é interessante passar a tag
+		// caso o @before contenha -Class / All.
+		// veja se o atual @Before respeitará
+		// passar um obj scenario / cenário
+
+		setScenarioTagName(scenario.getSourceTagNames());
 		setDriverManager(new DriverManager());
 		setConfigFileReader(new ConfigFileReader());
 		setExcelReader(new ExcelReader());
+
+		// o ScenarioContext deve estar inicializado
+		// do contrário não funciona:
+		setScenarioContext(new ScenarioContext());
 	}
+
+	private static void setScenarioTagName(Collection<String> sourceTagNames) {
+		String tag = null;
+		// it would throw NoSuchElementException
+		tag = sourceTagNames.stream().filter(t -> t.startsWith("@ID_")).map(t -> t.replace("@", "")).findFirst().get();
+		getScenarioContext().comuputeKey(ScenarioContextKeys.SCENARIO_ID, tag);
+	}
+	
+//	private static void getScenarioTagName(Collection<String> sourceTagNames) {
+//
+//		
+//		
+//
+//	}
 
 	public static ConfigFileReader getConfigReader() {
 		if (configFileReader == null) {
@@ -58,7 +83,9 @@ public class TestContext {
 		TestContext.driverManager = driverManager;
 	}
 
-	static ScenarioContext getScenarioContext() {
+	public static ScenarioContext getScenarioContext() {
+		if (TestContext.scenarioContext == null) setScenarioContext(new ScenarioContext());
+		
 		return TestContext.scenarioContext;
 	}
 
@@ -78,16 +105,13 @@ public class TestContext {
 	 * Retorna a primeira linha da sheet correspondente à tag definida;
 	 */
 	public static Row getRowByTaggedIdSheet() {
-		return ExcelActions.getRow(TestContext.getScenarioContext().getValue(ScenarioContextKeys.SCENARIO_ID));
+		return getExcelReader().getRow();
 	}
 
 	/*
 	 * Retorna a linha da sheet correspondente à tag definida.
 	 * 
 	 */
-	public static Row getRowByTaggedIdSheet(Integer rowNumber) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 }

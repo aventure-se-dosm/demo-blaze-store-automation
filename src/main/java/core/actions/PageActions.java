@@ -20,9 +20,6 @@ public class PageActions {
 	}
 
 	void scrollToElement(WebElement element) {
-		// TODO: wait para finalização de Ajax
-		// TODO: wait para finalização de Script
-
 		jsExecutor.executeScript("scroll(arguments[0];", element);
 	}
 
@@ -45,6 +42,10 @@ public class PageActions {
 	public void submitForm(WebElement formElement) {
 		// TODO: wait para envio de form --> mesmo que clicável?
 		formElement.submit();
+	}
+	
+	public String getCurrentUrl() {
+		return TestContext.getDriver().getCurrentUrl();
 	}
 
 }
