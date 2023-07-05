@@ -1,5 +1,7 @@
 package core.managers;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -36,7 +38,6 @@ public class DriverManager {
 		return webdriver;
 	}
 
-	// encadeamento duplo: vejo problema!
 	private void setDriver() {
 		setDriver(WebDriverTypes.valueOf(TestContext.getConfigReader().getDefaultDriver()));
 	}
@@ -59,6 +60,8 @@ public class DriverManager {
 		}
 		}
 
+		webdriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10L));
+		webdriver.manage().window().maximize();
 	}
 
 	private void simpleCloseDriver() {

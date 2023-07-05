@@ -20,7 +20,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 		tags = "@ID_0001",
 
-		dryRun = true
+		dryRun = false
 
 )
 

@@ -12,7 +12,13 @@ public class PageActions {
 	private Waits wait;
 
 	public PageActions() {
-		setWait(wait);
+
+		setJavaScriptExecutor();
+		setWait(new Waits());
+	}
+
+	private void setJavaScriptExecutor() {
+		jsExecutor = (JavascriptExecutor) TestContext.getDriver();
 	}
 
 	private void setWait(Waits wait) {
@@ -20,7 +26,7 @@ public class PageActions {
 	}
 
 	void scrollToElement(WebElement element) {
-		jsExecutor.executeScript("scroll(arguments[0];", element);
+		jsExecutor.executeScript("scroll(arguments[0]);", element);
 	}
 
 	public void getUrl(String url) {
@@ -28,24 +34,25 @@ public class PageActions {
 	}
 
 	public void click(WebElement element) {
-		// TODO: wait para elementoclicável
+
 		scrollToElement(element);
+		getWait().elementIsClickable(element);
 		element.click();
 	}
 
+	private Waits getWait() {
+		return this.wait;
+	}
+
 	public void write(WebElement element, String keysToSend) {
-		// TODO: wait para visibilidade de elemento
 		scrollToElement(element);
+		getWait().elementIsVisible(element);
 		element.sendKeys(keysToSend);
 	}
 
-	public void submitForm(WebElement formElement) {
-		// TODO: wait para envio de form --> mesmo que clicável?
-		formElement.submit();
-	}
-	
-	public String getCurrentUrl() {
-		return TestContext.getDriver().getCurrentUrl();
+	public String getText(WebElement element) {
+		getWait().elementIsVisible(element);
+		return element.getText();
 	}
 
 }

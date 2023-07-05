@@ -8,7 +8,6 @@ import test.context.TestContext;
 
 public class Hooks {
 
-	//é importante já termos o ID recuperável.
 	@Before()
 	public static void setupApplication(Scenario scenario) {
 		TestContext.setupApplication(scenario);

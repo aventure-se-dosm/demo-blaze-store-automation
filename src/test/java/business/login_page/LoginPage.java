@@ -10,18 +10,25 @@ public class LoginPage {
 
 	@FindBy(id = "login2")
 	private WebElement loginLink;
+	
+	//loginform
 	@FindBy(id = "loginusername")
 	private WebElement txtUsername;
-	@FindBy(id = "loginusername")
+	@FindBy(id = "loginpassword")
 	private WebElement txtPassword;
 
-	// aparentemente A MELHOR solução
-	@FindBy(id = "loginpassword")
+	
+	@FindBy(xpath = "//button[@onclick='logIn()']")
 	private WebElement btnEntrar;
 
-	// aparentemente NÃO compensa
-	@FindBy(xpath = "//div[@id='logInModal']//form")
-	private WebElement loginForm;
+	//loggedUserHomePage
+	@FindBy(id = "nameofuser")
+	private WebElement lblWelcomeUser;
+
+	public WebElement getlblWelcomeUser() {
+		return this.lblWelcomeUser;
+	};
+	
 
 	public LoginPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -43,8 +50,14 @@ public class LoginPage {
 		return btnEntrar;
 	}
 
+
 	public WebElement getLoginForm() {
-		return loginForm;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+//	public WebElement getLoginForm() {
+//		return this.loginForm;
+//	}
 
 }
