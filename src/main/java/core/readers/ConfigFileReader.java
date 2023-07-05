@@ -36,7 +36,6 @@ public class ConfigFileReader {
 	}
 
 	public String getHomePage() {
-		// TODO Auto-generated method stub
 		return getproperty(ConfigKeys.HOMEPAGE_URL);
 	}
 
@@ -49,7 +48,6 @@ public class ConfigFileReader {
 	}
 
 	public String getDataSetFormat() {
-		// TODO Auto-generated method stub
 		return getproperty(ConfigKeys.DATASET_FORMAT);
 	}
 
