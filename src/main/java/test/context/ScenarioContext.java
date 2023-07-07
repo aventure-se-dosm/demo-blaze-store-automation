@@ -18,7 +18,6 @@ public class ScenarioContext {
 	}
 
 	public String getStringValue(ScenarioContextKeys key) {
-	//mas em que momento esse valor é inserido?
 		return getValue(key).toString();
 	}
 

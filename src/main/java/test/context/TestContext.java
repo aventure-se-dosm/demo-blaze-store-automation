@@ -19,35 +19,21 @@ public class TestContext {
 	private static ExcelReader excelReader;
 
 	public static void setupApplication(Scenario scenario) {
-		// lembre-se: será uma leitura por cenário:
-		// aqui não é interessante passar a tag
-		// caso o @before contenha -Class / All.
-		// veja se o atual @Before respeitará
-		// passar um obj scenario / cenário
 
+		setScenarioContext(new ScenarioContext());
 		setScenarioTagName(scenario.getSourceTagNames());
 		setDriverManager(new DriverManager());
 		setConfigFileReader(new ConfigFileReader());
 		setExcelReader(new ExcelReader());
 
-		// o ScenarioContext deve estar inicializado
-		// do contrário não funciona:
-		setScenarioContext(new ScenarioContext());
 	}
 
 	private static void setScenarioTagName(Collection<String> sourceTagNames) {
 		String tag = null;
-		// it would throw NoSuchElementException
+		// TODO: it would throw NoSuchElementException
 		tag = sourceTagNames.stream().filter(t -> t.startsWith("@ID_")).map(t -> t.replace("@", "")).findFirst().get();
 		getScenarioContext().comuputeKey(ScenarioContextKeys.SCENARIO_ID, tag);
 	}
-	
-//	private static void getScenarioTagName(Collection<String> sourceTagNames) {
-//
-//		
-//		
-//
-//	}
 
 	public static ConfigFileReader getConfigReader() {
 		if (configFileReader == null) {
@@ -84,8 +70,9 @@ public class TestContext {
 	}
 
 	public static ScenarioContext getScenarioContext() {
-		if (TestContext.scenarioContext == null) setScenarioContext(new ScenarioContext());
-		
+		if (TestContext.scenarioContext == null)
+			setScenarioContext(new ScenarioContext());
+
 		return TestContext.scenarioContext;
 	}
 
@@ -112,6 +99,5 @@ public class TestContext {
 	 * Retorna a linha da sheet correspondente à tag definida.
 	 * 
 	 */
-	
 
 }

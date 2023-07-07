@@ -9,39 +9,36 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
+import test.context.TestContext;
+
 public class Waits {
 
-	private FluentWait<WebDriver> wait;
+	private FluentWait<WebDriver> fluentWait;
 
 	public Waits(WebDriver webdriver) {
-		this.wait = new FluentWait<WebDriver>(webdriver);
+		this.fluentWait = new FluentWait<WebDriver>(webdriver);
+
 	}
 
-	/*
-	 *
-	 * Possível implementação caso as Wait abaixo possam ser abstraídas
-	 * 
-	 * 
-	 * // public Object wait(WebElement element, Duration pollingTime, Duration
-	 * timeout, // Collection<Class<? extends Exception>> exceptions,
-	 * ExpectedCondition<?>... expectedConditions) { // // return
-	 * wait.pollingEvery(pollingTime).withTimeout(timeout).ignoreAll(exceptions) //
-	 * .until(ExpectedConditions.and(expectedConditions)); // }
-	 */
+	public Waits() {
+		this(TestContext.getDriver());
+
+	}
 
 	public WebElement elementIsVisible(WebElement element) {
-		return wait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(1000))
+		return fluentWait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(3000))
 				.until(ExpectedConditions.visibilityOf(element));
 	}
 
 	public List<WebElement> nestedElementIsVisible(WebElement element, By childLocator) {
-		return wait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(1000))
+		return fluentWait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(3000))
 				.until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(element, childLocator));
 	}
 
-	public WebElement elementIsClickable(WebElement element) {
-		return wait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(1000))
-				.until(ExpectedConditions.visibilityOf(element));
+	public Boolean elementIsClickable(WebElement element) {
+		return fluentWait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(3000))
+				.until(ExpectedConditions.and(ExpectedConditions.elementToBeClickable(element),
+						ExpectedConditions.visibilityOf(element)));
 	}
 
 }

@@ -2,6 +2,7 @@ package business.steps;
 
 import org.junit.Assert;
 
+import business.home_page.HomePage;
 import business.login_page.LoginLogic;
 import business.login_page.LoginPage;
 import io.cucumber.java.pt.Dado;
@@ -13,7 +14,8 @@ import test.context.TestContext;
 
 public class LoginSteps {
 
-	private LoginPage page;
+	private HomePage homePage;
+	private LoginPage loginPage;
 	private LoginLogic logic;
 
 	// o model deve estar pronto antes do acesso.
@@ -33,38 +35,38 @@ public class LoginSteps {
 	// problema: incluimos na loginPage a HomePage...
 	@Quando("clico no link Login em HomePage")
 
-	public void clicoNoLinkLoginEmHomePage(String loginLinkText) {
-		String clickedLinkText = logic.startLogin();
-		Assert.assertEquals(loginLinkText, clickedLinkText);
-		throw new io.cucumber.java.PendingException();
+	public void clicoNoLinkLoginEmHomePage() {
+		logic.startLogin();
+		// Assert.assertEquals(loginLinkText, clickedLinkText);
+		// throw new io.cucumber.java.PendingException();
 	}
 
 	@Quando("preencho o campo Username em LoginForm")
-	public void preenchoOCampoUsernameEmLoginForm(String txtUsername) {
+	public void preenchoOCampoUsernameEmLoginForm() {
 		//
-		// logic.preencherUsuarioLogin(loginModel);
+		logic.preencherUsuarioLogin();
 
-		throw new io.cucumber.java.PendingException();
+//		throw new io.cucumber.java.PendingException();
 	}
 
 	@Quando("preencho o campo Password em LoginForm")
-	public void preenchoOCampoPasswordEmLoginForm(String txtUsername) {
+	public void preenchoOCampoPasswordEmLoginForm() {
 		//
-		// logic.preencherUsuarioLogin(loginModel);
+		logic.preencherSenhaLogin();
 
-		throw new io.cucumber.java.PendingException();
+		// throw new io.cucumber.java.PendingException();
 	}
 
 	@Quando("clico no botão Submit")
-	public void clicoEnoBotãoSubmit(String string) {
+	public void clicoEnoBotãoSubmit() {
 		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		logic.sendLoginForm();
+
+		// throw new io.cucumber.java.PendingException();
 	}
 
 	@Então("o usuário foi logado com sucesso")
 	public void oUsuárioFoiLogadoComSucesso() {
-		// Write code here that turns the phrase above into concrete actions
 		Assert.assertTrue(logic.isUserProperlyLogged());
-		throw new io.cucumber.java.PendingException();
 	}
 }

@@ -18,20 +18,12 @@ import test.context.TestContext;
 
 public class ExcelReader {
 
-	// MOVER ESSA CONSTANTE PARA UMA CLASSE 'CONST'
 	private static final int FIRST_DATA_ROW_INDEX = 1;
 	private ExcelActions excelActions;
 	private Workbook wb;
-	private Sheet sheet;
 
-	// sem construtor: usa as configurações
-	// default: definidas no config.properties
-	// qual SHEET será escolhida dependerá
-	// obviamente dda tag definida
 	public ExcelReader() {
 		setExcelActions(new ExcelActions());
-
-		// acabar com aquele warning
 		wb = setupWorkBook();
 	}
 
@@ -60,6 +52,7 @@ public class ExcelReader {
 				// TODO: UNSUPPORTED DATA SOURCE TYPE EXCEPTION
 				throw new RuntimeException(String.format("Formato '%s' não suportado."));
 			}
+
 			}
 		} catch (InvalidFormatException | IOException exc) {
 			// TODO: Custom Exceptions
@@ -67,12 +60,6 @@ public class ExcelReader {
 			return null;
 		}
 	}
-
-//	// ExcelActions!!!!
-//	public Row getRow(String rowName) {
-//		// TODO Auto-generated method stub
-//		return getSheet().getRow(rowName);
-//	}
 
 	private Sheet getSheet() {
 		return getSheet(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID));
@@ -91,9 +78,7 @@ public class ExcelReader {
 	}
 
 	public Row getRow() {
-//		return getSheet(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID))
-//				.getRow(FIRST_DATA_ROW_INDEX);
-		return getSheet("ID_0001").getRow(0);
+		return getSheet().getRow(FIRST_DATA_ROW_INDEX);
 	}
 
 }

@@ -14,8 +14,6 @@ public class LoginLogic {
 	private LoginModel loginModel;
 	private Row currentRow;
 
-	// se o pico reclamar
-	// tira o construtor
 	public LoginLogic() {
 		setupLoginLogic();
 	}
@@ -24,7 +22,7 @@ public class LoginLogic {
 		setPage();
 		setActions(new PageActions());
 		setRow();
-//		setLoginModel();
+		setLoginModel();
 	}
 
 	private void setRow() {
@@ -32,7 +30,10 @@ public class LoginLogic {
 	}
 
 	private void setLoginModel() {
-		this.loginModel = new LoginModel(getCurrentRow().getCell(0).getStringCellValue(),
+		
+		//TODO: Attribute index: either by enum, or search!
+		this.loginModel = new LoginModel(
+				getCurrentRow().getCell(0).getStringCellValue(),
 				getCurrentRow().getCell(1).getStringCellValue());
 	}
 
@@ -42,15 +43,13 @@ public class LoginLogic {
 
 	private void setPage() {
 		this.loginPage = new LoginPage();
-
 	}
 
 	private Row getCurrentRow() {
 		return this.currentRow;
-
 	}
 
-	private LoginPage getPage() {
+	private LoginPage getHomePage() {
 		return loginPage;
 	}
 
@@ -64,28 +63,27 @@ public class LoginLogic {
 	}
 
 	public String startLogin() {
-		WebElement loginButton = getPage().getBtnEntrar();
+		WebElement loginButton = getHomePage().getLoginLink();
 		String linkText = loginButton.getText();
 		actions.click(loginButton);
 		return linkText;
 	}
 
-	public void preencherUsuarioLogin(LoginModel loginModel) {
-		actions.write(getPage().getTxtUsername(), getModel().getUsername());
+	public void preencherUsuarioLogin() {
+		String name = "mmm";
+		// TODO: value gotten from the proper Sheet!
+		actions.write(getHomePage().getTxtUsername(), name);
 	}
 
-	public void preencherSenhaLogin(LoginModel loginModel) {
-		actions.write(getPage().getTxtPassword(), "mmm");
+	public void preencherSenhaLogin() {
+		String password = "mmm";
+		// TODO: value got from the proper Sheet!
+		actions.write(getHomePage().getTxtPassword(), password);
 
 	}
 
 	void submeterFormularioLogin() {
-		actions.submitForm(getPage().getLoginForm());
-	}
-
-//vamos ver se depois vamos abstrair Logic ou não!
-	boolean isLoginBemSucedido() {
-		return false;
+		actions.click(getHomePage().getLoginForm());
 	}
 
 	public String getUrlDaPaginaAtual() {
@@ -97,8 +95,12 @@ public class LoginLogic {
 	}
 
 	public boolean isUserProperlyLogged() {
-
-		return false;
+		String txtWelcome = actions.getText(getHomePage().getlblWelcomeUser());
+		boolean assertBool = txtWelcome.contains("mmm");
+		return assertBool;
 	}
 
+	public void sendLoginForm() {
+		actions.click(getHomePage().getBtnEntrar());
+	}
 }
