@@ -15,6 +15,7 @@ public class Hooks {
 
 	@After()
 	public static void closeWindow() {
+		TestContext.cleanContext();
 		TestContext.closeBrowser();
 	}
 
