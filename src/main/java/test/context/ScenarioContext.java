@@ -12,9 +12,13 @@ public class ScenarioContext {
 	ScenarioContext() {
 		this.map = new HashMap<>();
 	}
+	
+	private Map<ScenarioContextKeys, Object> getMap(){
+		return this.map;
+	}
 
 	public void comuputeKey(ScenarioContextKeys key, Object value) {
-		map.put(key, value);
+		getMap().put(key, value);
 	}
 
 	public String getStringValue(ScenarioContextKeys key) {
@@ -22,7 +26,11 @@ public class ScenarioContext {
 	}
 
 	public Object getValue(ScenarioContextKeys key) {
-		return map.get(key);
+		return getMap().get(key);
+	}
+
+	public void resetScenarioContext() {
+		getMap().clear();
 	}
 
 }
