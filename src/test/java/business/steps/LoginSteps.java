@@ -2,7 +2,6 @@ package business.steps;
 
 import org.junit.Assert;
 
-import business.home_page.HomePage;
 import business.login_page.LoginLogic;
 import business.login_page.LoginPage;
 import io.cucumber.java.pt.Dado;
@@ -14,7 +13,6 @@ import test.context.TestContext;
 
 public class LoginSteps {
 
-	private HomePage homePage;
 	private LoginPage loginPage;
 	private LoginLogic logic;
 

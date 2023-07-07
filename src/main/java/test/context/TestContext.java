@@ -6,6 +6,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.openqa.selenium.WebDriver;
 
 import core.managers.DriverManager;
+import core.managers.EvidenceManager;
 import core.readers.ConfigFileReader;
 import core.readers.data_readers.ExcelReader;
 import core.utils.enums.ScenarioContextKeys;
@@ -17,6 +18,7 @@ public class TestContext {
 	private static ConfigFileReader configFileReader;
 	private static ScenarioContext scenarioContext;
 	private static ExcelReader excelReader;
+	private static EvidenceManager evidenceManager;
 
 	public static void setupApplication(Scenario scenario) {
 
@@ -25,7 +27,12 @@ public class TestContext {
 		setDriverManager(new DriverManager());
 		setConfigFileReader(new ConfigFileReader());
 		setExcelReader(new ExcelReader());
+		setEvidenceManager(new EvidenceManager());
 
+	}
+
+	private static void setEvidenceManager(EvidenceManager evidenceManager) {
+		TestContext.evidenceManager = evidenceManager;
 	}
 
 	private static void setScenarioTagName(Collection<String> sourceTagNames) {
@@ -85,19 +92,43 @@ public class TestContext {
 	}
 
 	public static void finishApplication() {
+
 		getDriverManager().finishDriver();
 	}
 
-	/*
-	 * Retorna a primeira linha da sheet correspondente à tag definida;
-	 */
 	public static Row getRowByTaggedIdSheet() {
-		return getExcelReader().getRow();
+		// TODO: passar para actions!
+		// Esse método já foi abstraído, não?
+		return getExcelReader().getSheet(getScenarioContext()
+				.getStringValue(ScenarioContextKeys.SCENARIO_ID))
+				.getRow(1);
 	}
 
-	/*
-	 * Retorna a linha da sheet correspondente à tag definida.
-	 * 
-	 */
+	public static void cleanContext() {
+		getScenarioContext().resetScenarioContext();
+	}
+
+	public static void createEvidence() {
+		getEvidenceManager().createEvidence();
+
+	}
+
+	private static EvidenceManager getEvidenceManager() {
+		return TestContext.evidenceManager;
+	}
+
+	public static String getStatusPTString() {
+		switch (getScenarioContext().getStatus()) {
+		case PASSED:
+			return "PASSOU";
+		case FAILED:
+		default:
+			return "FALHOU";
+		}
+	}
+
+	public static String getCurrentScenarioId() {
+		return getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID);
+	}
 
 }

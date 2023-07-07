@@ -79,7 +79,6 @@ public class ExcelActions {
 		}
 	}
 
-	
 	Integer indexOfAttribute(String attribute) {
 		Iterator<Cell> rowIterator = getSheet().getRow(HEADER_INDEX).cellIterator();
 		while (rowIterator.hasNext()) {

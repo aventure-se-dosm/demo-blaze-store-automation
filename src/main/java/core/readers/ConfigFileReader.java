@@ -58,4 +58,12 @@ public class ConfigFileReader {
 				.replaceAll("[\\/]+", "/").replaceAll("[\\\\]+", "\\");
 		return s;
 	}
+
+	public String getDefaultEvidenceFormat() {
+		return getproperty(ConfigKeys.EVIDENCE_FORMAT);
+	}
+
+	public String getDefaultEvidencePath() {
+		return getproperty(ConfigKeys.EVIDENCE_PATH);
+	}
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import core.utils.enums.ScenarioContextKeys;
+import io.cucumber.java.Status;
 
 public class ScenarioContext {
 
@@ -12,8 +13,8 @@ public class ScenarioContext {
 	ScenarioContext() {
 		this.map = new HashMap<>();
 	}
-	
-	private Map<ScenarioContextKeys, Object> getMap(){
+
+	private Map<ScenarioContextKeys, Object> getMap() {
 		return this.map;
 	}
 
@@ -31,6 +32,10 @@ public class ScenarioContext {
 
 	public void resetScenarioContext() {
 		getMap().clear();
+	}
+
+	public Status getStatus() {
+		return Status.valueOf(getStringValue(ScenarioContextKeys.STATUS));
 	}
 
 }
