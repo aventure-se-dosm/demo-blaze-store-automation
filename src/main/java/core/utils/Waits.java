@@ -15,30 +15,30 @@ public class Waits {
 
 	private FluentWait<WebDriver> fluentWait;
 
-	public Waits(WebDriver webdriver) {
-		this.fluentWait = new FluentWait<WebDriver>(webdriver);
-
-	}
-
 	public Waits() {
 		this(TestContext.getDriver());
 
 	}
 
+	public Waits(WebDriver webdriver) {
+		this.fluentWait = new FluentWait<WebDriver>(webdriver);
+
+	}
+
+	public Boolean elementIsClickable(WebElement element) {
+		return fluentWait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofSeconds(10))
+				.until(ExpectedConditions.and(ExpectedConditions.visibilityOf(element),
+						ExpectedConditions.elementToBeClickable(element)));
+	}
+
 	public WebElement elementIsVisible(WebElement element) {
-		return fluentWait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(3000))
+		return fluentWait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofSeconds(10))
 				.until(ExpectedConditions.visibilityOf(element));
 	}
 
 	public List<WebElement> nestedElementIsVisible(WebElement element, By childLocator) {
 		return fluentWait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(3000))
 				.until(ExpectedConditions.visibilityOfNestedElementsLocatedBy(element, childLocator));
-	}
-
-	public Boolean elementIsClickable(WebElement element) {
-		return fluentWait.pollingEvery(Duration.ofMillis(250)).withTimeout(Duration.ofMillis(3000))
-				.until(ExpectedConditions.and(ExpectedConditions.elementToBeClickable(element),
-						ExpectedConditions.visibilityOf(element)));
 	}
 
 }

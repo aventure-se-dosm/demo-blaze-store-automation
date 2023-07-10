@@ -1,6 +1,6 @@
-package business.login_page;
+package business.logout_page;
 
-public class LoginModel {
+public class LogoutModel {
 
 	enum LoginAttributes {
 
@@ -20,7 +20,7 @@ public class LoginModel {
 	private String password;
 	private String username;
 
-	public LoginModel(String username, String password) {
+	public LogoutModel(String username, String password) {
 		setUsuario(username);
 		setSenha(password);
 	}

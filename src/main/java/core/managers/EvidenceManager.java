@@ -21,10 +21,6 @@ public class EvidenceManager {
 				ImageFormats.valueOf(getDefaultEvidenceFormat().toUpperCase()));
 	}
 
-	private String getStatusSubfolder() {
-		return TestContext.getStatusFolder();
-	}
-
 	private String getDefaultEvidenceFormat() {
 		return TestContext.getConfigReader().getDefaultEvidenceFormat();
 	}
@@ -37,6 +33,10 @@ public class EvidenceManager {
 
 		return String.join("_", TestContext.getCurrentScenarioId(), TestContext.getStatusString(),
 				timeUtils.getFormattedDateTimeNow());
+	}
+
+	private String getStatusSubfolder() {
+		return TestContext.getStatusFolder();
 	}
 
 }

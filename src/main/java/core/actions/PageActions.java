@@ -17,6 +17,30 @@ public class PageActions {
 		setWait(new Waits());
 	}
 
+	public void click(WebElement element) {
+
+		scrollToElement(element);
+		getWait().elementIsClickable(element);
+		element.click();
+	}
+
+	public String getText(WebElement element) {
+		getWait().elementIsVisible(element);
+		return element.getText();
+	}
+
+	public void getUrl(String url) {
+		TestContext.getDriver().get(url);
+	}
+
+	private Waits getWait() {
+		return this.wait;
+	}
+
+	void scrollToElement(WebElement element) {
+		jsExecutor.executeScript("scroll(arguments[0]);", element);
+	}
+
 	private void setJavaScriptExecutor() {
 		jsExecutor = (JavascriptExecutor) TestContext.getDriver();
 	}
@@ -25,34 +49,10 @@ public class PageActions {
 		this.wait = wait;
 	}
 
-	void scrollToElement(WebElement element) {
-		jsExecutor.executeScript("scroll(arguments[0]);", element);
-	}
-
-	public void getUrl(String url) {
-		TestContext.getDriver().get(url);
-	}
-
-	public void click(WebElement element) {
-
-		scrollToElement(element);
-		getWait().elementIsClickable(element);
-		element.click();
-	}
-
-	private Waits getWait() {
-		return this.wait;
-	}
-
 	public void write(WebElement element, String keysToSend) {
 		scrollToElement(element);
 		getWait().elementIsVisible(element);
 		element.sendKeys(keysToSend);
-	}
-
-	public String getText(WebElement element) {
-		getWait().elementIsVisible(element);
-		return element.getText();
 	}
 
 }

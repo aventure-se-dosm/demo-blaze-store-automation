@@ -13,24 +13,24 @@ public class ExcelReader {
 		setExcelActions();
 	}
 
-	private void setExcelActions(ExcelActions excelActions) {
-		this.excelActions = excelActions;
+	public ExcelActions actions() {
+		return this.excelActions;
 	}
 	
-	private void setExcelActions() {
-		setExcelActions(new ExcelActions());
+	public Sheet getSheet(String sheetName) {
+		return getWorkbook().getSheet(sheetName);
 	}
 
 	private Workbook getWorkbook() {
 		return excelActions.getWorkbook();
 	}
 
-	public Sheet getSheet(String sheetName) {
-		return getWorkbook().getSheet(sheetName);
+	private void setExcelActions() {
+		setExcelActions(new ExcelActions());
 	}
 	
-	public ExcelActions actions() {
-		return this.excelActions;
+	private void setExcelActions(ExcelActions excelActions) {
+		this.excelActions = excelActions;
 	}
 
 }

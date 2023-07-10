@@ -8,8 +8,8 @@ import java.util.Iterator;
 import javax.management.RuntimeErrorException;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -20,44 +20,10 @@ import test.context.TestContext;
 
 public class ExcelActions {
 
-	private static final int FIRST_DATA_ROW_INDEX = 1;
-	private static final int HEADER_INDEX = 0;
 	private Workbook workbook;
 
 	public ExcelActions() {
 		setupWorkBook();
-	}
-
-	public Workbook getWorkbook() {
-		return this.workbook;
-	}
-
-	private void setupWorkBook() {
-
-		try {
-			File file = new File(TestContext.getConfigReader().getDataSetFullPath());
-
-			String x = TestContext.getConfigReader().getDataSetFormat();
-			switch (DataSourceFormats.valueOf(x.toUpperCase())) {
-			case XLSX: {
-				this.workbook = new XSSFWorkbook(new FileInputStream(file));
-				break;
-			}
-			case XLS: {
-				this.workbook = new HSSFWorkbook(new FileInputStream(file));
-				break;
-			}
-			default: {
-				// TODO: UNSUPPORTED DATA SOURCE TYPE EXCEPTION
-				throw new RuntimeException(String.format("Formato '%s' não suportado."));
-			}
-
-			}
-		} catch (IOException exc) {
-			// TODO: Custom Exceptions
-			exc.printStackTrace();
-		}
-
 	}
 
 	String getCellValueText(Cell cell) {
@@ -76,24 +42,63 @@ public class ExcelActions {
 		}
 	}
 
-	Integer indexOfAttribute(String attribute) {
-		Iterator<Cell> rowIterator = getSheet().getRow(HEADER_INDEX).cellIterator();
-		while (rowIterator.hasNext()) {
-			Cell cell;
-			if (getCellValueText(cell = rowIterator.next()).equalsIgnoreCase(attribute)) {
-				return cell.getColumnIndex();
-			}
-		}
-		// TODO: Custom Exception
-		throw new RuntimeErrorException(null, String.format("Erro: attributo '%s' não encontrado!", attribute));
-	}
-
 	private Sheet getSheet() {
 		return getSheet(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID));
 	}
 
 	public Sheet getSheet(String sheetName) {
 		return getWorkbook().getSheet(sheetName);
+	}
+
+	public Workbook getWorkbook() {
+		return this.workbook;
+	}
+
+	
+	public void getFistRow() {
+		getSheet(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID))
+				.getRow(TestContext.FIRST_DATA_ROW_INDEX);
+	}
+
+	Integer indexOfAttribute(String attribute) {
+		Iterator<Cell> rowIterator = getSheet().getRow(TestContext.HEADER_INDEX).cellIterator();
+		while (rowIterator.hasNext()) {
+			Cell cell;
+			if (getCellValueText(cell = rowIterator.next()).equalsIgnoreCase(attribute)) {
+				return cell.getColumnIndex();
+			}
+		}
+		throw new RuntimeErrorException(null, String.format("Erro: attributo '%s' não encontrado!", attribute));
+	}
+
+	private void setupWorkBook() {
+
+		try {
+			File file = new File(TestContext.getConfigReader().getDataSetFullPath());
+
+			String workbookFormat = TestContext.getConfigReader().getDataSetFormat();
+			switch (DataSourceFormats.valueOf(workbookFormat.toUpperCase())) {
+			case XLSX: {
+				this.workbook = new XSSFWorkbook(new FileInputStream(file));
+				break;
+			}
+			case XLS: {
+				this.workbook = new HSSFWorkbook(new FileInputStream(file));
+				break;
+			}
+			default: {
+				throw new RuntimeException(String.format("Formato '%s' não suportado."));
+			}
+
+			}
+		} catch (IOException exc) {
+			exc.printStackTrace();
+		}
+
+	}
+
+	public Row getRow(String sheetName, int index) {
+		return getWorkbook().getSheet(sheetName).getRow(index);
 	}
 
 }
