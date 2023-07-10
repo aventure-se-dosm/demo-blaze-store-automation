@@ -12,9 +12,9 @@ public class LoginLogic {
 	protected PageActions actions;
 	private LoginModel loginModel;
 
-	// A ROW NÃO DEV EFAZER PARTE DA LOGIC
-	// QUE A MODEL SE VIRE PRA OBTÊ-LA E SE FAZER!
-	// private Row currentRow;
+	
+	
+	
 
 	public LoginLogic() {
 		setupLoginLogic();
@@ -26,9 +26,9 @@ public class LoginLogic {
 		setLoginModel();
 	}
 
-//	private void setRow() {
-//		this.currentRow = TestContext.getRowByTaggedIdSheet();
-//	}
+
+
+
 
 	private void setLoginModel() {
 		this.loginModel = new LoginModel();
@@ -64,13 +64,13 @@ public class LoginLogic {
 
 	public void preencherUsuarioLogin() {
 		String name = loginModel.getUsername();
-		// TODO: value gotten from the proper Sheet!
+		
 		actions.write(getLoginPage().getTxtUsername(), name);
 	}
 
 	public void preencherSenhaLogin() {
 		String password = loginModel.getPassword();
-		// TODO: value got from the proper Sheet!
+		
 		actions.write(getLoginPage().getTxtPassword(), password);
 
 	}

@@ -11,17 +11,17 @@ public class LoginPage {
 	@FindBy(id = "login2")
 	private WebElement loginLink;
 	
-	//loginform
+	
 	@FindBy(id = "loginusername")
 	private WebElement txtUsername;
 	@FindBy(id = "loginpassword")
 	private WebElement txtPassword;
 
 	
-	@FindBy(xpath = "//button[@onclick='logIn()']")
+	@FindBy(xpath = "
 	private WebElement btnEntrar;
 
-	//loggedUserHomePage
+	
 	@FindBy(id = "nameofuser")
 	private WebElement lblWelcomeUser;
 
@@ -52,12 +52,12 @@ public class LoginPage {
 
 
 	public WebElement getLoginForm() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
-//	public WebElement getLoginForm() {
-//		return this.loginForm;
-//	}
+
+
+
 
 }
