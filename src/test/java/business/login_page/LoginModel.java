@@ -47,7 +47,7 @@ public class LoginModel {
 	}
 
 	
-	//não queremos manipulação de excel aqui neste lível
+	//não queremos manipulação de excel aqui neste nível
 	//porque não usaremos nada estático....
 	
 	public LoginModel(Row row) {

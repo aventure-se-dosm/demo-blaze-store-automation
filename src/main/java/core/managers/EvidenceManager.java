@@ -16,10 +16,13 @@ public class EvidenceManager {
 		this.timeUtils = new TimeUtils();
 	}
 
-	public void createEvidence() {
-
-		screenshoter.takeScreenshot(getDefaultEvidencePath(), getDefaultFileNameOutput(),
+	public void createScreenshot() {
+		screenshoter.takeScreenshot(getDefaultEvidencePath(), getStatusSubfolder(), getDefaultFileNameOutput(),
 				ImageFormats.valueOf(getDefaultEvidenceFormat().toUpperCase()));
+	}
+
+	private String getStatusSubfolder() {
+		return TestContext.getStatusFolder();
 	}
 
 	private String getDefaultEvidenceFormat() {
@@ -32,7 +35,7 @@ public class EvidenceManager {
 
 	private String getDefaultFileNameOutput() {
 
-		return String.join("_", TestContext.getCurrentScenarioId(), TestContext.getStatusPTString(),
+		return String.join("_", TestContext.getCurrentScenarioId(), TestContext.getStatusString(),
 				timeUtils.getFormattedDateTimeNow());
 	}
 

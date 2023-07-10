@@ -27,6 +27,11 @@ public class ConfigFileReader {
 		return properties;
 	}
 
+	
+	private String PathFilter (String pathString)
+	{
+		return 	pathString.replaceAll("[\\/]+", "/").replaceAll("[\\\\]+", "\\");
+	}
 	public String getDefaultDriver() {
 		return getproperty(ConfigKeys.WEBDRIVER_TYPE).toUpperCase();
 	}

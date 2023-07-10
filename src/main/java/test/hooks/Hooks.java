@@ -14,9 +14,10 @@ public class Hooks {
 	}
 
 	@After()
-	public static void closeWindow() {
-		TestContext.cleanContext();
+	public static void closeWindow(Scenario scenario) {
+		TestContext.setStatus(scenario.getStatus());
 		TestContext.createEvidence();
+		//TestContext.cleanContext();
 		TestContext.closeBrowser();
 	}
 

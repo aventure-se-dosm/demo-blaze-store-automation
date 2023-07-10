@@ -35,6 +35,8 @@ public class ScenarioContext {
 	}
 
 	public Status getStatus() {
+		String s;
+		s = getStringValue(ScenarioContextKeys.STATUS);
 		return Status.valueOf(getStringValue(ScenarioContextKeys.STATUS));
 	}
 

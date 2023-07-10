@@ -11,7 +11,7 @@ import core.utils.enums.ValidFileFormats.ImageFormats;
 import test.context.TestContext;
 
 public class Screenshoter {
-
+	
 	public void takeScreenshot(String fullFilePath) {
 
 		File shot = ((TakesScreenshot) TestContext.getDriver()).getScreenshotAs(OutputType.FILE);
@@ -27,8 +27,8 @@ public class Screenshoter {
 		takeScreenshot(destination + shotFileName + defaultExtension);
 	}
 
-	public void takeScreenshot(String destination, String shotFileName, ImageFormats defaultExtension) {
-		takeScreenshot(destination + shotFileName + "." + defaultExtension.name());
+	public void takeScreenshot(String destination, String statusFolder, String shotFileName, ImageFormats defaultExtension) {
+		takeScreenshot(destination + statusFolder + shotFileName + "." + defaultExtension.name());
 	}
 
 }

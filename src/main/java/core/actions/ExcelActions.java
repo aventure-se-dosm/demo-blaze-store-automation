@@ -20,11 +20,8 @@ import test.context.TestContext;
 
 public class ExcelActions {
 
-	// IDEIA: Tornar os índices configuráveiS numa próxima etapa
 	private static final int FIRST_DATA_ROW_INDEX = 1;
 	private static final int HEADER_INDEX = 0;
-
-	// cuidado com o duplo encadeamento!
 	private Workbook workbook;
 
 	public ExcelActions() {
@@ -43,7 +40,7 @@ public class ExcelActions {
 			String x = TestContext.getConfigReader().getDataSetFormat();
 			switch (DataSourceFormats.valueOf(x.toUpperCase())) {
 			case XLSX: {
-				this.workbook = new XSSFWorkbook(file);
+				this.workbook = new XSSFWorkbook(new FileInputStream(file));
 				break;
 			}
 			case XLS: {
@@ -56,7 +53,7 @@ public class ExcelActions {
 			}
 
 			}
-		} catch (InvalidFormatException | IOException exc) {
+		} catch (IOException exc) {
 			// TODO: Custom Exceptions
 			exc.printStackTrace();
 		}

@@ -11,6 +11,7 @@ import core.readers.ConfigFileReader;
 import core.readers.data_readers.ExcelReader;
 import core.utils.enums.ScenarioContextKeys;
 import io.cucumber.java.Scenario;
+import io.cucumber.java.Status;
 
 public class TestContext {
 
@@ -102,6 +103,7 @@ public class TestContext {
 		return getExcelReader().getSheet(getScenarioContext()
 				.getStringValue(ScenarioContextKeys.SCENARIO_ID))
 				.getRow(1);
+		
 	}
 
 	public static void cleanContext() {
@@ -109,7 +111,7 @@ public class TestContext {
 	}
 
 	public static void createEvidence() {
-		getEvidenceManager().createEvidence();
+		getEvidenceManager().createScreenshot();
 
 	}
 
@@ -117,7 +119,7 @@ public class TestContext {
 		return TestContext.evidenceManager;
 	}
 
-	public static String getStatusPTString() {
+	public static String getStatusString() {
 		switch (getScenarioContext().getStatus()) {
 		case PASSED:
 			return "PASSOU";
@@ -126,9 +128,23 @@ public class TestContext {
 			return "FALHOU";
 		}
 	}
+	
+	public static String getStatusFolder() {
+		switch (getScenarioContext().getStatus()) {
+		case PASSED:
+			return "sucesso/";
+		case FAILED:
+		default:
+			return "falha/";
+		}
+	}
 
 	public static String getCurrentScenarioId() {
 		return getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID);
+	}
+
+	public static void setStatus(Status status) {
+		getScenarioContext().comuputeKey(ScenarioContextKeys.STATUS, status);
 	}
 
 }
