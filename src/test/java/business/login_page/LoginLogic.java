@@ -1,6 +1,5 @@
 package business.login_page;
 
-import org.apache.poi.ss.usermodel.Row;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -12,7 +11,10 @@ public class LoginLogic {
 	LoginPage loginPage;
 	protected PageActions actions;
 	private LoginModel loginModel;
-	private Row currentRow;
+
+	// A ROW NÃO DEV EFAZER PARTE DA LOGIC
+	// QUE A MODEL SE VIRE PRA OBTÊ-LA E SE FAZER!
+	// private Row currentRow;
 
 	public LoginLogic() {
 		setupLoginLogic();
@@ -21,20 +23,15 @@ public class LoginLogic {
 	public void setupLoginLogic() {
 		setPage();
 		setActions(new PageActions());
-		setRow();
 		setLoginModel();
 	}
 
-	private void setRow() {
-		this.currentRow = TestContext.getRowByTaggedIdSheet();
-	}
+//	private void setRow() {
+//		this.currentRow = TestContext.getRowByTaggedIdSheet();
+//	}
 
 	private void setLoginModel() {
-		
-		//TODO: Attribute index: either by enum, or search!
-		this.loginModel = new LoginModel(
-				getCurrentRow().getCell(0).getStringCellValue(),
-				getCurrentRow().getCell(1).getStringCellValue());
+		this.loginModel = new LoginModel();
 	}
 
 	LoginModel getModel() {
@@ -45,11 +42,7 @@ public class LoginLogic {
 		this.loginPage = new LoginPage();
 	}
 
-	private Row getCurrentRow() {
-		return this.currentRow;
-	}
-
-	private LoginPage getHomePage() {
+	private LoginPage getLoginPage() {
 		return loginPage;
 	}
 
@@ -63,27 +56,27 @@ public class LoginLogic {
 	}
 
 	public String startLogin() {
-		WebElement loginButton = getHomePage().getLoginLink();
+		WebElement loginButton = getLoginPage().getLoginLink();
 		String linkText = loginButton.getText();
 		actions.click(loginButton);
 		return linkText;
 	}
 
 	public void preencherUsuarioLogin() {
-		String name = "mmm";
+		String name = loginModel.getUsername();
 		// TODO: value gotten from the proper Sheet!
-		actions.write(getHomePage().getTxtUsername(), name);
+		actions.write(getLoginPage().getTxtUsername(), name);
 	}
 
 	public void preencherSenhaLogin() {
-		String password = "mmm";
+		String password = loginModel.getPassword();
 		// TODO: value got from the proper Sheet!
-		actions.write(getHomePage().getTxtPassword(), password);
+		actions.write(getLoginPage().getTxtPassword(), password);
 
 	}
 
 	void submeterFormularioLogin() {
-		actions.click(getHomePage().getLoginForm());
+		actions.click(getLoginPage().getLoginForm());
 	}
 
 	public String getUrlDaPaginaAtual() {
@@ -95,12 +88,12 @@ public class LoginLogic {
 	}
 
 	public boolean isUserProperlyLogged() {
-		String txtWelcome = actions.getText(getHomePage().getlblWelcomeUser());
+		String txtWelcome = actions.getText(getLoginPage().getlblWelcomeUser());
 		boolean assertBool = txtWelcome.contains("mmm");
 		return assertBool;
 	}
 
 	public void sendLoginForm() {
-		actions.click(getHomePage().getBtnEntrar());
+		actions.click(getLoginPage().getBtnEntrar());
 	}
 }

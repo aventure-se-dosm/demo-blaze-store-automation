@@ -1,6 +1,6 @@
 #project folders
 /target/
-/evidencia/
+/evidencia/*
 src/bin/
 
 # Compiled class file

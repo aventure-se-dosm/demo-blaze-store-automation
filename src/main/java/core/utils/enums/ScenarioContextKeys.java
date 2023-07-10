@@ -1,5 +1,7 @@
 package core.utils.enums;
 
 public enum ScenarioContextKeys {
-	SCENARIO_ID, ID_NUMERIC_VALUE,
+	ID_NUMERIC_VALUE,
+	SCENARIO_ID,
+	STATUS,
 }

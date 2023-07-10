@@ -27,6 +27,11 @@ public class ConfigFileReader {
 		return properties;
 	}
 
+	
+	private String PathFilter (String pathString)
+	{
+		return 	pathString.replaceAll("[\\/]+", "/").replaceAll("[\\\\]+", "\\");
+	}
 	public String getDefaultDriver() {
 		return getproperty(ConfigKeys.WEBDRIVER_TYPE).toUpperCase();
 	}
@@ -55,5 +60,13 @@ public class ConfigFileReader {
 		String s = (getDataSetPath() + "/" + getDataFileName() + "." + getDataSetFormat()).replaceAll("[\\.]+", ".")
 				.replaceAll("[\\/]+", "/").replaceAll("[\\\\]+", "\\");
 		return s;
+	}
+
+	public String getDefaultEvidenceFormat() {
+		return getproperty(ConfigKeys.EVIDENCE_FORMAT);
+	}
+
+	public String getDefaultEvidencePath() {
+		return getproperty(ConfigKeys.EVIDENCE_PATH);
 	}
 }
