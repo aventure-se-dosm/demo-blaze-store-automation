@@ -48,13 +48,13 @@ public class ExcelActions {
 				break;
 			}
 			default: {
-				// TODO: UNSUPPORTED DATA SOURCE TYPE EXCEPTION
+				
 				throw new RuntimeException(String.format("Formato '%s' não suportado."));
 			}
 
 			}
 		} catch (IOException exc) {
-			// TODO: Custom Exceptions
+			
 			exc.printStackTrace();
 		}
 
@@ -84,7 +84,7 @@ public class ExcelActions {
 				return cell.getColumnIndex();
 			}
 		}
-		// TODO: Custom Exception
+		
 		throw new RuntimeErrorException(null, String.format("Erro: attributo '%s' não encontrado!", attribute));
 	}
 

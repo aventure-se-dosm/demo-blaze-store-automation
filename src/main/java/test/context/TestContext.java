@@ -38,7 +38,6 @@ public class TestContext {
 
 	private static void setScenarioTagName(Collection<String> sourceTagNames) {
 		String tag = null;
-		// TODO: it would throw NoSuchElementException
 		tag = sourceTagNames.stream().filter(t -> t.startsWith("@ID_")).map(t -> t.replace("@", "")).findFirst().get();
 		getScenarioContext().comuputeKey(ScenarioContextKeys.SCENARIO_ID, tag);
 	}
@@ -98,12 +97,9 @@ public class TestContext {
 	}
 
 	public static Row getRowByTaggedIdSheet() {
-		// TODO: passar para actions!
-		// Esse método já foi abstraído, não?
 		return getExcelReader().getSheet(getScenarioContext()
 				.getStringValue(ScenarioContextKeys.SCENARIO_ID))
 				.getRow(1);
-		
 	}
 
 	public static void cleanContext() {
