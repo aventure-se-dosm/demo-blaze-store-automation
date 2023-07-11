@@ -1,26 +1,11 @@
 #language: pt
+Funcionalidade: Realizar login na aplicação
 
-@allFeature
-Funcionalidade: Title of your feature
-  I want to use this template for my feature file
-
-  @tag1
-  Cenario: Title of your scenario
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcomes
-    And check more outcomes
-
-  @tag2
- Esquema do Cenário: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+  @ID_0001
+  Cenario: O usuário cadastrado realiza login com sucesso
+    Dado que estou na página Home Page
+    Quando clico no link Login em HomePage
+    E preencho o campo Username em LoginForm
+    E preencho o campo Password em LoginForm
+    E clico no botão Submit
+    Então o usuário foi logado com sucesso
