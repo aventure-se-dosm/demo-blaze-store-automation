@@ -1,4 +1,4 @@
-package business.logout_page;
+package business.logout;
 
 public class LogoutModel {
 

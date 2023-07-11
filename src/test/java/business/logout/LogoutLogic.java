@@ -1,10 +1,10 @@
-package business.logout_page;
+package business.logout;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import business.logout_page.LogoutModel.LoginAttributes;
+import business.logout.LogoutModel.LoginAttributes;
 import core.actions.PageActions;
 import test.context.TestContext;
 

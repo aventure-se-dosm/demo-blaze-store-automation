@@ -35,7 +35,7 @@ public class PageActions {
 		TestContext.getDriver().get(url);
 	}
 
-	private Waits getWait() {
+	public Waits getWait() {
 		return this.wait;
 	}
 

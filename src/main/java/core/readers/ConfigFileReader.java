@@ -34,6 +34,7 @@ public class ConfigFileReader {
 	public String getDataSetFullPath() {
 		return (getDataSetPath() + "/" + getDataFileName() + "." + getDataSetFormat()).replaceAll("[\\.]+", ".")
 				.replaceAll("[\\/]+", "/").replaceAll("[\\\\]+", "\\");
+
 	}
 
 	public String getDataSetPath() {
@@ -42,6 +43,7 @@ public class ConfigFileReader {
 
 	public String getDefaultDriver() {
 		return getproperty(ConfigKeys.WEBDRIVER_TYPE).toUpperCase();
+
 	}
 
 	public String getDefaultEvidenceFormat() {

@@ -26,6 +26,10 @@ public class ExcelActions {
 		setupWorkBook();
 	}
 
+	public Workbook getWorkbook() {
+		return this.workbook;
+	}
+
 	String getCellValueText(Cell cell) {
 
 		switch (cell.getCellType()) {
@@ -50,11 +54,6 @@ public class ExcelActions {
 		return getWorkbook().getSheet(sheetName);
 	}
 
-	public Workbook getWorkbook() {
-		return this.workbook;
-	}
-
-	
 	public void getFistRow() {
 		getSheet(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID))
 				.getRow(TestContext.FIRST_DATA_ROW_INDEX);

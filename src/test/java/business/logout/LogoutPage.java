@@ -1,4 +1,4 @@
-package business.login_page;
+package business.logout;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -6,8 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import test.context.TestContext;
 
-public class LoginPage {
-
+public class LogoutPage {
 	@FindBy(xpath = "//button[@onclick='logIn()']")
 	private WebElement btnEntrar;
 
@@ -17,16 +16,22 @@ public class LoginPage {
 	@FindBy(id = "login2")
 	private WebElement loginLink;
 
+	@FindBy(id = "signin2")
+	private WebElement signinLink;
+
+	@FindBy(xpath = "//div[@id='logInModal']/div")
+	private WebElement loginModalDiv;
+
 	@FindBy(id = "loginpassword")
 	private WebElement txtPassword;
 
 	@FindBy(id = "loginusername")
 	private WebElement txtUsername;
 
-	@FindBy(xpath = "//div[@id='logInModal']/div")
-	private WebElement loginModalDiv;
+	@FindBy(id = "logout2")
+	private WebElement logoutLink;
 
-	public LoginPage() {
+	public LogoutPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
 	}
 
@@ -39,18 +44,27 @@ public class LoginPage {
 	}
 
 	WebElement getLoginLink() {
-		return this.loginLink;
+		return loginLink;
 	}
 
-	public WebElement getTxtPassword() {
-		return this.txtPassword;
+	WebElement getLogoutLink() {
+		return logoutLink;
 	}
 
-	public WebElement getTxtUsername() {
-		return this.txtUsername;
+	protected WebElement getLoginModalDiv() {
+		return loginModalDiv;
 	}
 
-	public WebElement getLoginModalDiv() {
-		return this.loginModalDiv;
+	WebElement getTxtPassword() {
+		return txtPassword;
+	}
+
+	WebElement getTxtUsername() {
+		return txtUsername;
+	}
+
+	public WebElement getSigninLink() {
+		return signinLink;
 	};
+
 }
