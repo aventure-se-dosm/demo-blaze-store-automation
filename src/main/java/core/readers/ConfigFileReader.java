@@ -23,31 +23,6 @@ public class ConfigFileReader {
 		}
 	}
 
-	private Properties getProperties() {
-		return properties;
-	}
-
-	
-	private String PathFilter (String pathString)
-	{
-		return 	pathString.replaceAll("[\\/]+", "/").replaceAll("[\\\\]+", "\\");
-	}
-	public String getDefaultDriver() {
-		return getproperty(ConfigKeys.WEBDRIVER_TYPE).toUpperCase();
-	}
-
-	private String getproperty(ConfigKeys configKey) {
-		return getProperties().getProperty(configKey.getValue().toLowerCase());
-	}
-
-	public String getHomePage() {
-		return getproperty(ConfigKeys.HOMEPAGE_URL);
-	}
-
-	public String getDataSetPath() {
-		return getproperty(ConfigKeys.DATASET_PATH);
-	}
-
 	public String getDataFileName() {
 		return getproperty(ConfigKeys.DATASET_FILENAME);
 	}
@@ -57,16 +32,46 @@ public class ConfigFileReader {
 	}
 
 	public String getDataSetFullPath() {
-		String s = (getDataSetPath() + "/" + getDataFileName() + "." + getDataSetFormat()).replaceAll("[\\.]+", ".")
+		return (getDataSetPath() + "/" + getDataFileName() + "." + getDataSetFormat()).replaceAll("[\\.]+", ".")
 				.replaceAll("[\\/]+", "/").replaceAll("[\\\\]+", "\\");
-		return s;
+
+	}
+
+	public String getDataSetPath() {
+		return getproperty(ConfigKeys.DATASET_PATH);
+	}
+
+	public String getDefaultDriver() {
+		return getproperty(ConfigKeys.WEBDRIVER_TYPE).toUpperCase();
+
 	}
 
 	public String getDefaultEvidenceFormat() {
 		return getproperty(ConfigKeys.EVIDENCE_FORMAT);
 	}
 
+	public String getEvidenceSuccessPath() {
+		return getproperty(ConfigKeys.EVIDENCE_PATH_SUCCESS);
+	}
+
+	public String getEvidenceFailPath() {
+		return getproperty(ConfigKeys.EVIDENCE_PATH_FAIL);
+	}
+
 	public String getDefaultEvidencePath() {
 		return getproperty(ConfigKeys.EVIDENCE_PATH);
 	}
+
+	public String getHomePage() {
+		return getproperty(ConfigKeys.HOMEPAGE_URL);
+	}
+
+	private Properties getProperties() {
+		return properties;
+	}
+
+	private String getproperty(ConfigKeys configKey) {
+		return getProperties().getProperty(configKey.getValue().toLowerCase());
+	}
+
 }

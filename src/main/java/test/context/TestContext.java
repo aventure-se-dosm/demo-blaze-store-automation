@@ -15,31 +15,33 @@ import io.cucumber.java.Status;
 
 public class TestContext {
 
-	private static DriverManager driverManager;
 	private static ConfigFileReader configFileReader;
-	private static ScenarioContext scenarioContext;
-	private static ExcelReader excelReader;
+	private static DriverManager driverManager;
 	private static EvidenceManager evidenceManager;
+	private static ExcelReader excelReader;
+	private static ScenarioContext scenarioContext;
 
-	public static void setupApplication(Scenario scenario) {
+	public static final int FIRST_DATA_ROW_INDEX = 1;
+	public static final int HEADER_INDEX = 0;
+	private static final String FILE_SEPARATOR = "/";
 
-		setScenarioContext(new ScenarioContext());
-		setScenarioTagName(scenario.getSourceTagNames());
-		setDriverManager(new DriverManager());
-		setConfigFileReader(new ConfigFileReader());
-		setExcelReader(new ExcelReader());
-		setEvidenceManager(new EvidenceManager());
+	public static void cleanContext() {
+		getScenarioContext().resetScenarioContext();
+	}
+
+	public static void closeBrowser() {
+		driverManager.closeDriver();
+	}
+
+	public static void createEvidence() {
+		getEvidenceManager().createScreenshot();
 
 	}
 
-	private static void setEvidenceManager(EvidenceManager evidenceManager) {
-		TestContext.evidenceManager = evidenceManager;
-	}
+	public static void finishApplication() {
 
-	private static void setScenarioTagName(Collection<String> sourceTagNames) {
-		String tag = null;
-		tag = sourceTagNames.stream().filter(t -> t.startsWith("@ID_")).map(t -> t.replace("@", "")).findFirst().get();
-		getScenarioContext().comuputeKey(ScenarioContextKeys.SCENARIO_ID, tag);
+		getDriverManager().finishDriver();
+
 	}
 
 	public static ConfigFileReader getConfigReader() {
@@ -49,8 +51,8 @@ public class TestContext {
 		return configFileReader;
 	}
 
-	public static DriverManager getDriverManager() {
-		return driverManager;
+	public static String getCurrentScenarioId() {
+		return getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID);
 	}
 
 	public static WebDriver getDriver() {
@@ -60,59 +62,40 @@ public class TestContext {
 		return getDriverManager().getDriver();
 	}
 
-	private static void setConfigFileReader(ConfigFileReader configFileReader) {
-		TestContext.configFileReader = configFileReader;
+	public static DriverManager getDriverManager() {
+		return driverManager;
 	}
 
-	private static void setExcelReader(ExcelReader excelReader) {
-		TestContext.excelReader = excelReader;
-	}
-
-	private static void setScenarioContext(ScenarioContext scenarioContext) {
-		TestContext.scenarioContext = scenarioContext;
-	}
-
-	private static void setDriverManager(DriverManager driverManager) {
-		TestContext.driverManager = driverManager;
-	}
-
-	public static ScenarioContext getScenarioContext() {
-		if (TestContext.scenarioContext == null)
-			setScenarioContext(new ScenarioContext());
-
-		return TestContext.scenarioContext;
+	private static EvidenceManager getEvidenceManager() {
+		return TestContext.evidenceManager;
 	}
 
 	static ExcelReader getExcelReader() {
 		return TestContext.excelReader;
 	}
 
-	public static void closeBrowser() {
-		driverManager.closeDriver();
-	}
-
-	public static void finishApplication() {
-
-		getDriverManager().finishDriver();
-	}
-
 	public static Row getRowByTaggedIdSheet() {
-		return getExcelReader().getSheet(getScenarioContext()
-				.getStringValue(ScenarioContextKeys.SCENARIO_ID))
-				.getRow(1);
-	}
 
-	public static void cleanContext() {
-		getScenarioContext().resetScenarioContext();
-	}
-
-	public static void createEvidence() {
-		getEvidenceManager().createScreenshot();
+		Row row = getExcelReader().actions()
+				.getRow(getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID), FIRST_DATA_ROW_INDEX);
+		return row;
 
 	}
 
-	private static EvidenceManager getEvidenceManager() {
-		return TestContext.evidenceManager;
+	public static ScenarioContext getScenarioContext() {
+		if (TestContext.scenarioContext == null)
+			setScenarioContext(new ScenarioContext());
+		return TestContext.scenarioContext;
+	}
+
+	public static String getStatusFolder() {
+		switch (getScenarioContext().getStatus()) {
+		case PASSED:
+			return getConfigReader().getEvidenceSuccessPath();
+		case FAILED:
+		default:
+			return getConfigReader().getEvidenceFailPath();
+		}
 	}
 
 	public static String getStatusString() {
@@ -124,23 +107,50 @@ public class TestContext {
 			return "FALHOU";
 		}
 	}
-	
-	public static String getStatusFolder() {
-		switch (getScenarioContext().getStatus()) {
-		case PASSED:
-			return "sucesso/";
-		case FAILED:
-		default:
-			return "falha/";
-		}
+
+	private static void setConfigFileReader(ConfigFileReader configFileReader) {
+		TestContext.configFileReader = configFileReader;
 	}
 
-	public static String getCurrentScenarioId() {
-		return getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID);
+	private static void setDriverManager(DriverManager driverManager) {
+		TestContext.driverManager = driverManager;
+	}
+
+	private static void setEvidenceManager(EvidenceManager evidenceManager) {
+		TestContext.evidenceManager = evidenceManager;
+	}
+
+	private static void setExcelReader(ExcelReader excelReader) {
+		TestContext.excelReader = excelReader;
+	}
+
+	private static void setScenarioContext(ScenarioContext scenarioContext) {
+		TestContext.scenarioContext = scenarioContext;
+	}
+
+	private static void setScenarioTagName(Collection<String> sourceTagNames) {
+		String tag = null;
+		tag = sourceTagNames.stream().filter(t -> t.startsWith("@ID_")).map(t -> t.replace("@", "")).findFirst().get();
+		getScenarioContext().comuputeKey(ScenarioContextKeys.SCENARIO_ID, tag);
 	}
 
 	public static void setStatus(Status status) {
 		getScenarioContext().comuputeKey(ScenarioContextKeys.STATUS, status);
+	}
+
+	public static String makePath(String... directories) {
+		return (String.join(FILE_SEPARATOR, directories)).replace("(" + FILE_SEPARATOR + "){1,}", FILE_SEPARATOR);
+	}
+
+	public static void setupApplication(Scenario scenario) {
+
+		setScenarioContext(new ScenarioContext());
+		setScenarioTagName(scenario.getSourceTagNames());
+		setDriverManager(new DriverManager());
+		setConfigFileReader(new ConfigFileReader());
+		setExcelReader(new ExcelReader());
+		setEvidenceManager(new EvidenceManager());
+
 	}
 
 }

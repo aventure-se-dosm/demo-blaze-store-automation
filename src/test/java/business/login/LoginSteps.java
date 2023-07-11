@@ -1,9 +1,7 @@
-package business.steps;
+package business.login;
 
 import org.junit.Assert;
 
-import business.login_page.LoginLogic;
-import business.login_page.LoginPage;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;

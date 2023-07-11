@@ -14,20 +14,30 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import test.context.TestContext;;
 
 public class DriverManager {
-	private WebDriver webdriver;
-
-	public DriverManager() {
-		getDriver();
-	}
-
 	public static void setupDrivers() {
 		WebDriverManager.chromedriver().setup();
 		WebDriverManager.firefoxdriver().setup();
 		WebDriverManager.edgedriver().setup();
 	}
 
-	private boolean isWebDriverExtant() {
-		return webdriver != null;
+	private WebDriver webdriver;
+
+	public DriverManager() {
+		getDriver();
+	}
+
+	public void closeDriver() {
+		if (isWebDriverExtant()) {
+			simpleCloseDriver();
+		}
+		setDriverNull();
+	}
+
+	public void finishDriver() {
+		if (isWebDriverExtant()) {
+			killDriver();
+		}
+		setDriverNull();
 	}
 
 	public WebDriver getDriver() {
@@ -36,6 +46,18 @@ public class DriverManager {
 			setDriver();
 		}
 		return webdriver;
+	}
+
+	private boolean isWebDriverExtant() {
+		return webdriver != null;
+	}
+
+	private void killDriver() {
+		if (isWebDriverExtant()) {
+			webdriver.quit();
+		}
+		setDriverNull();
+
 	}
 
 	private void setDriver() {
@@ -64,33 +86,11 @@ public class DriverManager {
 		webdriver.manage().window().maximize();
 	}
 
-	private void simpleCloseDriver() {
-		webdriver.close();
-	}
-
-	private void killDriver() {
-		if (isWebDriverExtant()) {
-			webdriver.quit();
-		}
-		setDriverNull();
-
-	}
-
 	private void setDriverNull() {
 		webdriver = null;
 	}
 
-	public void closeDriver() {
-		if (isWebDriverExtant()) {
-			simpleCloseDriver();
-		}
-		setDriverNull();
-	}
-
-	public void finishDriver() {
-		if (isWebDriverExtant()) {
-			killDriver();
-		}
-		setDriverNull();
+	private void simpleCloseDriver() {
+		webdriver.close();
 	}
 }

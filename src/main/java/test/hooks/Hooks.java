@@ -12,12 +12,12 @@ public class Hooks {
 	public static void setupApplication(Scenario scenario) {
 		TestContext.setupApplication(scenario);
 	}
-
+	
 	@After()
 	public static void closeWindow(Scenario scenario) {
 		TestContext.setStatus(scenario.getStatus());
 		TestContext.createEvidence();
-		
+		TestContext.cleanContext();
 		TestContext.closeBrowser();
 	}
 
@@ -25,4 +25,5 @@ public class Hooks {
 	public static void finishApplication() {
 		TestContext.finishApplication();
 	}
+
 }

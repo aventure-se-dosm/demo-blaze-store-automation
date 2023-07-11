@@ -1,4 +1,4 @@
-package business.login_page;
+package business.login;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,10 +12,6 @@ public class LoginLogic {
 	protected PageActions actions;
 	private LoginModel loginModel;
 
-	
-	
-	
-
 	public LoginLogic() {
 		setupLoginLogic();
 	}
@@ -25,10 +21,6 @@ public class LoginLogic {
 		setActions(new PageActions());
 		setLoginModel();
 	}
-
-
-
-
 
 	private void setLoginModel() {
 		this.loginModel = new LoginModel();
@@ -64,20 +56,17 @@ public class LoginLogic {
 
 	public void preencherUsuarioLogin() {
 		String name = loginModel.getUsername();
-		
-		actions.write(getLoginPage().getTxtUsername(), name);
+	
+		actions.write(getLoginPage().getTxtUsername(), getLoginPage().getLoginModalDiv(), name);
 	}
 
 	public void preencherSenhaLogin() {
 		String password = loginModel.getPassword();
-		
-		actions.write(getLoginPage().getTxtPassword(), password);
+
+		actions.write(getLoginPage().getTxtPassword(), getLoginPage().getLoginModalDiv(), password);
 
 	}
 
-	void submeterFormularioLogin() {
-		actions.click(getLoginPage().getLoginForm());
-	}
 
 	public String getUrlDaPaginaAtual() {
 		return getDriver().getCurrentUrl();
@@ -89,7 +78,7 @@ public class LoginLogic {
 
 	public boolean isUserProperlyLogged() {
 		String txtWelcome = actions.getText(getLoginPage().getlblWelcomeUser());
-		boolean assertBool = txtWelcome.contains("mmm");
+		boolean assertBool = txtWelcome.contains(getModel().getUsername());
 		return assertBool;
 	}
 
