@@ -12,7 +12,7 @@ public class Hooks {
 	public static void closeWindow(Scenario scenario) {
 		TestContext.setStatus(scenario.getStatus());
 		TestContext.createEvidence();
-		//TestContext.cleanContext();
+		TestContext.cleanContext();
 		TestContext.closeBrowser();
 	}
 

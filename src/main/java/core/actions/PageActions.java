@@ -20,13 +20,15 @@ public class PageActions {
 	public void click(WebElement element) {
 
 		scrollToElement(element);
-		getWait().elementIsClickable(element);
+		if (getWait().elementIsClickable(element))
+			;
 		element.click();
 	}
 
 	public String getText(WebElement element) {
-		getWait().elementIsVisible(element);
-		return element.getText();
+		if (getWait().elementIsVisible(element))
+			return element.getText();
+		throw new RuntimeException(String.format("O elemento '%s' não foi encontrado", element.toString()));
 	}
 
 	public void getUrl(String url) {
@@ -38,6 +40,7 @@ public class PageActions {
 	}
 
 	void scrollToElement(WebElement element) {
+		
 		jsExecutor.executeScript("scroll(arguments[0]);", element);
 	}
 
@@ -53,6 +56,16 @@ public class PageActions {
 		scrollToElement(element);
 		getWait().elementIsVisible(element);
 		element.sendKeys(keysToSend);
+	}
+	
+	public void write(WebElement element, WebElement container, String keysToSend) {
+		scrollToElement(element);
+		getWait().elementIsVisible(container, element);
+		element.sendKeys(keysToSend);
+	}
+
+	public boolean isEachWebElementPresent(WebElement... elements) {
+		return getWait().elementIsVisible(elements);
 	}
 
 }

@@ -41,12 +41,12 @@ public class LoginLogic {
 
 	public void preencherSenhaLogin() {
 
-		actions.write(getLoginPage().getTxtPassword(), loginModel.getPassword());
+		actions.write(getLoginPage().getTxtPassword(), getLoginPage().getLoginModalDiv(), loginModel.getPassword());
 	}
 
 	public void preencherUsuarioLogin() {
 
-		actions.write(getLoginPage().getTxtUsername(), loginModel.getUsername());
+		actions.write(getLoginPage().getTxtUsername(), getLoginPage().getLoginModalDiv(), loginModel.getUsername());
 	}
 
 	public void sendLoginForm() {

@@ -23,6 +23,7 @@ public class TestContext {
 
 	public static final int FIRST_DATA_ROW_INDEX = 1;
 	public static final int HEADER_INDEX = 0;
+	private static final String FILE_SEPARATOR = "/";
 
 	public static void cleanContext() {
 		getScenarioContext().resetScenarioContext();
@@ -135,6 +136,10 @@ public class TestContext {
 		getScenarioContext().comuputeKey(ScenarioContextKeys.STATUS, status);
 	}
 
+	public static String makePath(String ... directories) {
+		return (String.join(FILE_SEPARATOR, directories)).replace("("+FILE_SEPARATOR+"){1,}", FILE_SEPARATOR);
+	}
+	
 	public static void setupApplication(Scenario scenario) {
 
 		setScenarioContext(new ScenarioContext());

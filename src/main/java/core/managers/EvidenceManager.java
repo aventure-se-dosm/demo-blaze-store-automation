@@ -2,7 +2,6 @@ package core.managers;
 
 import core.utils.Screenshoter;
 import core.utils.TimeUtils;
-import core.utils.enums.ValidFileFormats.ImageFormats;
 import test.context.TestContext;
 
 public class EvidenceManager {
@@ -17,8 +16,9 @@ public class EvidenceManager {
 	}
 
 	public void createScreenshot() {
-		screenshoter.takeScreenshot(getDefaultEvidencePath(), getStatusSubfolder(), getDefaultFileNameOutput(),
-				ImageFormats.valueOf(getDefaultEvidenceFormat().toUpperCase()));
+		screenshoter.takeScreenshot(
+				TestContext.makePath(getDefaultEvidencePath(), getStatusSubfolder(), getDefaultFileNameOutput()),
+				getDefaultEvidenceFormat().toUpperCase());
 	}
 
 	private String getDefaultEvidenceFormat() {
