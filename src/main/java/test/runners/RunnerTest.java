@@ -8,9 +8,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 @CucumberOptions(
 
-		features = { 
-				"src/test/resources/" 
-		},
+		features = { "src/test/resources/" },
 
 		glue = { "business", "test.hooks" },
 
@@ -20,7 +18,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 		snippets = SnippetType.CAMELCASE,
 
-		tags = "@ID_0001 or @ID_0002",
+		tags = "@ID_0004",
 
 		dryRun = false
 
