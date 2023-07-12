@@ -45,7 +45,6 @@ public class CadastroSteps {
 
 	@Então("um alerta com a mensagem This user already exist. é exibido")
 	public void UmAlertaComAMensagemÉExibido() {
-		// Write code here that turns the phrase above into concrete actions
 		Assert.assertTrue(logic.isUserAlreadyExistent());
 	}
 }
