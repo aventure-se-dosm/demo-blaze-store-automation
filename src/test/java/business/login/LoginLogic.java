@@ -62,9 +62,7 @@ public class LoginLogic {
 
 	public void preencherSenhaLogin() {
 		String password = loginModel.getPassword();
-
 		actions.write(getLoginPage().getTxtPassword(), getLoginPage().getLoginModalDiv(), password);
-
 	}
 
 
