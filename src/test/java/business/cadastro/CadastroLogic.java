@@ -56,14 +56,20 @@ public class CadastroLogic {
 	}
 
 	public void preencherUsuarioCadastro() {
-		String name = cadastroModel.getUsername();
+		preencherUsuarioCadastro(cadastroModel.getUsername());
+	}
+
+	public void preencherUsuarioCadastro(String name) {
 		actions.write(getCadastroPage().getTxtUsername(), getCadastroPage().getCadastroModalDiv(), name);
 	}
 
-	public void preencherSenhaCadastro() {
-		String password = cadastroModel.getPassword();
+	public void preencherSenhaCadastro(String password) {
 		actions.write(getCadastroPage().getTxtPassword(), getCadastroPage().getCadastroModalDiv(), password);
 	}
+	public void preencherSenhaCadastro() {
+		preencherSenhaCadastro(cadastroModel.getPassword());
+	}
+	
 
 	public String getUrlDaPaginaAtual() {
 		return getDriver().getCurrentUrl();
@@ -96,4 +102,6 @@ public class CadastroLogic {
 		alert.accept();
 		return isUserAlreadyExistent;
 	}
+
+
 }

@@ -1,5 +1,8 @@
 package business.cadastro;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.Assert;
 
 import io.cucumber.java.pt.Dado;
@@ -38,6 +41,17 @@ public class CadastroSteps {
 		logic.sendCadastroForm();
 	}
 
+	@Quando("preencho o campo Username em SignUpForm com valor aleatório")
+	public void preenchoOCampoUsernameEmSignUpFormComValorAleatório() {
+	    // TODO: IMPROVE THE RANDOMIC MODEL GENERATION
+		logic.preencherUsuarioCadastro("ci39dndq".concat(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)));
+	}
+	@Quando("preencho o campo Password em SignUpForm com valor aleatório")
+	public void preenchoOCampoPasswordEmSignUpFormComValorAleatório() {
+		// TODO: IMPROVE THE RANDOMIC MODEL GENERATION
+		logic.preencherSenhaCadastro("asdasd".concat(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)));
+	}
+
 	@Então("o usuário foi cadastrado com sucesso")
 	public void oUsuárioFoiLogadoComSucesso() {
 		Assert.assertTrue(logic.isUserSignedUp());
@@ -47,4 +61,5 @@ public class CadastroSteps {
 	public void UmAlertaComAMensagemÉExibido() {
 		Assert.assertTrue(logic.isUserAlreadyExistent());
 	}
+
 }
