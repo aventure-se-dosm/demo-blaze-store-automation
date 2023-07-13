@@ -20,8 +20,7 @@ public class PageActions {
 	public void click(WebElement element) {
 
 		scrollToElement(element);
-		if (getWait().elementIsClickable(element))
-			;
+		if (getWait().elementIsClickable(element));
 		element.click();
 	}
 
