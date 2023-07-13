@@ -79,6 +79,7 @@ public class ExcelActions {
 			switch (DataSourceFormats.valueOf(workbookFormat.toUpperCase())) {
 			case XLSX: {
 				this.workbook = new XSSFWorkbook(new FileInputStream(file));
+				
 				break;
 			}
 			case XLS: {
