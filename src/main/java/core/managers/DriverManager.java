@@ -34,9 +34,9 @@ public class DriverManager {
 	}
 
 	public void finishDriver() {
-		if (isWebDriverExtant()) {
-			killDriver();
-		}
+
+		killDriver();
+
 		setDriverNull();
 	}
 
