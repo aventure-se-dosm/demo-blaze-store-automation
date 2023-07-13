@@ -23,7 +23,6 @@ public class Waits {
 		this.fluentWait = new FluentWait<WebDriver>(webdriver);
 	}
 
-	//TODO: Wait for the frame containing forms altogether them
 	public boolean elementIsClickable(WebElement element) {
 		return fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
 				.until(ExpectedConditions.and(ExpectedConditions.visibilityOfAllElements(element),

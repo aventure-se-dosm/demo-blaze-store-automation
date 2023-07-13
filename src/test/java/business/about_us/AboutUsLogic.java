@@ -48,8 +48,8 @@ public class AboutUsLogic {
 
 	public void goToAboutUs() {
 		WebElement welem = getAboutUsPage().getLinkAboutUs();
-		welem.click();
-		//getActions().click(welem);
+
+		getActions().click(welem);
 	}
 
 	public PageActions getActions() {
