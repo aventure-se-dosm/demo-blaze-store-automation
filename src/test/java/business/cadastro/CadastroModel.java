@@ -1,9 +1,5 @@
 package business.cadastro;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import org.apache.poi.ss.usermodel.Row;
 
 import test.context.TestContext;
@@ -40,9 +36,9 @@ public class CadastroModel {
 	public CadastroModel(Row row) {
 
 		setUsuario(row.getCell(LoginAttributes.USERNAME.index).getStringCellValue());
-				
+
 		setSenha(row.getCell(LoginAttributes.PASSWORD.index).getStringCellValue());
-				
+
 	}
 
 	protected String getUsername() {
