@@ -5,6 +5,8 @@ Funcionalidade: Enviar mensagem de texto na seção contato
   Cenario: Escrever uma mensagem com sucesso
     Dado que estou na página inicial para enviar uma mensagem
     Quando clico no link Contact
+
+    E preencho o campo Contact Name em ContactForm
     E preencho o campo Contact Email em ContactForm
     E preencho o campo Contact Name em ContactForm
     E escrevo uma mensagem no campo

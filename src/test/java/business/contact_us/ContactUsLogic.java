@@ -1,6 +1,5 @@
 package business.contact_us;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -31,7 +30,6 @@ public class ContactUsLogic {
 		this.contactUsPage = new ContactUsPage();
 	}
 
-
 	private void setActions(PageActions pageActions) {
 		this.actions = pageActions;
 	}
@@ -42,9 +40,10 @@ public class ContactUsLogic {
 	}
 
 	public ContactUsPage getPage() {
-		
+
 		return contactUsPage;
 	}
+
 	public String getUrlDaPaginaAtual() {
 		return getDriver().getCurrentUrl();
 	}
@@ -54,7 +53,9 @@ public class ContactUsLogic {
 	}
 
 	public void goToContactUs() {
+
 		WebElement welem = getPage().getLinkContactUs();
+
 		getActions().click(welem);
 	}
 
@@ -69,26 +70,30 @@ public class ContactUsLogic {
 	public boolean isMessageSent() {
 		try {
 			String alertMessage = actions.getAlertText();
+
 			return alertMessage.equals(getPage().getMessageSentSuccessifully());
-		}
-		catch (Exception e) {
+
+		} catch (Exception e) {
 			return false;
 		}
-		
+
 	}
 
 	public void fillTxtContactName() {
+
 		getActions().write(getPage().getTxtContactName(), getModel().getContactUsername());
 	}
+
 	public void fillTxtContactEmail() {
 		getActions().write(getPage().getTxtContactEmail(), getModel().getContactEmail());
 	}
+
 	public void fillMessage() {
 		getActions().write(getPage().getTxtContactMessage(), getModel().getMessage());
 	}
 
 	public void sendMessage() {
 		getActions().click(getPage().getBtnSendMessage());
-		
+
 	}
 }
