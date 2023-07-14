@@ -1,6 +1,10 @@
 package business.contact_us;
 
+import org.junit.Assert;
+
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.E;
+import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
 
 public class ContactUsSteps {
@@ -9,31 +13,37 @@ public class ContactUsSteps {
 	@Dado("que estou na página inicial para enviar uma mensagem")
 	public void queEstouNaPáginaInicialParaEnviarUmaMensagem() {
 		logic = new ContactUsLogic();
-		
+		logic.startNavigation();
 	}
 
 	@Quando("clico no link Contact")
 	public void clicoNoLinkContact() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		logic.goToContactUs();
 	}
 
-	@Quando("preencho o campo Contact Name em ContactForm")
+	@E("preencho o campo Contact Name em ContactForm")
 	public void preenchoOCampoContactNameEmContactForm() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		logic.fillTxtContactName();
 	}
 
-	@Quando("preencho o campo Contact Email em ContactForm")
+	@E("preencho o campo Contact Email em ContactForm")
 	public void preenchoOCampoContactEmailEmContactForm() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		logic.fillTxtContactEmail();
 	}
 
-	@Quando("escrevo uma mensagem no campo")
+	@E("escrevo uma mensagem no campo")
 	public void escrevoUmaMensagemNoCampo() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		logic.fillMessage();
+	}
+
+	@Quando("clico no botão Send Message")
+	public void clicoNoBotãoSendMessage() {
+		logic.sendMessage();
+	}
+
+	@Então("a mensagem foi enviada com sucesso")
+	public void aMensagemFoiEnviadaComSucesso() {
+		Assert.assertTrue(logic.isMessageSent());
 	}
 
 }

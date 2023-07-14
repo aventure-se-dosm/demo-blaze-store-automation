@@ -15,7 +15,7 @@ public class CadastroModel {
 			this.index = index;
 		}
 
-		int getIndex(LoginAttributes attribute) {
+		public int getIndex() {
 			return this.index;
 		}
 
@@ -35,9 +35,9 @@ public class CadastroModel {
 
 	public CadastroModel(Row row) {
 
-		setUsuario(row.getCell(LoginAttributes.USERNAME.index).getStringCellValue());
+		setUsuario(row.getCell(LoginAttributes.USERNAME.getIndex()).getStringCellValue());
 
-		setSenha(row.getCell(LoginAttributes.PASSWORD.index).getStringCellValue());
+		setSenha(row.getCell(LoginAttributes.PASSWORD.getIndex()).getStringCellValue());
 
 	}
 
