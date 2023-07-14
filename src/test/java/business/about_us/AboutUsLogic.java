@@ -8,8 +8,9 @@ import test.context.TestContext;
 
 public class AboutUsLogic {
 
-	private AboutUsPage aboutUsPage;
-	private PageActions actions;
+	protected AboutUsPage page;
+	protected PageActions actions;
+	// protected AboutUsModel model;
 
 	public AboutUsLogic() {
 		setupAboutUsLogic();
@@ -22,15 +23,15 @@ public class AboutUsLogic {
 	}
 
 	private void setPage() {
-		this.aboutUsPage = new AboutUsPage();
+		this.page = new AboutUsPage();
 	}
 
 	public AboutUsPage getAboutUsPage() {
-		return aboutUsPage;
+		return (AboutUsPage) this.page;
 	}
 
-	private void setActions(PageActions pageActions) {
-		this.actions = pageActions;
+	private void setActions(PageActions actions) {
+		this.actions = actions;
 	}
 
 	public void startNavigation() {
@@ -47,9 +48,7 @@ public class AboutUsLogic {
 	}
 
 	public void goToAboutUs() {
-		WebElement welem = getAboutUsPage().getLinkAboutUs();
-
-		getActions().click(welem);
+	getActions().click(getAboutUsPage().getLinkAboutUs());
 	}
 
 	public PageActions getActions() {
@@ -59,7 +58,7 @@ public class AboutUsLogic {
 	public void playVideo() {
 		getActions().click(getAboutUsPage().getExampleVideo());
 	}
-	
+
 	public boolean isVideoElementVisible() {
 		return getActions().getWait().elementIsVisible(getAboutUsPage().getExampleVideo());
 	}

@@ -5,7 +5,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
 import core.utils.Waits;
-import net.bytebuddy.implementation.bytecode.assign.reference.GenericTypeAwareAssigner;
 import test.context.TestContext;
 
 public class PageActions {
@@ -23,8 +22,7 @@ public class PageActions {
 
 		scrollToElement(element);
 		if (getWait().elementIsClickable(element))
-			;
-		element.click();
+			element.click();
 	}
 
 	public String getText(WebElement element) {
@@ -55,14 +53,14 @@ public class PageActions {
 	}
 
 	public void write(WebElement element, String keysToSend) {
-		scrollToElement(element);
 		getWait().elementIsVisible(element);
+		scrollToElement(element);
 		element.sendKeys(keysToSend);
 	}
 
 	public void write(WebElement element, WebElement container, String keysToSend) {
-		scrollToElement(element);
 		getWait().elementIsVisible(container, element);
+		scrollToElement(element);
 		element.sendKeys(keysToSend);
 	}
 

@@ -17,6 +17,4 @@ Funcionalidade: Realizar o cadastro de um usuário na aplicação
     E preencho o campo Username em SignUpForm
     E preencho o campo Password em SignUpForm
     E clico no botão Submit em SignUpForm
-
-  Cenario: Validar alerta ao tentar cadastrar um usuário já existente na aplicação
     Então um alerta com a mensagem This user already exist. é exibido
