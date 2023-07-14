@@ -8,6 +8,8 @@ import test.context.TestContext;
 
 public class ContactUsPage {
 
+	private static final Object ALERT_MESSAGE_SENT_SUCCESSIFULLY = "Thanks for the message!!";
+
 	ContactUsPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
 	}
@@ -41,5 +43,9 @@ public class ContactUsPage {
 
 	protected WebElement getBtnSendMessage() {
 		return btnSendMessage;
+	}
+
+	public Object getMessageSentSuccessifully() {
+		return ALERT_MESSAGE_SENT_SUCCESSIFULLY;
 	}
 }

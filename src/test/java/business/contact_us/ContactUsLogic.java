@@ -1,5 +1,6 @@
 package business.contact_us;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -9,6 +10,7 @@ import test.context.TestContext;
 public class ContactUsLogic {
 
 	private ContactUsPage contactUsPage;
+	private ContactUsModel contactUsModel;
 	private PageActions actions;
 
 	public ContactUsLogic() {
@@ -17,8 +19,12 @@ public class ContactUsLogic {
 
 	public void setupContactUsLogic() {
 		setPage();
+		setModel();
 		setActions(new PageActions());
+	}
 
+	private void setModel() {
+		this.contactUsModel = new ContactUsModel(TestContext.getRowByTaggedIdSheet());
 	}
 
 	private void setPage() {
@@ -48,7 +54,6 @@ public class ContactUsLogic {
 
 	public void goToContactUs() {
 		WebElement welem = getContactUsPage().getLinkContactUs();
-
 		getActions().click(welem);
 	}
 
@@ -56,9 +61,28 @@ public class ContactUsLogic {
 		return this.actions;
 	}
 
-	
+	public ContactUsModel getModel() {
+		return this.contactUsModel;
+	}
+
 	public boolean isMessageSent() {
-		//TODO: implementation
-		return false;
+		try {
+			String alertMessage = actions.getAlertText();
+			return alertMessage.equals(getContactUsPage().getMessageSentSuccessifully());
+		}
+		catch (Exception e) {
+			return false;
+		}
+		
+	}
+
+	public void fillTxtContactName() {
+		getActions().write(getContactUsPage().getTxtContactName(), getModel().getContactUsername());
+	}
+	public void fillTxtContactEmail() {
+		getActions().write(getContactUsPage().getTxtContactEmail(), getModel().getContactEmail());
+	}
+	public void fillMessage() {
+		getActions().write(getContactUsPage().getTxtContactMessage(), getModel().getMessage());
 	}
 }

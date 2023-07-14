@@ -1,5 +1,6 @@
 package core.actions;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
@@ -20,7 +21,8 @@ public class PageActions {
 	public void click(WebElement element) {
 
 		scrollToElement(element);
-		if (getWait().elementIsClickable(element));
+		if (getWait().elementIsClickable(element))
+			;
 		element.click();
 	}
 
@@ -39,7 +41,7 @@ public class PageActions {
 	}
 
 	void scrollToElement(WebElement element) {
-		
+
 		jsExecutor.executeScript("scroll(arguments[0]);", element);
 	}
 
@@ -56,7 +58,7 @@ public class PageActions {
 		getWait().elementIsVisible(element);
 		element.sendKeys(keysToSend);
 	}
-	
+
 	public void write(WebElement element, WebElement container, String keysToSend) {
 		scrollToElement(element);
 		getWait().elementIsVisible(container, element);
@@ -65,6 +67,16 @@ public class PageActions {
 
 	public boolean isEachWebElementPresent(WebElement... elements) {
 		return getWait().elementIsVisible(elements);
+	}
+
+	public String getAlertText() {
+		Alert alert = getWait().alertIsPresent();
+		if (alert == null) {
+			throw new RuntimeException("Texto não enviado: confirmação pendente!");
+		}
+		String alertMessage = alert.getText();
+		alert.dismiss();
+		return alertMessage;
 	}
 
 }
