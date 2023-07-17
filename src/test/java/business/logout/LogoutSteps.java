@@ -1,4 +1,4 @@
-package business.userlog.logout;
+package business.logout;
 
 import org.junit.Assert;
 

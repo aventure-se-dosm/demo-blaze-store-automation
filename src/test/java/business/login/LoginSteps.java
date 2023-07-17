@@ -1,4 +1,4 @@
-package business.userlog.login;
+package business.login;
 
 import org.junit.Assert;
 
