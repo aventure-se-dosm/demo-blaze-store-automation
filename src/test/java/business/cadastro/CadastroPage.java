@@ -25,7 +25,7 @@ public class CadastroPage {
 
 	@FindBy(xpath = "//div[@id='signInModal']/div")
 	private WebElement cadastroModalDiv;
-	
+
 	private final String msgSignupSuccess = "Sign up successful.";
 	private final String msgUserAlreadyExists = "This user already exist.";
 
@@ -56,14 +56,13 @@ public class CadastroPage {
 	public WebElement getCadastroModalDiv() {
 		return this.cadastroModalDiv;
 	};
-	
+
 	public String getMsgSignupSuccess() {
 		return msgSignupSuccess;
 	}
-	
+
 	public String getMsgUserAlreadyExists() {
 		return msgUserAlreadyExists;
 	}
-	
-	
+
 }

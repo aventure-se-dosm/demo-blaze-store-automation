@@ -7,10 +7,10 @@ import org.openqa.selenium.support.PageFactory;
 import test.context.TestContext;
 
 public class AboutUsPage {
-
-	AboutUsPage(){
+	AboutUsPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
 	}
+
 	@FindBy(xpath = "//a[@data-target='#videoModal']")
 	private WebElement linkAboutUs;
 	@FindBy(xpath = "//video[@id='example-video_html5_api']/..")

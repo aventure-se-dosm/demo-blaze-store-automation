@@ -15,7 +15,7 @@ public class LoginModel {
 			this.index = index;
 		}
 
-		int getIndex(LoginAttributes attribute) {
+		int getIndex() {
 			return this.index;
 		}
 
@@ -34,9 +34,8 @@ public class LoginModel {
 	}
 
 	public LoginModel(Row row) {
-
-		setUsuario(row.getCell(LoginAttributes.USERNAME.index).getStringCellValue());
-		setSenha(row.getCell(LoginAttributes.PASSWORD.index).getStringCellValue());
+		setUsuario(row.getCell(LoginAttributes.USERNAME.getIndex()).getStringCellValue());
+		setSenha(row.getCell(LoginAttributes.PASSWORD.getIndex()).getStringCellValue());
 	}
 
 	protected String getUsername() {

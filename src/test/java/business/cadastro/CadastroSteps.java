@@ -43,12 +43,10 @@ public class CadastroSteps {
 
 	@Quando("preencho o campo Username em SignUpForm com valor aleatório")
 	public void preenchoOCampoUsernameEmSignUpFormComValorAleatório() {
-	    // TODO: IMPROVE THE RANDOMIC MODEL GENERATION
 		logic.preencherUsuarioCadastro("ci39dndq".concat(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)));
 	}
 	@Quando("preencho o campo Password em SignUpForm com valor aleatório")
 	public void preenchoOCampoPasswordEmSignUpFormComValorAleatório() {
-		// TODO: IMPROVE THE RANDOMIC MODEL GENERATION
 		logic.preencherSenhaCadastro("asdasd".concat(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE_TIME)));
 	}
 

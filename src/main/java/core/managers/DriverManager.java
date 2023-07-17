@@ -34,9 +34,7 @@ public class DriverManager {
 	}
 
 	public void finishDriver() {
-
 		killDriver();
-
 		setDriverNull();
 	}
 

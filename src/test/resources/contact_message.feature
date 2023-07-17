@@ -1,9 +1,14 @@
 #language: pt
-Funcionalidade: Apresentação do vídeo na seção sobre a empresa
+Funcionalidade: Enviar mensagem de texto na seção contato
 
-  @ID_0005
-  Cenario: O vídeo na seção sobre a empresa é exibido corretamente
-    Dado que estou na página inicial para assistir ao vídeo
-    Quando clico no link About us
-    E clico no botão play
-    Então o elemento que representa o vídeo é exibido
+  @ID_0006
+  Cenario: Escrever uma mensagem com sucesso
+    Dado que estou na página inicial para enviar uma mensagem
+    Quando clico no link Contact
+
+    E preencho o campo Contact Name em ContactForm
+    E preencho o campo Contact Email em ContactForm
+    E preencho o campo Contact Name em ContactForm
+    E escrevo uma mensagem no campo
+    E clico no botão Send Message
+    Então a mensagem foi enviada com sucesso

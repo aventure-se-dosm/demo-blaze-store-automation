@@ -1,16 +1,14 @@
 package business.cadastro;
 
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import core.actions.PageActions;
 import test.context.TestContext;
 
 public class CadastroLogic {
 
-	CadastroPage cadastroPage;
-	protected PageActions actions;
+	private CadastroPage cadastroPage;
+	private PageActions actions;
 	private CadastroModel cadastroModel;
 
 	public CadastroLogic() {
@@ -48,11 +46,8 @@ public class CadastroLogic {
 		actions.getUrl(TestContext.getConfigReader().getHomePage());
 	}
 
-	public String startCadastro() {
-		WebElement cadastroButton = getCadastroPage().getCadastroLink();
-		String linkText = cadastroButton.getText();
-		actions.click(cadastroButton);
-		return linkText;
+	public void startCadastro() {
+		actions.click(getCadastroPage().getCadastroLink());
 	}
 
 	public void preencherUsuarioCadastro() {
@@ -66,27 +61,23 @@ public class CadastroLogic {
 	public void preencherSenhaCadastro(String password) {
 		actions.write(getCadastroPage().getTxtPassword(), getCadastroPage().getCadastroModalDiv(), password);
 	}
+
 	public void preencherSenhaCadastro() {
 		preencherSenhaCadastro(cadastroModel.getPassword());
 	}
-	
 
 	public String getUrlDaPaginaAtual() {
-		return getDriver().getCurrentUrl();
-	}
-
-	protected WebDriver getDriver() {
-		return TestContext.getDriver();
+		return TestContext.getDriver().getCurrentUrl();
 	}
 
 	public boolean isUserSignedUp() {
-		Alert alert = actions.getWait().alertIsPresent();
-		if (alert == null)
+		String alertMessage;
+		try {
+			alertMessage = actions.getAlertText();
+			return alertMessage.equals(getCadastroPage().getMsgSignupSuccess());
+		} catch (RuntimeException e) {
 			return false;
-
-		boolean isUserSigned = alert.getText().equals(getCadastroPage().getMsgSignupSuccess());
-		alert.accept();
-		return isUserSigned;
+		}
 	}
 
 	public void sendCadastroForm() {
@@ -102,6 +93,5 @@ public class CadastroLogic {
 		alert.accept();
 		return isUserAlreadyExistent;
 	}
-
 
 }
