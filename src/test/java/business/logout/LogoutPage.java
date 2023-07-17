@@ -1,4 +1,4 @@
-package business.userlog.logout;
+package business.logout;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

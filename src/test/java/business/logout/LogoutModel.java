@@ -1,6 +1,6 @@
-package business.userlog;
+package business.logout;
 
-public class LoginOutModel {
+public class LogoutModel {
 
 	enum LoginAttributes {
 

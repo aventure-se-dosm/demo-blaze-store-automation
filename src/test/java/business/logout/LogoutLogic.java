@@ -1,22 +1,19 @@
-package business.userlog;
+package business.logout;
 
 import org.apache.poi.ss.usermodel.Row;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import business.userlog.logout.LogoutModel;
-import business.userlog.logout.LogoutPage;
-import business.userlog.logout.LogoutModel.LoginAttributes;
+import business.logout.LogoutModel.LoginAttributes;
 import core.actions.PageActions;
 import test.context.TestContext;
 
-public class LoginOutLogic {
-
+public class LogoutLogic {
 	protected PageActions actions;
 	private LogoutModel logoutModel;
 	LogoutPage logoutPage;
 
-	public LoginOutLogic() {
+	public LogoutLogic() {
 		setupLogoutLogic();
 	}
 
@@ -24,11 +21,11 @@ public class LoginOutLogic {
 		return TestContext.getDriver();
 	}
 
-	protected LogoutPage getLogoutPage() {
+	private LogoutPage getLogoutPage() {
 		return logoutPage;
 	}
 
-	protected LogoutModel getModel() {
+	LogoutModel getModel() {
 		return logoutModel;
 	}
 
@@ -97,4 +94,7 @@ public class LoginOutLogic {
 		actions.click(getLogoutPage().getBtnEntrar());
 	}
 
+	public void logout() {
+		actions.click(getLogoutPage().getLogoutLink());
+	}
 }

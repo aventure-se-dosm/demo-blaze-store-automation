@@ -1,4 +1,4 @@
-package business.userlog.login;
+package business.login;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
