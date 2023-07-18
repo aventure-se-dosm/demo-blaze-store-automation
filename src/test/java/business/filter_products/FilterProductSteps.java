@@ -35,11 +35,6 @@ public class FilterProductSteps {
 		//throw new PendingException();
 	}
 	
-	@E("a página ProductList está carregada")
-		public void aPáginaProductListEstáCarregada() {
-		filterLogic.selectCategory();
-	//	throw new PendingException();
-	}
 
 	@Então("Há pelo menos um produto com a marca desejada")
 	public void realizoEFilterProduct() {

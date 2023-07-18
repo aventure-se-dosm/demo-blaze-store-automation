@@ -59,7 +59,7 @@ public class PageActions {
 
 	public void write(WebElement element, String keysToSend) {
 		getWait().elementIsVisible(element);
-		scrollToElement(element);
+		scrollIntoView(element);
 		element.sendKeys(keysToSend);
 	}
 

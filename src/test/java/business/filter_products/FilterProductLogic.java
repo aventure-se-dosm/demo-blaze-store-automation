@@ -3,7 +3,6 @@ package business.filter_products;
 import org.apache.poi.ss.usermodel.Row;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 
 import business.filter_products.FilterProductModel.FilterProducAtttributes;
 import core.actions.PageActions;
@@ -36,22 +35,27 @@ public class FilterProductLogic {
 	}
 
 	public boolean isThereAtLeastOneProductOfTheGivenBranch() {
+		try {
+			Thread.sleep(3000);
+			WebElement targetProduct = getFilterProductPage().getProductByBrand(getModel().getBrand());
+			actions.scrollIntoView(targetProduct);
+			return actions.getWait().elementIsVisible(targetProduct);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+			return false;
+		}
 
-		WebElement targetProduct = getFilterProductPage().getProductByBrand(getModel().getBrand());
-
-		actions.scrollIntoView(targetProduct);
-		return actions.getWait().elementIsVisible(targetProduct);
 	}
 
 	public void selectCategory() {
 		try {
 			Thread.sleep(3000);
-		
-			actions.click(filterProductPage.getCategory(getModel().getCategory()));
+			// actions.getWait().elementIsVisible(getFilterProductPage().getCategoryMenu());
 
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		actions.click(filterProductPage.getCategory(getModel().getCategory()));
 	}
 
 	public void sendLoginForm() {
