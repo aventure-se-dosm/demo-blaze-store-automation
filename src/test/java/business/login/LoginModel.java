@@ -10,11 +10,10 @@ public class LoginModel {
 		USERNAME(0), PASSWORD(1);
 
 		private int index;
-
 		LoginAttributes(int index) {
 			this.index = index;
 		}
-
+		
 		int getIndex() {
 			return this.index;
 		}

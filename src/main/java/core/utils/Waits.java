@@ -35,9 +35,13 @@ public class Waits {
 
 	}
 
-	public void jsIsFinished() {
+	public void jsExecutesSuccessifully(String jsScript) {
 		fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
-				.until(ExpectedConditions.jsReturnsValue("0"));
+				.until(ExpectedConditions.javaScriptThrowsNoExceptions(jsScript));
+	}
+
+	public void jsFinishedSuccessifully() {
+		jsExecutesSuccessifully("return jQuery.active==0");
 	}
 
 	public Alert alertIsPresent() {

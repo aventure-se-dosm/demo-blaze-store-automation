@@ -10,7 +10,6 @@ public class AboutUsLogic {
 
 	protected AboutUsPage page;
 	protected PageActions actions;
-	// protected AboutUsModel model;
 
 	public AboutUsLogic() {
 		setupAboutUsLogic();
