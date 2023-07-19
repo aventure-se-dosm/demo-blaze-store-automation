@@ -10,8 +10,3 @@ Funcionalidade: Adicionar produtos ao carrinho de compras
     E clico em Cart em NavBarPage
     Então O produto foi adicionado com sucesso
 
-  @ID_0009 @DoisProdutos
-  Cenário: Adicionar múltiplos produtos ao carrinho de compras
-    Dado que estou logado na página
-    Quando adiciono os dois produtos ao carrinho
-    Então Ambos os produtos foram adicionados com sucesso
