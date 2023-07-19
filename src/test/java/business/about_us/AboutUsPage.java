@@ -1,5 +1,6 @@
 package business.about_us;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -13,7 +14,7 @@ public class AboutUsPage {
 
 	@FindBy(xpath = "//a[@data-target='#videoModal']")
 	private WebElement linkAboutUs;
-	@FindBy(xpath = "//video[@id='example-video_html5_api']/..")
+	@FindBy(id = "example-video_html5_api")
 	private WebElement exampleVideo;
 
 	public WebElement getLinkAboutUs() {
@@ -21,7 +22,7 @@ public class AboutUsPage {
 	}
 
 	public WebElement getExampleVideo() {
-		return exampleVideo;
+		return exampleVideo.findElement(By.xpath("./.."));
 	}
 
 }

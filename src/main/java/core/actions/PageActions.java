@@ -20,12 +20,14 @@ public class PageActions {
 
 	public void click(WebElement element) {
 
-		scrollToElement(element);
-		if (getWait().elementIsClickable(element))
+		if (getWait().elementIsClickable(element)) {
+			scrollToElement(element);
 			element.click();
+		}
 	}
 
 	public String getText(WebElement element) {
+		scrollToElement(element);
 		if (getWait().elementIsVisible(element))
 			return element.getText();
 		throw new RuntimeException(String.format("O elemento '%s' não foi encontrado", element.toString()));
@@ -39,9 +41,12 @@ public class PageActions {
 		return this.wait;
 	}
 
-	void scrollToElement(WebElement element) {
-
+	public void scrollToElement(WebElement element) {
 		jsExecutor.executeScript("scroll(arguments[0]);", element);
+	}
+
+	public void scrollIntoView(WebElement element) {
+		jsExecutor.executeScript("(arguments[0]).scrollIntoView();", element);
 	}
 
 	private void setJavaScriptExecutor() {
@@ -54,7 +59,7 @@ public class PageActions {
 
 	public void write(WebElement element, String keysToSend) {
 		getWait().elementIsVisible(element);
-		scrollToElement(element);
+		scrollIntoView(element);
 		element.sendKeys(keysToSend);
 	}
 

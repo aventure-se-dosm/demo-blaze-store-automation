@@ -42,11 +42,10 @@
 			<version>5.2.3</version>
 		</dependency>
 		<dependency>
-			<groupId>picocontainer</groupId>
-			<artifactId>picocontainer</artifactId>
-			<version>3</version>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>7.13.0</version>
 		</dependency>
-
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>

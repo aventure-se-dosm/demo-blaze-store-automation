@@ -22,7 +22,6 @@ public class ContactUsModel {
 		return this.message;
 	}
 
-
 	enum ContactFormAttributes {
 		CONTACT_NAME(0), CONTACT_EMAIL(1), CONTACT_MESSAGE(2);
 
@@ -38,7 +37,6 @@ public class ContactUsModel {
 
 	}
 
-	// esse é o construtor ideal
 	public void setupModel(String contactUsername, String contactEmail, String message) {
 		setContactName(contactUsername);
 		setContactEmail(contactEmail);
@@ -65,8 +63,6 @@ public class ContactUsModel {
 		this(TestContext.getRowByTaggedIdSheet());
 	}
 
-	// este construtor deve ser eliminado de qualquer model:
-	// sugestão: abstrai... já deu
 	public ContactUsModel(Row row) {
 		setContactName(row.getCell(ContactFormAttributes.CONTACT_NAME.getIndex()).getStringCellValue());
 		setContactEmail(row.getCell(ContactFormAttributes.CONTACT_EMAIL.getIndex()).getStringCellValue());
