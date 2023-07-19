@@ -34,10 +34,10 @@ public class FilterProductLogic {
 		return getDriver().getCurrentUrl();
 	}
 
-	public boolean isThereAtLeastOneProductOfTheGivenBranch() {
+	public boolean isThereAtLeastOneProductOfTheGivenTrademark() {
 		try {
 			Thread.sleep(3000);
-			WebElement targetProduct = getFilterProductPage().getProductByBrand(getModel().getBrand());
+			WebElement targetProduct = getFilterProductPage().getProductByTrademark(getModel().getTrademark());
 			actions.scrollIntoView(targetProduct);
 			return actions.getWait().elementIsVisible(targetProduct);
 		} catch (InterruptedException e) {

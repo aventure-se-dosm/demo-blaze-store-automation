@@ -45,7 +45,6 @@ public class LoginLogic {
 	public void startNavigation() {
 		setupLoginLogic();
 		actions.getUrl(TestContext.getConfigReader().getHomePage());
-		actions.getWait().jsFinishedSuccessifully();
 	}
 
 	public String startLogin() {
