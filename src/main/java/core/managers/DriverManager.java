@@ -81,6 +81,7 @@ public class DriverManager {
 		}
 
 		webdriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10L));
+		webdriver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
 		webdriver.manage().window().maximize();
 	}
 
