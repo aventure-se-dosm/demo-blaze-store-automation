@@ -1,4 +1,4 @@
-package business.addToCart;
+package business.add_to_cart;
 
 import org.apache.commons.lang3.StringUtils;
 

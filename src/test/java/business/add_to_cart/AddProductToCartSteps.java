@@ -1,4 +1,4 @@
-package business.addToCart;
+package business.add_to_cart;
 
 import business.login.LoginLogic;
 import io.cucumber.java.pt.Dado;

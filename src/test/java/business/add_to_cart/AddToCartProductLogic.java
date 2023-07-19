@@ -1,4 +1,4 @@
-package business.addToCart;
+package business.add_to_cart;
 
 import core.actions.PageActions;
 
