@@ -1,4 +1,4 @@
-package business.filter_products;
+package business.addToCart;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import test.context.TestContext;
 
-public class FilterProductPage {
+public class AddProductToCartPage {
 	@FindBy(xpath = "//button[@onclick='logIn()']")
 	private WebElement btnEntrar;
 
@@ -32,7 +32,6 @@ public class FilterProductPage {
 	@FindBy(id = "loginusername")
 	private WebElement txtUsername;
 
-	
 	@FindAll(@FindBy(id = "itemc"))
 	private List<WebElement> categoryMenuItems;
 
@@ -40,7 +39,10 @@ public class FilterProductPage {
 	@FindAll(@FindBy(xpath = "//h4/a[@class = 'hrefch']"))
 	private List<WebElement> lblProductTitle;
 
-	public FilterProductPage() {
+	@FindBy(xpath = "// a[@onclick='addToCart(10)']")
+	private WebElement selectedProduct;
+
+	public AddProductToCartPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
 	}
 
@@ -88,6 +90,10 @@ public class FilterProductPage {
 
 	public WebElement getSigninLink() {
 		return signinLink;
-	};
+	}
+
+	public WebElement getSelectedProduct() {
+		return selectedProduct;
+	}
 
 }

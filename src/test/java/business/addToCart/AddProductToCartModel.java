@@ -1,19 +1,13 @@
-package business.filter_products;
+package business.addToCart;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class FilterProductModel {
+public class AddProductToCartModel {
 
-	private String brand;
 	private String category;
 
-	public FilterProductModel(String category, String brand) {
+	public AddProductToCartModel() {
 		setCategory(category);
-		setTrademark(brand);
-	}
-
-	private void setTrademark(String brand) {
-		this.brand = brand;
 	}
 
 	private void setCategory(String category) {
@@ -28,11 +22,10 @@ public class FilterProductModel {
 	}
 
 	enum FilterProducAtttributes {
-		
-		PRODUCT_CATEGORY(2), PRODUCT_BRAND(3),
-		USERNAME(0), PASSWORD(1);
+
+		PRODUCT_CATEGORY(2), PRODUCT_BRAND(3), USERNAME(0), PASSWORD(1);
 		int index;
-		
+
 		FilterProducAtttributes(int index) {
 			this.index = index;
 		}
@@ -40,11 +33,6 @@ public class FilterProductModel {
 		int getIndex() {
 			return this.index;
 		}
-	}
-	
-
-	String getTrademark() {
-		return this.brand;
 	}
 
 	String getCategory() {
