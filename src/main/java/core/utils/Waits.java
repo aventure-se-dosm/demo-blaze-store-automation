@@ -35,6 +35,12 @@ public class Waits {
 
 	}
 
+	public boolean elementIsVisible(WebElement element) {
+		return (fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
+				.until(ExpectedConditions.visibilityOfAllElements(element)) != null);
+
+	}
+
 	public void jsExecutesSuccessifully(String jsScript) {
 		fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
 				.until(ExpectedConditions.javaScriptThrowsNoExceptions(jsScript));

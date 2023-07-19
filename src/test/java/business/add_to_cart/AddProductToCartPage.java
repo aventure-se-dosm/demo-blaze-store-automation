@@ -2,8 +2,8 @@ package business.add_to_cart;
 
 import java.util.List;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -35,12 +35,25 @@ public class AddProductToCartPage {
 	@FindAll(@FindBy(id = "itemc"))
 	private List<WebElement> categoryMenuItems;
 
-	@CacheLookup
 	@FindAll(@FindBy(xpath = "//h4/a[@class = 'hrefch']"))
 	private List<WebElement> lblProductTitle;
 
-	@FindBy(xpath = "// a[@onclick='addToCart(10)']")
+	@FindBy(xpath = "//a[@class='hrefch']/..")
 	private WebElement selectedProduct;
+	@FindBy(xpath = "//a[.='Add to cart']")
+	private WebElement btnAddToCard;
+
+	@FindBy(id = "tbodyid")
+	private WebElement productTbody;
+
+	@FindBy(css = ".name")
+	private WebElement productTitle;
+
+	@FindBy(css = ".price-container")
+	private WebElement productPrice;
+
+	@FindBy(id = "cartur")
+	WebElement cartLink;
 
 	public AddProductToCartPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -81,19 +94,47 @@ public class AddProductToCartPage {
 	}
 
 	WebElement getTxtPassword() {
-		return txtPassword;
+		return this.txtPassword;
 	}
 
 	WebElement getTxtUsername() {
-		return txtUsername;
+		return this.txtUsername;
 	}
 
 	public WebElement getSigninLink() {
-		return signinLink;
+		return this.signinLink;
 	}
 
 	public WebElement getSelectedProduct() {
-		return selectedProduct;
+		return this.selectedProduct;
+	}
+
+	public WebElement getBtnAddToCart() {
+		return this.btnAddToCard;
+	}
+
+	public WebElement getProductTbody() {
+		return this.productTbody;
+	}
+
+	public WebElement getProductTitle() {
+		return this.productTitle;
+	}
+
+	public WebElement getProductPrice() {
+		return this.productPrice;
+	}
+	
+	public WebElement getProductTableTitle(String title) {
+		return getProductTbody().findElement(By.xpath(".//td[.='"+title+"']"));
+	}
+
+	public WebElement getProductTablePrice(String price) {
+		return getProductTbody().findElement(By.xpath(".//td[.='"+price+"']"));
+	}
+
+	public WebElement getCartLink() {
+		return cartLink;
 	}
 
 }

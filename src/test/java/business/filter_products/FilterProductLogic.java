@@ -35,26 +35,23 @@ public class FilterProductLogic {
 	}
 
 	public boolean isThereAtLeastOneProductOfTheGivenTrademark() {
-		try {
-			Thread.sleep(3000);
-			WebElement targetProduct = getFilterProductPage().getProductByTrademark(getModel().getTrademark());
-			actions.scrollIntoView(targetProduct);
-			return actions.getWait().elementIsVisible(targetProduct);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-			return false;
-		}
+
+		WebElement targetProduct = getProductByTrademark(getModel().getTrademark());
+		actions.scrollIntoView(targetProduct);
+		return actions.getWait().elementIsVisible(targetProduct);
+	}
+
+	private WebElement getProductByTrademark(String trademark) {
+
+				actions.getWait().elementIsClickable(getFilterProductPage().getProductItems());
+				WebElement w = getFilterProductPage()
+				.getProductByTrademark(trademark);
+				return w;
 
 	}
 
 	public void selectCategory() {
-		try {
-			Thread.sleep(3000);
-			// actions.getWait().elementIsVisible(getFilterProductPage().getCategoryMenu());
-
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		actions.getWait().elementIsClickable(getFilterProductPage().getCategoryMenuELement());
 		actions.click(filterProductPage.getCategory(getModel().getCategory()));
 	}
 
