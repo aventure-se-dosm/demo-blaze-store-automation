@@ -4,20 +4,28 @@ import org.apache.commons.lang3.StringUtils;
 
 public class FilterProductModel {
 
-	private String brand;
+	private String trademark;
 	private String category;
 
-	public FilterProductModel(String category, String brand) {
+	public FilterProductModel(String category, String trademark) {
 		setCategory(category);
-		setTrademark(brand);
+		setTrademark(trademark);
 	}
 
-	private void setTrademark(String brand) {
-		this.brand = brand;
+	private void setTrademark(String trademark) {
+		this.trademark = trademark;
 	}
 
 	private void setCategory(String category) {
 		this.category = category;
+	}
+
+	String getTrademark() {
+		return this.trademark;
+	}
+
+	String getCategory() {
+		return this.category;
 	}
 
 	enum ListGroupProductCategory {
@@ -28,11 +36,9 @@ public class FilterProductModel {
 	}
 
 	enum FilterProducAtttributes {
+		PRODUCT_CATEGORY(2), PRODUCT_BRAND(3), USERNAME(0), PASSWORD(1);
 		
-		PRODUCT_CATEGORY(2), PRODUCT_BRAND(3),
-		USERNAME(0), PASSWORD(1);
 		int index;
-		
 		FilterProducAtttributes(int index) {
 			this.index = index;
 		}
@@ -40,15 +46,6 @@ public class FilterProductModel {
 		int getIndex() {
 			return this.index;
 		}
-	}
-	
-
-	String getTrademark() {
-		return this.brand;
-	}
-
-	String getCategory() {
-		return this.category;
 	}
 
 }

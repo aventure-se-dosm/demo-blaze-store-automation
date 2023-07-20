@@ -4,14 +4,15 @@ Funcionalidade: Adicionar produtos ao carrinho de compras
   @ID_0008
   Cenario: Adicionar um produto ao carrinho de compras
     Dado que estou logado na aplicação
-    Quando clico na categoria desejada
+    Quando clico na categoria desejada em ProductCategoryPage
     E clico sobre o primeiro produto
     E adiciono este produto ao carrinho
+    E retorno para HomePage
     E clico em Cart em NavBarPage
     Então O produto foi adicionado com sucesso
 
   @ID_0009
-  Cenario: Adicionar míltiplos produto ao carrinho de compras
+  Cenario: Adicionar múltiplos produto ao carrinho de compras
     Dado que estou logado na aplicação
     Quando clico na primeira categoria desejada em ProductCategoryPage
     E clico sobre o primeiro produto

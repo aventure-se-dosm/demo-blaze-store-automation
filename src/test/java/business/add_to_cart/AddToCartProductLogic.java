@@ -48,6 +48,7 @@ public class AddToCartProductLogic {
 
 	public boolean addProductToCart() {
 		actions.click(getPage().getBtnAddToCart());
+		actions.getWait().untilPageLoadComplete();
 		return actions.getAlertText().equals(ALERT_PRODUCT_ADDED);
 	}
 
@@ -73,16 +74,16 @@ public class AddToCartProductLogic {
 
 	public void selectCategory(ListGroupProductCategory category) {
 		actions.getWait().elementIsClickable(getPage().getCategoryMenu());
-	//	actions.refresh();
-		
 		actions.click(getPage().getCategory(category));
 		actions.getWait().untilJqueryIsDone();
-
-		
 	}
 
 	public void goToHomePage() {
 		actions.click(getPage().getNavBarHomePage());
+	}
+
+	public void selectCategory() {
+		selectCategory(ListGroupProductCategory.valueOf(model.getCategory().toUpperCase()));
 	}
 
 }

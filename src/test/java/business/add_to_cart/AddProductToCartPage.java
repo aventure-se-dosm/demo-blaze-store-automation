@@ -100,8 +100,8 @@ public class AddProductToCartPage {
 		return lblProductTitle;
 	}
 
-	WebElement getProductByTrademark(String brand) {
-		WebElement elem = getProductList().stream().filter(e -> e.getText().trim().contains(brand)).findFirst().get();
+	WebElement getProductByTrademark(String trademark) {
+		WebElement elem = getProductList().stream().filter(e -> e.getText().trim().contains(trademark)).findFirst().get();
 		return elem;
 	}
 

@@ -32,12 +32,12 @@ public class AddProductToCartSteps {
 
 	@Quando("clico na categoria desejada em ProductCategoryPage")
 	public void clicoNaCategoriaDesejadaEmProductCategoryPage() {
-		clicoNaPrimeiraCategoriaDesejadaEmProductCategoryPage();
+		addToCartLogic = new AddToCartProductLogic();
+		addToCartLogic.selectCategory();
 	}
 
 	@Quando("clico na primeira categoria desejada em ProductCategoryPage")
 	public void clicoNaPrimeiraCategoriaDesejadaEmProductCategoryPage() {
-		// Write code here that turns the phrase above into concrete actions
 		addToCartLogic = new AddToCartProductLogic();
 		addToCartLogic.selectCategory(ListGroupProductCategory.LAPTOPS);
 	}
@@ -60,8 +60,8 @@ public class AddProductToCartSteps {
 
 	@Então("O produto foi adicionado com sucesso")
 	public void oProdutoFoiAdicionadoComSucesso() {
-		throw new PendingException();
-		//Assert.assertTrue(addToCartLogic.isTheProductAddedToTheCart());
+		//throw new PendingException();
+		Assert.assertTrue(addToCartLogic.isTheProductAddedToTheCart());
 
 	}
 

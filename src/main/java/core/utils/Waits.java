@@ -56,7 +56,6 @@ public class Waits {
 
 	private static void until(WebDriver driver, Function<WebDriver, Boolean> waitCondition, Long timeoutInSeconds) {
 		WebDriverWait webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(timeoutInSeconds));
-		// webDriverWait.withTimeout(Duration.ofSeconds(timeoutInSeconds));
 		try {
 			webDriverWait.until(waitCondition);
 		} catch (Exception e) {

@@ -22,12 +22,12 @@ public class FilterProductSteps {
 		loginLogic.preencherUsuarioLogin();
 		loginLogic.preencherSenhaLogin();
 		loginLogic.sendLoginForm();
+		filterLogic = new FilterProductLogic();
 		Assert.assertTrue(loginLogic.isUserProperlyLogged());
 	}
 
 	@Quando("clico na categoria desejada")
 	public void clicoNaCategoriaDesejada() {
-		filterLogic = new FilterProductLogic();
 		filterLogic.selectCategory();
 	}
 	

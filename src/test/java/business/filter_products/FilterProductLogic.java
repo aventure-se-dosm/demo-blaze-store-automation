@@ -52,7 +52,8 @@ public class FilterProductLogic {
 
 	public void selectCategory() {
 		actions.getWait().elementIsClickable(getFilterProductPage().getCategoryMenuELement());
-		actions.click(filterProductPage.getCategory(getModel().getCategory()));
+		String s = getModel().getCategory();
+		actions.click(filterProductPage.getCategory(s));
 	}
 
 	public void sendLoginForm() {
