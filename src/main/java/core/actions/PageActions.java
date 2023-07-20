@@ -23,9 +23,14 @@ public class PageActions {
 		if (getWait().elementIsClickable(element)) {
 			scrollToElement(element);
 			element.click();
+			
 		}
+		
 	}
 
+	public void refresh() {
+		TestContext.getDriver().navigate().refresh();
+	}
 	public String getText(WebElement element) {
 		scrollToElement(element);
 		if (getWait().elementIsVisible(element))

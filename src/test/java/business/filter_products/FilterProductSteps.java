@@ -25,8 +25,8 @@ public class FilterProductSteps {
 		Assert.assertTrue(loginLogic.isUserProperlyLogged());
 	}
 
-	@Quando("clico na categoria desejada em ProductCategoryPage")
-	public void clicoNaCategoriaDesejadaEmProductCategoryPage() {
+	@Quando("clico na categoria desejada")
+	public void clicoNaCategoriaDesejada() {
 		filterLogic = new FilterProductLogic();
 		filterLogic.selectCategory();
 	}

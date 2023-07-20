@@ -19,11 +19,16 @@ public class AddProductToCartModel {
 		String getExibitionCategoryString() {
 			return StringUtils.capitalize(this.name());
 		}
+		
+		String getCapitalizedName() {
+			return StringUtils.capitalize(this.name().toLowerCase());
+		}
 	}
 
 	enum FilterProducAtttributes {
 
-		PRODUCT_CATEGORY(2), PRODUCT_BRAND(3), USERNAME(0), PASSWORD(1);
+		PRODUCT_CATEGORY(2), FIRST_PRODUCT_CATEGORY(2), PRODUCT_BRAND(3), USERNAME(0), PASSWORD(1),
+		SECOND_PRODUCT_CATEGORY(3);
 		int index;
 
 		FilterProducAtttributes(int index) {
@@ -32,6 +37,10 @@ public class AddProductToCartModel {
 
 		int getIndex() {
 			return this.index;
+		}
+		
+		String getCapitalizedName() {
+			return StringUtils.capitalize(this.name().toLowerCase());
 		}
 	}
 

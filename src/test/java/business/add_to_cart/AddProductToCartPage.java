@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import business.add_to_cart.AddProductToCartModel.ListGroupProductCategory;
 import test.context.TestContext;
 
 public class AddProductToCartPage {
@@ -46,6 +47,9 @@ public class AddProductToCartPage {
 	@FindBy(id = "tbodyid")
 	private WebElement productTbody;
 
+	@FindBy(id = "nava")
+	private WebElement navBarHomePage;
+
 	@FindBy(css = ".name")
 	private WebElement productTitle;
 
@@ -54,6 +58,13 @@ public class AddProductToCartPage {
 
 	@FindBy(id = "cartur")
 	WebElement cartLink;
+
+	@FindBy(id = "cat")
+	WebElement categoryMenu;
+
+	public WebElement getNavBarHomePage() {
+		return navBarHomePage;
+	}
 
 	public AddProductToCartPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -71,12 +82,18 @@ public class AddProductToCartPage {
 		return loginLink;
 	}
 
-	List<WebElement> getCategoryMenu() {
+	List<WebElement> getCategoryMenuSeparatedElements() {
 		return categoryMenuItems;
 	}
 
-	WebElement getCategory(String category) {
-		return getCategoryMenu().stream().filter(e -> e.getText().trim().startsWith(category)).findFirst().get();
+	public WebElement getCategoryMenu() {
+		return categoryMenu.findElement(By.xpath("./.."));
+	}
+
+	WebElement getCategory(ListGroupProductCategory category) {
+		WebElement elem = getCategoryMenuSeparatedElements().stream()
+				.filter(e -> e.getText().trim().equals(category.getCapitalizedName())).findFirst().get();
+		return elem;
 	}
 
 	List<WebElement> getProductList() {
@@ -124,17 +141,22 @@ public class AddProductToCartPage {
 	public WebElement getProductPrice() {
 		return this.productPrice;
 	}
-	
+
 	public WebElement getProductTableTitle(String title) {
-		return getProductTbody().findElement(By.xpath(".//td[.='"+title+"']"));
+		return getProductTbody().findElement(By.xpath(".//td[.='" + title + "']"));
 	}
 
 	public WebElement getProductTablePrice(String price) {
-		return getProductTbody().findElement(By.xpath(".//td[.='"+price+"']"));
+		return getProductTbody().findElement(By.xpath(".//td[.='" + price + "']"));
 	}
 
 	public WebElement getCartLink() {
 		return cartLink;
+	}
+
+	public WebElement getCategory(int index) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
