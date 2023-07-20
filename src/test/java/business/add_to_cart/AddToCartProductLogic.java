@@ -86,4 +86,24 @@ public class AddToCartProductLogic {
 		selectCategory(ListGroupProductCategory.valueOf(model.getCategory().toUpperCase()));
 	}
 
+	
+	
+	public void saveCartFinalTotalValue() {
+		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.FINAL_CART_VALUE,
+				actions.getText(getPage().getLblCartTotal()));
+	}
+	
+	public void saveCartTotalValue() {
+		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.INITIAL_CART_VALUE,
+				actions.getText(getPage().getLblCartTotal()));
+	}
+
+	public Integer getInitialCartTotalValue() {
+		return Integer.parseInt(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.INITIAL_CART_VALUE));
+	}
+	
+	public Integer getFinalCartTotalValue() {
+		return Integer.parseInt(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.FINAL_CART_VALUE));
+	}
+
 }

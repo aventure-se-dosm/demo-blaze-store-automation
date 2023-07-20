@@ -19,7 +19,6 @@ public class Waits {
 
 	public Waits() {
 		this(TestContext.getDriver());
-
 	}
 
 	public  void untilJqueryIsDone() {

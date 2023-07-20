@@ -62,6 +62,9 @@ public class AddProductToCartPage {
 	@FindBy(id = "cat")
 	WebElement categoryMenu;
 
+	@FindBy(id = "totalp")
+	private WebElement lblCartTotal;
+
 	public WebElement getNavBarHomePage() {
 		return navBarHomePage;
 	}
@@ -101,7 +104,8 @@ public class AddProductToCartPage {
 	}
 
 	WebElement getProductByTrademark(String trademark) {
-		WebElement elem = getProductList().stream().filter(e -> e.getText().trim().contains(trademark)).findFirst().get();
+		WebElement elem = getProductList().stream().filter(e -> e.getText().trim().contains(trademark)).findFirst()
+				.get();
 		return elem;
 	}
 
@@ -157,6 +161,11 @@ public class AddProductToCartPage {
 	public WebElement getCategory(int index) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public WebElement getLblCartTotal() {
+		// TODO Auto-generated method stub
+		return lblCartTotal;
 	}
 
 }

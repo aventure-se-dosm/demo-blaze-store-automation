@@ -19,7 +19,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 		snippets = SnippetType.CAMELCASE,
 
 
-		dryRun = false
+		dryRun = true
 
 )
 
