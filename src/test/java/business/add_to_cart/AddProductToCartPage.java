@@ -137,4 +137,9 @@ public class AddProductToCartPage {
 		return cartLink;
 	}
 
+		WebElement getCategoryMenuElement() {
+		//return categoryMenuItem;
+			return null;
+	}
+
 }
