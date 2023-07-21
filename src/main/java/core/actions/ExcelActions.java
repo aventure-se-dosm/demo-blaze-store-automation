@@ -30,7 +30,7 @@ public class ExcelActions {
 		return this.workbook;
 	}
 
-	String getCellValueText(Cell cell) {
+	public String getCellValueText(Cell cell) {
 
 		switch (cell.getCellType()) {
 		case BOOLEAN: {

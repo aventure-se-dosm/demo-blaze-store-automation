@@ -53,8 +53,8 @@ public class DriverManager {
 	private void killDriver() {
 		if (isWebDriverExtant()) {
 			webdriver.quit();
+			setDriverNull();
 		}
-		setDriverNull();
 
 	}
 

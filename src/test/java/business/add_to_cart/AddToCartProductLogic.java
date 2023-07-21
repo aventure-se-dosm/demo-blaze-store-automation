@@ -2,12 +2,13 @@ package business.add_to_cart;
 
 import org.openqa.selenium.By;
 
+import business.step_classes.Logic;
 import core.actions.PageActions;
 import core.utils.enums.ScenarioContextKeys;
 import model.ProductDtoModel;
 import test.context.TestContext;
 
-public class AddToCartProductLogic {
+public class AddToCartProductLogic extends Logic{
 
 	private AddProductToCartPage page;
 	private AddProductToCartModel model;
@@ -26,7 +27,7 @@ public class AddToCartProductLogic {
 	}
 
 	private void setupModel() {
-		this.model = new AddProductToCartModel();
+		this.setModel(new AddProductToCartModel());
 	}
 
 	private void setupPage() {
@@ -62,13 +63,32 @@ public class AddToCartProductLogic {
 	public boolean isTheProductAddedToTheCart() {
 		ProductDtoModel pdto = (ProductDtoModel) TestContext.getScenarioContext()
 				.getValue(ScenarioContextKeys.SINGLE_PRODUCT_ID_0008);
-		return actions.getWait().elementIsVisible(page.getProductTbody().findElement(By.xpath(
-				".//td[.='" + pdto.getProductTitle() + "']/../td[.='" + pdto.getPrice() + "']")));
+		return actions.getWait().elementIsVisible(page.getProductTbody()
+				.findElement(By.xpath(".//td[.='" + pdto.getProductTitle() + "']/../td[.='" + pdto.getPrice() + "']")));
 	}
 
 	public void goToNavBar() {
 
 		actions.click(getPage().getCartLink());
+	}
+
+	public void selectCategory(String category) {
+		actions.getWait().elementIsClickable(getPage().getCategoryMenuElement()
+				.findElement(By.xpath(String.format(".//a[.='%s']", category).toString())));
+		actions.click(getPage().getCategory(getModel().getCategory()));
+	}
+
+	public void selectCategory() {
+
+		//TODO: return proper category, read from the model:
+	}
+
+	public AddProductToCartModel getModel() {
+		return model;
+	}
+
+	private void setModel(AddProductToCartModel model) {
+		this.model = model;
 	}
 
 }
