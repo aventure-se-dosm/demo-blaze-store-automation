@@ -2,7 +2,6 @@ package business.add_to_cart;
 
 import org.junit.Assert;
 
-import business.filter_products.FilterProductLogic;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
@@ -16,11 +15,13 @@ public class AddProductToCartSteps {
 		Assert.assertTrue(addToCartLogic.addProductToCart());
 	}
 	
+
 	@Quando("clico na categoria desejada")
 	public void clicoNaCategoriaDesejadaEmProductCategoryPage() {
 		addToCartLogic = new AddToCartProductLogic();
 		addToCartLogic.selectCategory();
 		throw new PendingException();
+
 	}
 
 	@Quando("clico em Cart em NavBarPage")

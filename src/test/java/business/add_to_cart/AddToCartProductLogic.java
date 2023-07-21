@@ -8,7 +8,7 @@ import core.utils.enums.ScenarioContextKeys;
 import model.ProductDtoModel;
 import test.context.TestContext;
 
-public class AddToCartProductLogic extends Logic{
+public class AddToCartProductLogic extends Logic {
 
 	private AddProductToCartPage page;
 	private AddProductToCartModel model;
@@ -80,7 +80,7 @@ public class AddToCartProductLogic extends Logic{
 
 	public void selectCategory() {
 
-		//TODO: return proper category, read from the model:
+		// TODO: return proper category, read from the model:
 	}
 
 	public AddProductToCartModel getModel() {
