@@ -55,6 +55,9 @@ public class AddProductToCartPage {
 	@FindBy(id = "cartur")
 	WebElement cartLink;
 
+	@FindBy(xpath = "//a[@id='cat']")
+	private WebElement categoryMenu;
+
 	public AddProductToCartPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
 	}
@@ -71,12 +74,16 @@ public class AddProductToCartPage {
 		return loginLink;
 	}
 
-	List<WebElement> getCategoryMenu() {
+	List<WebElement> getCategoryMenuItems() {
 		return categoryMenuItems;
 	}
 
 	WebElement getCategory(String category) {
-		return getCategoryMenu().stream().filter(e -> e.getText().trim().startsWith(category)).findFirst().get();
+		WebElement w;
+		w =getCategoryMenuItems()
+				.stream()
+				.filter(e -> e.getText().trim().startsWith(category)).findFirst().get();
+	return w;
 	}
 
 	List<WebElement> getProductList() {
@@ -137,9 +144,9 @@ public class AddProductToCartPage {
 		return cartLink;
 	}
 
-		WebElement getCategoryMenuElement() {
-		//return categoryMenuItem;
-			return null;
+		WebElement getCategoryMenu() {
+		return this.categoryMenu;
+
 	}
 
 }

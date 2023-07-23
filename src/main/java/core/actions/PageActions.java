@@ -20,14 +20,20 @@ public class PageActions {
 
 	public void click(WebElement element) {
 
+		scrollIntoView(element);
 		if (getWait().elementIsClickable(element)) {
-			scrollToElement(element);
+//			try {
+//				Thread.sleep(3000);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			element.click();
 		}
 	}
 
 	public String getText(WebElement element) {
-		scrollToElement(element);
+		scrollIntoView(element);
 		if (getWait().elementIsVisible(element))
 			return element.getText();
 		throw new RuntimeException(String.format("O elemento '%s' não foi encontrado", element.toString()));
@@ -47,10 +53,12 @@ public class PageActions {
 
 	public void scrollIntoView(WebElement element) {
 		jsExecutor.executeScript("(arguments[0]).scrollIntoView();", element);
+		getWait().jsFinishedSuccessifully();
 	}
 
 	private void setJavaScriptExecutor() {
-		jsExecutor = (JavascriptExecutor) TestContext.getDriver();
+		this.jsExecutor = (JavascriptExecutor) TestContext.getDriver();
+		
 	}
 
 	private void setWait(Waits wait) {

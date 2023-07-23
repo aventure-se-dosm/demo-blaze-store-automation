@@ -7,6 +7,7 @@ import core.actions.PageActions;
 import core.utils.enums.ScenarioContextKeys;
 import model.ProductDtoModel;
 import test.context.TestContext;
+import test_enums.Attributes.FilterProductAtttributes;
 
 public class AddToCartProductLogic extends Logic {
 
@@ -73,14 +74,18 @@ public class AddToCartProductLogic extends Logic {
 	}
 
 	public void selectCategory(String category) {
-		actions.getWait().elementIsClickable(getPage().getCategoryMenuElement()
-				.findElement(By.xpath(String.format(".//a[.='%s']", category).toString())));
-		actions.click(getPage().getCategory(getModel().getCategory()));
+		actions.getWait().elementIsVisible(getPage().getCategoryMenu());
+		actions.click(getPage().getCategory(category));
+		getActions().getWait().jsFinishedSuccessifully();
+
 	}
 
 	public void selectCategory() {
+		TestContext.getDriver().navigate().refresh();
+		String s = getValue(FilterProductAtttributes.CATEGORIA.getIndex());
+		selectCategory(s);
+		getActions().getWait().jsFinishedSuccessifully();
 
-		// TODO: return proper category, read from the model:
 	}
 
 	public AddProductToCartModel getModel() {

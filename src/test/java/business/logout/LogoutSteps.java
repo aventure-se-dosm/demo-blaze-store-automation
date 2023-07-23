@@ -9,6 +9,7 @@ import test.context.TestContext;
 
 public class LogoutSteps {
 
+	//
 	private LogoutLogic logic;
 
 	@Dado("que estou logado na página")

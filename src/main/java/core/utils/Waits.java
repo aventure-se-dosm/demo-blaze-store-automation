@@ -1,12 +1,15 @@
 package core.utils;
 
 import java.time.Duration;
+import java.util.function.Function;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import test.context.TestContext;
 
@@ -17,6 +20,47 @@ public class Waits {
 	public Waits() {
 		this(TestContext.getDriver());
 
+	}
+
+	public static void untilJqueryIsDone() {
+		untilJqueryIsDone(TestContext.getDriver(), 10L);
+	}
+
+	public static void untilJqueryIsDone(WebDriver driver, Long timeoutInSeconds) {
+		until(driver, (d) -> {
+			Boolean isJqueryCallDone = (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active==0");
+			if (!isJqueryCallDone)
+				System.out.println("JQuery call is in Progress");
+			return isJqueryCallDone;
+		});
+	}
+
+	public static void untilPageLoadComplete(WebDriver driver) {
+		untilPageLoadComplete(TestContext.getDriver(), 10L);
+	}
+
+	public static void untilPageLoadComplete(WebDriver driver, Long timeoutInSeconds) {
+		until(driver, (d) -> {
+			Boolean isPageLoaded = (Boolean) ((JavascriptExecutor) driver).executeScript("return document.readyState")
+					.equals("complete");
+			if (!isPageLoaded)
+				System.out.println("Document is loading");
+			return isPageLoaded;
+		});
+	}
+
+	public static void until(WebDriver driver, Function<WebDriver, Boolean> waitCondition) {
+		until(driver, waitCondition, TestContext.getConfigReader().getImplicitlyWait());
+	}
+
+	private static void until(WebDriver driver, Function<WebDriver, Boolean> waitCondition, Duration timeoutInSeconds) {
+		WebDriverWait webDriverWait = new WebDriverWait(driver, timeoutInSeconds);
+		webDriverWait.withTimeout(Duration.ofSeconds(10));
+		try {
+			webDriverWait.until(waitCondition);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public Waits(WebDriver webdriver) {
@@ -47,7 +91,8 @@ public class Waits {
 	}
 
 	public void jsFinishedSuccessifully() {
-		jsExecutesSuccessifully("return jQuery.active==0");
+		untilJqueryIsDone();
+		//jsExecutesSuccessifully("return jQuery.active==0");
 	}
 
 	public Alert alertIsPresent() {
