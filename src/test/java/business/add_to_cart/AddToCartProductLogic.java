@@ -2,13 +2,14 @@ package business.add_to_cart;
 
 import org.openqa.selenium.By;
 
-import business.add_to_cart.AddProductToCartModel.ListGroupProductCategory;
+import business.step_classes.Logic;
 import core.actions.PageActions;
 import core.utils.enums.ScenarioContextKeys;
 import model.ProductDtoModel;
 import test.context.TestContext;
+import test_enums.Attributes.FilterProductAtttributes;
 
-public class AddToCartProductLogic {
+public class AddToCartProductLogic extends Logic {
 
 	private AddProductToCartPage page;
 	private AddProductToCartModel model;
@@ -27,7 +28,7 @@ public class AddToCartProductLogic {
 	}
 
 	private void setupModel() {
-		this.model = new AddProductToCartModel();
+		this.setModel(new AddProductToCartModel());
 	}
 
 	private void setupPage() {
@@ -48,7 +49,6 @@ public class AddToCartProductLogic {
 
 	public boolean addProductToCart() {
 		actions.click(getPage().getBtnAddToCart());
-		actions.getWait().untilPageLoadComplete();
 		return actions.getAlertText().equals(ALERT_PRODUCT_ADDED);
 	}
 
@@ -65,45 +65,35 @@ public class AddToCartProductLogic {
 		ProductDtoModel pdto = (ProductDtoModel) TestContext.getScenarioContext()
 				.getValue(ScenarioContextKeys.SINGLE_PRODUCT_ID_0008);
 		return actions.getWait().elementIsVisible(page.getProductTbody()
-				.findElement(By.xpath(".//td[.='" + pdto.getProductTitle() + "']/../td[.='" + pdto.getPrice() + "']")));
+				.findElement(By.xpath("//td[.='" + pdto.getProductTitle() + "']/../td[.='" + pdto.getPrice() + "']")));
 	}
 
 	public void goToNavBar() {
+
 		actions.click(getPage().getCartLink());
 	}
 
-	public void selectCategory(ListGroupProductCategory category) {
-		actions.getWait().elementIsClickable(getPage().getCategoryMenu());
+	public void selectCategory(String category) {
+		actions.getWait().elementIsVisible(getPage().getCategoryMenu());
 		actions.click(getPage().getCategory(category));
-		actions.getWait().untilJqueryIsDone();
-	}
+		getActions().getWait().jsFinishedSuccessifully();
 
-	public void goToHomePage() {
-		actions.click(getPage().getNavBarHomePage());
 	}
 
 	public void selectCategory() {
-		selectCategory(ListGroupProductCategory.valueOf(model.getCategory().toUpperCase()));
+		TestContext.getDriver().navigate().refresh();
+		String s = getValue(FilterProductAtttributes.CATEGORIA.getIndex());
+		selectCategory(s);
+		
+
 	}
 
-	
-	
-	public void saveCartFinalTotalValue() {
-		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.FINAL_CART_VALUE,
-				actions.getText(getPage().getLblCartTotal()));
-	}
-	
-	public void saveCartTotalValue() {
-		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.INITIAL_CART_VALUE,
-				actions.getText(getPage().getLblCartTotal()));
+	public AddProductToCartModel getModel() {
+		return model;
 	}
 
-	public Integer getInitialCartTotalValue() {
-		return Integer.parseInt(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.INITIAL_CART_VALUE));
-	}
-	
-	public Integer getFinalCartTotalValue() {
-		return Integer.parseInt(TestContext.getScenarioContext().getStringValue(ScenarioContextKeys.FINAL_CART_VALUE));
+	private void setModel(AddProductToCartModel model) {
+		this.model = model;
 	}
 
 }

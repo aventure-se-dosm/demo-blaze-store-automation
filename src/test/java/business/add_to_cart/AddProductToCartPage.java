@@ -8,7 +8,6 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import business.add_to_cart.AddProductToCartModel.ListGroupProductCategory;
 import test.context.TestContext;
 
 public class AddProductToCartPage {
@@ -47,9 +46,6 @@ public class AddProductToCartPage {
 	@FindBy(id = "tbodyid")
 	private WebElement productTbody;
 
-	@FindBy(id = "nava")
-	private WebElement navBarHomePage;
-
 	@FindBy(css = ".name")
 	private WebElement productTitle;
 
@@ -59,15 +55,8 @@ public class AddProductToCartPage {
 	@FindBy(id = "cartur")
 	WebElement cartLink;
 
-	@FindBy(id = "cat")
-	WebElement categoryMenu;
-
-	@FindBy(id = "totalp")
-	private WebElement lblCartTotal;
-
-	public WebElement getNavBarHomePage() {
-		return navBarHomePage;
-	}
+	@FindBy(xpath = "//a[@id='cat']")
+	private WebElement categoryMenu;
 
 	public AddProductToCartPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -85,27 +74,24 @@ public class AddProductToCartPage {
 		return loginLink;
 	}
 
-	List<WebElement> getCategoryMenuSeparatedElements() {
+	List<WebElement> getCategoryMenuItems() {
 		return categoryMenuItems;
 	}
 
-	public WebElement getCategoryMenu() {
-		return categoryMenu.findElement(By.xpath("./.."));
-	}
-
-	WebElement getCategory(ListGroupProductCategory category) {
-		WebElement elem = getCategoryMenuSeparatedElements().stream()
-				.filter(e -> e.getText().trim().equals(category.getCapitalizedName())).findFirst().get();
-		return elem;
+	WebElement getCategory(String category) {
+		WebElement w;
+		w =getCategoryMenuItems()
+				.stream()
+				.filter(e -> e.getText().trim().startsWith(category)).findFirst().get();
+	return w;
 	}
 
 	List<WebElement> getProductList() {
 		return lblProductTitle;
 	}
 
-	WebElement getProductByTrademark(String trademark) {
-		WebElement elem = getProductList().stream().filter(e -> e.getText().trim().contains(trademark)).findFirst()
-				.get();
+	WebElement getProductByTrademark(String brand) {
+		WebElement elem = getProductList().stream().filter(e -> e.getText().trim().contains(brand)).findFirst().get();
 		return elem;
 	}
 
@@ -145,27 +131,22 @@ public class AddProductToCartPage {
 	public WebElement getProductPrice() {
 		return this.productPrice;
 	}
-
+	
 	public WebElement getProductTableTitle(String title) {
-		return getProductTbody().findElement(By.xpath(".//td[.='" + title + "']"));
+		return getProductTbody().findElement(By.xpath(".//td[.='"+title+"']"));
 	}
 
 	public WebElement getProductTablePrice(String price) {
-		return getProductTbody().findElement(By.xpath(".//td[.='" + price + "']"));
+		return getProductTbody().findElement(By.xpath(".//td[.='"+price+"']"));
 	}
 
 	public WebElement getCartLink() {
 		return cartLink;
 	}
 
-	public WebElement getCategory(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		WebElement getCategoryMenu() {
+		return this.categoryMenu;
 
-	public WebElement getLblCartTotal() {
-		// TODO Auto-generated method stub
-		return lblCartTotal;
 	}
 
 }
