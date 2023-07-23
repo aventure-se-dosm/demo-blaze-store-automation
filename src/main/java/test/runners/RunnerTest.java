@@ -18,8 +18,6 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 
 		snippets = SnippetType.CAMELCASE,
 
-		//tags = "@ID_0008",
-		
 		dryRun = false
 
 )

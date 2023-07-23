@@ -9,20 +9,14 @@ import test_enums.Attributes.FilterProductAtttributes;
 
 public class Logic {
 
-	// protected String[] attributeHeaderRow;
 	protected Row attributeHeaderRow;
 	ExcelActions excelActions;
-
-	// ideia... fazer um detup d planilha, já t
 
 	protected Logic() {
 		this.excelActions = new ExcelActions();
 		this.attributeHeaderRow = (TestContext.getRowByTaggedIdSheet());
 	}
 
-	private Row getattributeHeaderRow() {
-		return this.attributeHeaderRow;
-	}
 
 	protected String getValue(Integer attributeIndex) {
 		String s = excelActions.getCellValueText(attributeHeaderRow.getCell(attributeIndex));
@@ -33,15 +27,11 @@ public class Logic {
 		return excelActions.indexOfAttribute(category);
 	}
 
-	protected String getValue(FilterProductAtttributes attribute, String category) {
-		
-		excelActions.indexOfAttribute(attribute.name());
-		
-		
-		
-		
-		return null;
-		
+	protected Integer getValue(FilterProductAtttributes attribute, String category) {
+
+		return excelActions.indexOfAttribute(attribute.name());
+
+
 	}
 
 }
