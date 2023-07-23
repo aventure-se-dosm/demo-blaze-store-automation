@@ -34,6 +34,7 @@ public class LogoutLogic {
 	}
 
 	public boolean isUserProperlyLoggedIn() {
+		
 		String txtWelcome = actions.getText(getLogoutPage().getlblWelcomeUser());
 		return txtWelcome.contains(getModel().getUsername());
 	}

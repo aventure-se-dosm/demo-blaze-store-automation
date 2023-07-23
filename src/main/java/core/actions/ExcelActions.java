@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.jar.Attributes;
 
 import javax.management.RuntimeErrorException;
 
@@ -17,6 +18,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import core.utils.enums.ScenarioContextKeys;
 import core.utils.enums.ValidFileFormats.DataSourceFormats;
 import test.context.TestContext;
+
 
 public class ExcelActions {
 
@@ -59,16 +61,19 @@ public class ExcelActions {
 				.getRow(TestContext.FIRST_DATA_ROW_INDEX);
 	}
 
-	Integer indexOfAttribute(String attribute) {
+	public Integer indexOfAttribute(String attribute) {
 		Iterator<Cell> rowIterator = getSheet().getRow(TestContext.HEADER_INDEX).cellIterator();
 		while (rowIterator.hasNext()) {
 			Cell cell;
-			if (getCellValueText(cell = rowIterator.next()).equalsIgnoreCase(attribute)) {
+			String s = getCellValueText(cell = rowIterator.next());
+			if (s.equalsIgnoreCase(attribute)) {
 				return cell.getColumnIndex();
 			}
 		}
 		throw new RuntimeErrorException(null, String.format("Erro: attributo '%s' não encontrado!", attribute));
 	}
+
+	
 
 	private void setupWorkBook() {
 
@@ -79,7 +84,7 @@ public class ExcelActions {
 			switch (DataSourceFormats.valueOf(workbookFormat.toUpperCase())) {
 			case XLSX: {
 				this.workbook = new XSSFWorkbook(new FileInputStream(file));
-				
+
 				break;
 			}
 			case XLS: {

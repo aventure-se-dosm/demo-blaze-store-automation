@@ -4,14 +4,8 @@ import org.apache.commons.lang3.StringUtils;
 
 public class AddProductToCartModel {
 
-	private String category;
-
 	public AddProductToCartModel() {
-		setCategory(category);
-	}
 
-	private void setCategory(String category) {
-		this.category = category;
 	}
 
 	enum ListGroupProductCategory {
@@ -21,22 +15,23 @@ public class AddProductToCartModel {
 		}
 	}
 
-	enum FilterProducAtttributes {
-
-		PRODUCT_CATEGORY(2), PRODUCT_BRAND(3), USERNAME(0), PASSWORD(1);
-		int index;
-
-		FilterProducAtttributes(int index) {
-			this.index = index;
-		}
-
-		int getIndex() {
-			return this.index;
-		}
-	}
-
-	String getCategory() {
-		return this.category;
-	}
+//	enum FilterProductAtttributes {
+//
+//		USERNAME(0),
+//		PASSWORD(1),
+//		PRODUCT_CATEGORY(2),
+//		FIRST_PRODUCT_CATEGORY(2),
+//		SECOND_PRODUCT_CATEGORY(3),
+//		PRODUCT_BRAND(3);
+//		int index;
+//
+//		FilterProductAtttributes(int index) {
+//			this.index = index;
+//		}
+//
+//		int getIndex() {
+//			return this.index;
+//		}
+//	}
 
 }

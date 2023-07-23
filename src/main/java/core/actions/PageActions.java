@@ -20,14 +20,14 @@ public class PageActions {
 
 	public void click(WebElement element) {
 
+		scrollIntoView(element);
 		if (getWait().elementIsClickable(element)) {
-			scrollToElement(element);
 			element.click();
 		}
 	}
 
 	public String getText(WebElement element) {
-		scrollToElement(element);
+		scrollIntoView(element);
 		if (getWait().elementIsVisible(element))
 			return element.getText();
 		throw new RuntimeException(String.format("O elemento '%s' não foi encontrado", element.toString()));

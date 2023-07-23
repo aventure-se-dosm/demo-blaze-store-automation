@@ -20,8 +20,7 @@ public class AddProductToCartSteps {
 	public void clicoNaCategoriaDesejadaEmProductCategoryPage() {
 		addToCartLogic = new AddToCartProductLogic();
 		addToCartLogic.selectCategory();
-		throw new PendingException();
-
+		//throw new PendingException();
 	}
 
 	@Quando("clico em Cart em NavBarPage")

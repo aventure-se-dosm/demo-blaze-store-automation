@@ -5,8 +5,10 @@ import org.openqa.selenium.By;
 import business.step_classes.Logic;
 import core.actions.PageActions;
 import core.utils.enums.ScenarioContextKeys;
+import io.cucumber.java.PendingException;
 import model.ProductDtoModel;
 import test.context.TestContext;
+import test.test_enums.Attributes.FilterProductAtttributes;
 
 public class AddToCartProductLogic extends Logic {
 
@@ -73,14 +75,21 @@ public class AddToCartProductLogic extends Logic {
 	}
 
 	public void selectCategory(String category) {
-		actions.getWait().elementIsClickable(getPage().getCategoryMenuElement()
-				.findElement(By.xpath(String.format(".//a[.='%s']", category).toString())));
-		actions.click(getPage().getCategory(getModel().getCategory()));
+		actions.getWait().elementIsVisible(getPage().getCategoryMenu());
+		actions.click(getPage().getCategory(category));
+	//	throw new PendingException();
+		// TENHO QUE JÁ TER O INDEX DO ATRIBUTO CATEGORIA
+
+		// VALOR MONITOR
+
 	}
 
 	public void selectCategory() {
+		TestContext.getDriver().navigate().refresh();
+		String s = getValue(FilterProductAtttributes.CATEGORIA_1.getIndex());
+		selectCategory(s);
+	getActions().getWait().jsFinishedSuccessifully();
 
-		// TODO: return proper category, read from the model:
 	}
 
 	public AddProductToCartModel getModel() {
