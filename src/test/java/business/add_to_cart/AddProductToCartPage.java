@@ -8,6 +8,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import io.cucumber.java.pt.Quando;
 import test.context.TestContext;
 
 public class AddProductToCartPage {
@@ -45,6 +46,8 @@ public class AddProductToCartPage {
 
 	@FindBy(id = "tbodyid")
 	private WebElement productTbody;
+	@FindBy(id = "nava")
+	private WebElement homePageIcon;
 
 	@FindBy(css = ".name")
 	private WebElement productTitle;
@@ -106,6 +109,10 @@ public class AddProductToCartPage {
 
 	WebElement getTxtUsername() {
 		return this.txtUsername;
+	}
+	WebElement getHomePageIcon() {
+		return this.homePageIcon;
+		
 	}
 
 	public WebElement getSigninLink() {

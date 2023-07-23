@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import business.step_classes.Logic;
 import core.actions.PageActions;
 import core.utils.enums.ScenarioContextKeys;
+import io.cucumber.java.pt.Quando;
 import model.ProductDtoModel;
 import test.context.TestContext;
 import test_enums.Attributes.FilterProductAtttributes;
@@ -72,20 +73,23 @@ public class AddToCartProductLogic extends Logic {
 
 		actions.click(getPage().getCartLink());
 	}
-
-	public void selectCategory(String category) {
-		actions.getWait().elementIsVisible(getPage().getCategoryMenu());
-		actions.click(getPage().getCategory(category));
-		getActions().getWait().jsFinishedSuccessifully();
-
+	public void goToHomePage() {
+		
+		actions.click(getPage().getHomePageIcon());
 	}
 
-	public void selectCategory() {
-		TestContext.getDriver().navigate().refresh();
-		String s = getValue(FilterProductAtttributes.CATEGORIA.getIndex());
-		selectCategory(s);
-		
 
+
+	public void selectCategory() {
+		selectCategory(FilterProductAtttributes.CATEGORIA);
+		
+	}
+	public void selectCategory(FilterProductAtttributes category) {
+		//selectCategory(getValue(category.getIndex()));
+		TestContext.getDriver().navigate().refresh();
+		actions.getWait().elementIsVisible(getPage().getCategoryMenu());
+		actions.click(getPage().getCategory(getValue(category.getIndex())));
+		getActions().getWait().jsFinishedSuccessifully();
 	}
 
 	public AddProductToCartModel getModel() {

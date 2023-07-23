@@ -3,16 +3,18 @@ package business.login;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import business.step_classes.Logic;
 import core.actions.PageActions;
 import test.context.TestContext;
 
-public class LoginLogic {
+public class LoginLogic extends Logic{
 
 	LoginPage loginPage;
 	protected PageActions actions;
 	private LoginModel loginModel;
 
 	public LoginLogic() {
+		super();
 		setupLoginLogic();
 	}
 
@@ -74,7 +76,7 @@ public class LoginLogic {
 		return TestContext.getDriver();
 	}
 
-	public boolean isUserProperlyLogged() {
+	public boolean isUserProperlyLoggedIn() {
 		String txtWelcome = actions.getText(getLoginPage().getlblWelcomeUser());
 		boolean assertBool = txtWelcome.contains(getModel().getUsername());
 		return assertBool;

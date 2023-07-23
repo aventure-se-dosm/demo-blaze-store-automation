@@ -23,7 +23,7 @@ public class FilterProductSteps {
 		loginLogic.preencherSenhaLogin();
 		loginLogic.sendLoginForm();
 		filterLogic = new FilterProductLogic();
-		Assert.assertTrue(loginLogic.isUserProperlyLogged());
+		Assert.assertTrue(loginLogic.isUserProperlyLoggedIn());
 	}
 
 	@Quando("clico na categoria desejada")

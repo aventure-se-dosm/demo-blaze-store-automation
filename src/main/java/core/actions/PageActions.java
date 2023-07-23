@@ -25,12 +25,14 @@ public class PageActions {
 		getWait().untilJqueryIsDone();
 			element.click();
 		}
+		getWait().untilPageLoadComplete();;
 		
 	}
 
 	public void refresh() {
 		TestContext.getDriver().navigate().refresh();
 	}
+	
 	public String getText(WebElement element) {
 		scrollIntoView(element);
 		if (getWait().elementIsVisible(element))

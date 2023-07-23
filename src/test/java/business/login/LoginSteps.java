@@ -41,6 +41,6 @@ public class LoginSteps {
 
 	@Então("o usuário foi logado com sucesso")
 	public void oUsuárioFoiLogadoComSucesso() {
-		Assert.assertTrue(logic.isUserProperlyLogged());
+		Assert.assertTrue(logic.isUserProperlyLoggedIn());
 	}
 }
