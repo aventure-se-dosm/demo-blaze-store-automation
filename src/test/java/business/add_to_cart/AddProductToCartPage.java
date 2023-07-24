@@ -11,6 +11,9 @@ import org.openqa.selenium.support.PageFactory;
 import test.context.TestContext;
 
 public class AddProductToCartPage {
+	@FindBy(id = "nava")
+	private  WebElement HomePageLink;
+
 	@FindBy(xpath = "//button[@onclick='logIn()']")
 	private WebElement btnEntrar;
 
@@ -80,10 +83,8 @@ public class AddProductToCartPage {
 
 	WebElement getCategory(String category) {
 		WebElement w;
-		w =getCategoryMenuItems()
-				.stream()
-				.filter(e -> e.getText().trim().startsWith(category)).findFirst().get();
-	return w;
+		w = getCategoryMenuItems().stream().filter(e -> e.getText().trim().startsWith(category)).findFirst().get();
+		return w;
 	}
 
 	List<WebElement> getProductList() {
@@ -131,22 +132,26 @@ public class AddProductToCartPage {
 	public WebElement getProductPrice() {
 		return this.productPrice;
 	}
-	
+
 	public WebElement getProductTableTitle(String title) {
-		return getProductTbody().findElement(By.xpath(".//td[.='"+title+"']"));
+		return getProductTbody().findElement(By.xpath(".//td[.='" + title + "']"));
 	}
 
 	public WebElement getProductTablePrice(String price) {
-		return getProductTbody().findElement(By.xpath(".//td[.='"+price+"']"));
+		return getProductTbody().findElement(By.xpath(".//td[.='" + price + "']"));
 	}
 
 	public WebElement getCartLink() {
 		return cartLink;
 	}
 
-		WebElement getCategoryMenu() {
+	WebElement getCategoryMenu() {
 		return this.categoryMenu;
 
+	}
+
+	public WebElement getHomePageLink() {
+		return this.HomePageLink;
 	}
 
 }

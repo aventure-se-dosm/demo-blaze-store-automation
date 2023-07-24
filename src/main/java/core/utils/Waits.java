@@ -35,7 +35,7 @@ public class Waits {
 		});
 	}
 
-	public static void untilPageLoadComplete(WebDriver driver) {
+	public static void untilPageLoadComplete() {
 		untilPageLoadComplete(TestContext.getDriver(), 10L);
 	}
 
@@ -92,7 +92,7 @@ public class Waits {
 
 	public void jsFinishedSuccessifully() {
 		untilJqueryIsDone();
-		//jsExecutesSuccessifully("return jQuery.active==0");
+		// jsExecutesSuccessifully("return jQuery.active==0");
 	}
 
 	public Alert alertIsPresent() {

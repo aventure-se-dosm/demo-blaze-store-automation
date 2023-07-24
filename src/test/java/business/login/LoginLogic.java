@@ -74,7 +74,7 @@ public class LoginLogic {
 		return TestContext.getDriver();
 	}
 
-	public boolean isUserProperlyLogged() {
+	public boolean isUserProperlyLoggedIn() {
 		String txtWelcome = actions.getText(getLoginPage().getlblWelcomeUser());
 		boolean assertBool = txtWelcome.contains(getModel().getUsername());
 		return assertBool;

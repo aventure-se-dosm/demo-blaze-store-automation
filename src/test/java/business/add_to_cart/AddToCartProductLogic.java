@@ -1,6 +1,7 @@
 package business.add_to_cart;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import business.step_classes.Logic;
 import core.actions.PageActions;
@@ -22,6 +23,8 @@ public class AddToCartProductLogic extends Logic {
 		setupPage();
 		setupModel();
 	}
+	
+	
 
 	private void setupActions() {
 		this.actions = new PageActions();
@@ -73,19 +76,17 @@ public class AddToCartProductLogic extends Logic {
 		actions.click(getPage().getCartLink());
 	}
 
-	public void selectCategory(String category) {
+	public void selectCategory(FilterProductAtttributes categoria) {
+		//TestContext.getDriver().navigate().refresh();
+		actions.getWait().untilPageLoadComplete();
 		actions.getWait().elementIsVisible(getPage().getCategoryMenu());
-		actions.click(getPage().getCategory(category));
+		actions.click(getPage().getCategory(getValue(categoria.getIndex())));
 		getActions().getWait().jsFinishedSuccessifully();
 
 	}
 
 	public void selectCategory() {
-		TestContext.getDriver().navigate().refresh();
-		String s = getValue(FilterProductAtttributes.CATEGORIA.getIndex());
-		selectCategory(s);
-		getActions().getWait().jsFinishedSuccessifully();
-
+		selectCategory(FilterProductAtttributes.CATEGORIA);
 	}
 
 	public AddProductToCartModel getModel() {
@@ -94,6 +95,12 @@ public class AddToCartProductLogic extends Logic {
 
 	private void setModel(AddProductToCartModel model) {
 		this.model = model;
+	}
+
+	public void goToHomePage() {
+		getActions().click(getPage().getHomePageLink());
+		getActions().getWait().untilPageLoadComplete();
+
 	}
 
 }
