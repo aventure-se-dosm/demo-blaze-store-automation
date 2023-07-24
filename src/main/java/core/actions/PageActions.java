@@ -1,5 +1,7 @@
 package core.actions;
 
+import java.util.List;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -27,10 +29,14 @@ public class PageActions {
 		if (getWait().elementIsClickable(element)) {
 			element.click();
 		}
+		
+		
 	}
 
 	public String getText(WebElement element) {
 		scrollIntoView(element);
+		//
+		getWait().untilJqueryIsDone();
 		if (getWait().elementIsVisible(element))
 			return element.getText();
 		throw new RuntimeException(String.format("O elemento '%s' não foi encontrado", element.toString()));
@@ -85,13 +91,35 @@ public class PageActions {
 	
 
 	public String getAlertText() {
+	
 		Alert alert = getWait().alertIsPresent();
 		if (alert == null) {
 			throw new RuntimeException("Texto não enviado: confirmação pendente!");
 		}
 		String alertMessage = alert.getText();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		alert.dismiss();
 		return alertMessage;
+	}
+
+	public boolean isElementListEmpty(List<WebElement> elementList) {
+		return elementList.isEmpty();
+		
+	}
+
+	public boolean isEachWebElementNotPresent(List<WebElement> elements) {
+		getWait().jsFinishedSuccessifully();
+		return elements.size() == 0;
+	}
+
+	public boolean isWebElementNotPresent(WebElement webelement) {
+		
+		return webelement.findElement(By.xpath("."))==null;
 	}
 
 }

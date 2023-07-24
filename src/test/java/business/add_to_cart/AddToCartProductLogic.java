@@ -1,6 +1,9 @@
 package business.add_to_cart;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import business.step_classes.Logic;
@@ -49,8 +52,10 @@ public class AddToCartProductLogic extends Logic {
 	}
 
 	public boolean addProductToCart() {
+		actions.getWait().untilPageLoadComplete();
 		actions.click(getPage().getBtnAddToCart());
-		return actions.getAlertText().equals(ALERT_PRODUCT_ADDED);
+		String message = actions.getAlertText();
+		return message.equals(ALERT_PRODUCT_ADDED);
 	}
 
 	private ProductDtoModel getProductDtoModel() {
@@ -61,6 +66,7 @@ public class AddToCartProductLogic extends Logic {
 	public void saveCtxProductInfos() {
 		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.SINGLE_PRODUCT_ID_0008, getProductDtoModel());
 	}
+
 
 	public boolean isTheProductAddedToTheCart() {
 		ProductDtoModel pdto = (ProductDtoModel) TestContext.getScenarioContext()
@@ -75,7 +81,7 @@ public class AddToCartProductLogic extends Logic {
 	}
 
 	public void selectCategory(FilterProductAtttributes categoria) {
-		// TestContext.getDriver().navigate().refresh();
+		TestContext.getDriver().navigate().refresh();
 		actions.getWait().untilPageLoadComplete();
 		actions.getWait().elementIsVisible(getPage().getCategoryMenu());
 		actions.click(getPage().getCategory(getValue(categoria.getIndex())));
@@ -104,21 +110,47 @@ public class AddToCartProductLogic extends Logic {
 	public void deleteAddedProduct() {
 		deleteAddedProduct(0);
 		
-
 	}
 
 	public void deleteAddedProduct(Integer index) {
-		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.DELETED_CART_PRODUCT, getPage().getAddedCartProductDeleteLinks().get(index));
-		actions.click(getPage().getAddedCartProductDeleteLinks().get(index));
 		getActions().getWait().untilJqueryIsDone();
-		
+		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.DELETED_CART_PRODUCT,
+				getPage().getAddedCartProductDeleteLinks().get(index));
+		actions.click(getPage().getAddedCartProductDeleteLinks().get(index));
+		getActions().getWait().untilPageLoadComplete();
+		getActions().getWait().untilJqueryIsDone();
+
+	}
+
+	public void deleteAddedProduct(WebElement elem) {
+		// TestContext.getDriver().navigate().refresh();
+		actions.click(elem);
+		getActions().getWait().untilJqueryIsDone();
+
 	}
 
 	public boolean isAddedProductRemoved() {
 
 		getActions().getWait().untilPageLoadComplete();
-	//	actions.click((WebElement)TestContext.getScenarioContext().getValue(ScenarioContextKeys.DELETED_CART_PRODUCT));
-		return !getActions().isEachWebElementPresent((WebElement)TestContext.getScenarioContext().getValue(ScenarioContextKeys.DELETED_CART_PRODUCT));
+		// actions.click((WebElement)TestContext.getScenarioContext().getValue(ScenarioContextKeys.DELETED_CART_PRODUCT));
+		return getActions().isWebElementNotPresent(
+				(WebElement) TestContext.getScenarioContext().getValue(ScenarioContextKeys.DELETED_CART_PRODUCT));
 	}
 
+	public boolean isCartEmpty() {
+		deleteAddedProducts();
+	return getActions().isEachWebElementNotPresent(getPage().getAddedCartProductDeleteLinks());
+	}
+
+	public void deleteAddedProducts() {
+		while (true) {
+			try {
+				getActions().click(getPage().getAddedCartProductDeleteLink(0));
+			} catch (Exception  sreexc) {
+				break;
+			}
+
+		}
+
+	}
 }

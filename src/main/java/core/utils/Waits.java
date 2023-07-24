@@ -22,11 +22,11 @@ public class Waits {
 
 	}
 
-	public static void untilJqueryIsDone() {
-		untilJqueryIsDone(TestContext.getDriver(), 10L);
+	public void untilJqueryIsDone() {
+		untilJqueryIsDone(TestContext.getDriver(), 5L);
 	}
 
-	public static void untilJqueryIsDone(WebDriver driver, Long timeoutInSeconds) {
+	public void untilJqueryIsDone(WebDriver driver, Long timeoutInSeconds) {
 		until(driver, (d) -> {
 			Boolean isJqueryCallDone = (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active==0");
 			if (!isJqueryCallDone)
@@ -35,8 +35,8 @@ public class Waits {
 		});
 	}
 
-	public static void untilPageLoadComplete() {
-		untilPageLoadComplete(TestContext.getDriver(), 10L);
+	public void untilPageLoadComplete() {
+		untilPageLoadComplete(TestContext.getDriver(), 5L);
 	}
 
 	public static void untilPageLoadComplete(WebDriver driver, Long timeoutInSeconds) {
@@ -74,21 +74,17 @@ public class Waits {
 	}
 
 	public boolean elementIsVisible(WebElement... elements) {
-		return (fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
+		return (fluentWait.pollingEvery(Duration.ofMillis(100)).withTimeout(Duration.ofSeconds(10))
 				.until(ExpectedConditions.visibilityOfAllElements(elements)) != null);
 
 	}
+
 	public boolean elementIsNotVisible(WebElement element) {
 		return fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
 				.until(ExpectedConditions.stalenessOf(element));
-		
+
 	}
-//
-//	public boolean elementIsVisible(WebElement element) {
-//		return (fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
-//				.until(ExpectedConditions.visibilityOfAllElements(element)) != null);
-//
-//	}
+
 
 	public void jsExecutesSuccessifully(String jsScript) {
 		fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
@@ -97,11 +93,10 @@ public class Waits {
 
 	public void jsFinishedSuccessifully() {
 		untilJqueryIsDone();
-		// jsExecutesSuccessifully("return jQuery.active==0");
 	}
 
 	public Alert alertIsPresent() {
-		return fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
+		return fluentWait.pollingEvery(Duration.ofMillis(1000)).withTimeout(Duration.ofSeconds(5))
 				.until(ExpectedConditions.alertIsPresent());
 	}
 

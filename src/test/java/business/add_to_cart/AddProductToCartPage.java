@@ -146,7 +146,7 @@ public class AddProductToCartPage {
 	}
 
 	public WebElement getCartLink() {
-		return cartLink;
+		return cartLink.findElement(By.xpath("./.."));
 	}
 
 	WebElement getCategoryMenu() {
