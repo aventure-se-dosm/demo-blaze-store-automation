@@ -61,14 +61,13 @@ public class AddProductToCartSteps {
 
 	@Quando("clico em Delete em CheckPage")
 	public void clicoEmDeleteEmCheckPage() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		addToCartLogic.deleteAddedProduct();
 	}
 
 	@Então("o produto foi removido com sucesso")
 	public void oProdutoFoiRemovidoComSucesso() {
 		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		Assert.assertTrue(addToCartLogic.isAddedProductRemoved());
 	}
 
 	@Então("O produto foi adicionado com sucesso")

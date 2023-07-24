@@ -23,8 +23,6 @@ public class AddToCartProductLogic extends Logic {
 		setupPage();
 		setupModel();
 	}
-	
-	
 
 	private void setupActions() {
 		this.actions = new PageActions();
@@ -77,7 +75,7 @@ public class AddToCartProductLogic extends Logic {
 	}
 
 	public void selectCategory(FilterProductAtttributes categoria) {
-		//TestContext.getDriver().navigate().refresh();
+		// TestContext.getDriver().navigate().refresh();
 		actions.getWait().untilPageLoadComplete();
 		actions.getWait().elementIsVisible(getPage().getCategoryMenu());
 		actions.click(getPage().getCategory(getValue(categoria.getIndex())));
@@ -101,6 +99,26 @@ public class AddToCartProductLogic extends Logic {
 		getActions().click(getPage().getHomePageLink());
 		getActions().getWait().untilPageLoadComplete();
 
+	}
+
+	public void deleteAddedProduct() {
+		deleteAddedProduct(0);
+		
+
+	}
+
+	public void deleteAddedProduct(Integer index) {
+		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.DELETED_CART_PRODUCT, getPage().getAddedCartProductDeleteLinks().get(index));
+		actions.click(getPage().getAddedCartProductDeleteLinks().get(index));
+		getActions().getWait().untilJqueryIsDone();
+		
+	}
+
+	public boolean isAddedProductRemoved() {
+
+		getActions().getWait().untilPageLoadComplete();
+	//	actions.click((WebElement)TestContext.getScenarioContext().getValue(ScenarioContextKeys.DELETED_CART_PRODUCT));
+		return !getActions().isEachWebElementPresent((WebElement)TestContext.getScenarioContext().getValue(ScenarioContextKeys.DELETED_CART_PRODUCT));
 	}
 
 }

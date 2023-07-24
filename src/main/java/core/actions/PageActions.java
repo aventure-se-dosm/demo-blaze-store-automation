@@ -1,10 +1,13 @@
 package core.actions;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import core.utils.Waits;
+import core.utils.enums.ScenarioContextKeys;
 import test.context.TestContext;
 
 public class PageActions {
@@ -72,8 +75,14 @@ public class PageActions {
 	}
 
 	public boolean isEachWebElementPresent(WebElement... elements) {
-		return getWait().elementIsVisible(elements);
+		try {
+			getWait().elementIsVisible(elements);
+			return true;
+		} catch (StaleElementReferenceException serexcpt) {
+			return false;
+		}
 	}
+	
 
 	public String getAlertText() {
 		Alert alert = getWait().alertIsPresent();

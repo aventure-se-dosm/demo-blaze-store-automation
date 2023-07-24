@@ -78,12 +78,17 @@ public class Waits {
 				.until(ExpectedConditions.visibilityOfAllElements(elements)) != null);
 
 	}
-
-	public boolean elementIsVisible(WebElement element) {
-		return (fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
-				.until(ExpectedConditions.visibilityOfAllElements(element)) != null);
-
+	public boolean elementIsNotVisible(WebElement element) {
+		return fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
+				.until(ExpectedConditions.stalenessOf(element));
+		
 	}
+//
+//	public boolean elementIsVisible(WebElement element) {
+//		return (fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))
+//				.until(ExpectedConditions.visibilityOfAllElements(element)) != null);
+//
+//	}
 
 	public void jsExecutesSuccessifully(String jsScript) {
 		fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(10))

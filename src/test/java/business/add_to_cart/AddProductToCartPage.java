@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
 
 import test.context.TestContext;
@@ -60,6 +61,9 @@ public class AddProductToCartPage {
 
 	@FindBy(xpath = "//a[@id='cat']")
 	private WebElement categoryMenu;
+
+	@FindBys(@FindBy(xpath = "//a[contains(@onclick,'delete')]"))
+	private List<WebElement> addedCartProductDeleteLinks;
 
 	public AddProductToCartPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -152,6 +156,16 @@ public class AddProductToCartPage {
 
 	public WebElement getHomePageLink() {
 		return this.HomePageLink;
+	}
+
+	public List<WebElement> getAddedCartProductDeleteLinks() {
+		// TODO Auto-generated method stub
+		return this.addedCartProductDeleteLinks;
+	}
+	
+	public WebElement getAddedCartProductDeleteLink(Integer index) {
+		// TODO Auto-generated method stub
+		return getAddedCartProductDeleteLinks().get(index);
 	}
 
 }
