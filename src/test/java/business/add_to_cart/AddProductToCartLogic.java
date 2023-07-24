@@ -13,7 +13,7 @@ import model.ProductDtoModel;
 import test.context.TestContext;
 import test_enums.Attributes.FilterProductAtttributes;
 
-public class AddToCartProductLogic extends Logic {
+public class AddProductToCartLogic extends Logic {
 
 	private AddProductToCartPage page;
 	private AddProductToCartModel model;
@@ -21,7 +21,7 @@ public class AddToCartProductLogic extends Logic {
 
 	private final String ALERT_PRODUCT_ADDED = "Product added.";
 
-	AddToCartProductLogic() {
+	AddProductToCartLogic() {
 		setupActions();
 		setupPage();
 		setupModel();

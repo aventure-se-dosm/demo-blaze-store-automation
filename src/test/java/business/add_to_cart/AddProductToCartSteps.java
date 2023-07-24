@@ -3,7 +3,6 @@ package business.add_to_cart;
 import org.junit.Assert;
 
 import business.login.LoginLogic;
-import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Então;
@@ -12,12 +11,12 @@ import test_enums.Attributes.FilterProductAtttributes;
 
 public class AddProductToCartSteps {
 
-	private AddToCartProductLogic addToCartLogic;
+	private AddProductToCartLogic addToCartLogic;
 	private LoginLogic loginLogic;
 
 	@Dado("que estou logado na aplicação para testar o cart")
 	public void queEstouLogadoNaAplicaçãoParaTestarOCart() {
-		addToCartLogic = new AddToCartProductLogic();
+		addToCartLogic = new AddProductToCartLogic();
 		loginLogic = new LoginLogic();
 		loginLogic.startNavigation();
 		loginLogic.startLogin();
@@ -91,8 +90,9 @@ public class AddProductToCartSteps {
 	@Então("a soma dos preços do primeiro e do segundo produtos")
 	public void aSomaDosPreçosDoPrimeiroEDoSegundoProdutos() {
 		// Write code here that turns the phrase above into concrete actions
-		//throw new io.cucumber.java.PendingException();
-		Assert.assertTrue(true);
+		//TODO: Sum implementation
+		throw new io.cucumber.java.PendingException();
+		//Assert.assertTrue(true);
 	}
 
 }
