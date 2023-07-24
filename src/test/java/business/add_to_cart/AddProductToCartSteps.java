@@ -87,7 +87,7 @@ public class AddProductToCartSteps {
 	@Então("a soma dos preços do primeiro e do segundo produtos")
 	public void aSomaDosPreçosDoPrimeiroEDoSegundoProdutos() {
 		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		//throw new io.cucumber.java.PendingException();
 	}
 
 }

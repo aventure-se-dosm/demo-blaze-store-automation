@@ -103,7 +103,14 @@ public class ExcelActions {
 	}
 
 	public Row getRow(String sheetName, int index) {
-		return getWorkbook().getSheet(sheetName).getRow(index);
+		Row row =  getWorkbook().getSheet(sheetName).getRow(index);
+		try {
+			getWorkbook().close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return row;
 	}
 
 }

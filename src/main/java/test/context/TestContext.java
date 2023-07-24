@@ -79,7 +79,8 @@ public class TestContext {
 	public static Row getRowByTaggedIdSheet() {
 
 		Row row = getExcelReader().actions()
-				.getRow(getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID), FIRST_DATA_ROW_INDEX);
+				.getRow(getScenarioContext()
+						.getStringValue(ScenarioContextKeys.SCENARIO_ID), FIRST_DATA_ROW_INDEX);
 		return row;
 
 	}
