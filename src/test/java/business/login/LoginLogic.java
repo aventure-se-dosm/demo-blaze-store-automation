@@ -58,15 +58,14 @@ public class LoginLogic {
 	}
 
 	public void preencherUsuarioLogin() {
-		String name = loginModel.getUsername();
-	
+		actions.getWait().untilPageLoadComplete();
+		String name = loginModel.getUsername();	
 		actions.write(getLoginPage().getTxtUsername(), getLoginPage().getLoginModalDiv(), name);
 	}
 
 	public void preencherSenhaLogin() {
 		String password = loginModel.getPassword();
 		actions.write(getLoginPage().getTxtPassword(), getLoginPage().getLoginModalDiv(), password);
-		actions.getWait().untilPageLoadComplete();
 	}
 
 
@@ -79,7 +78,7 @@ public class LoginLogic {
 	}
 
 	public boolean isUserProperlyLoggedIn() {
-		//actions.getWait().untilPageLoadComplete();
+		actions.getWait().untilPageLoadComplete();
 		String txtWelcome = actions.getText(getLoginPage().getlblWelcomeUser());
 		boolean assertBool = txtWelcome.contains(getModel().getUsername());
 		return assertBool;

@@ -25,32 +25,26 @@ public class CheckoutSteps {
 		loginLogic.sendLoginForm();
 		Assert.assertTrue(loginLogic.isUserProperlyLoggedIn());
 	}
-	
-	
+
 	@Quando("clico no botão order em business.checkout page")
 	public void clicoNoBotãoOrderEmCheckoutPage() {
-	//	checkoutLogic = new CheckoutLogic();
+		// checkoutLogic = new CheckoutLogic();
 		checkoutLogic.placeOrder();
 
-		// Write code here that turns the phrase above into concrete actions
-		//throw new io.cucumber.java.PendingException();
 	}
 
 	@Quando("preencho os campos de CheckoutForm")
 	public void preenchoOsCamposDeCheckoutForm() {
-		// Write code here that turns the phrase above into concrete actions
 		getCheckoutLogic().fillForm();
-		//throw new io.cucumber.java.PendingException();
 	}
 
 	private CheckoutLogic getCheckoutLogic() {
-		// TODO Auto-generated method stub
+
 		if (this.checkoutLogic == null) {
 			this.checkoutLogic = new CheckoutLogic();
 		}
 		return this.checkoutLogic;
 	}
-
 
 	@Quando("clico em submit em CheckoutForm")
 	public void clicoEmSubmitEmCheckoutForm() {
@@ -61,7 +55,7 @@ public class CheckoutSteps {
 			e.printStackTrace();
 		}
 		getCheckoutLogic().sendForm();
-		//throw new io.cucumber.java.PendingException();
+
 	}
 
 	@Então("a compra foi realizada com sucesso")

@@ -9,7 +9,6 @@ import test.context.TestContext;
 
 public class LogoutSteps {
 
-	//
 	private LogoutLogic logic;
 
 	@Dado("que estou logado na aplicação")
@@ -25,6 +24,7 @@ public class LogoutSteps {
 
 	@Quando("clico no link logout")
 	public void clicoNoLinkLogout() {
+		logic = new LogoutLogic();
 		logic.logout();
 	}
 

@@ -16,6 +16,7 @@ public class FilterProductSteps {
 	
 	@Dado("que estou logado na página para filtrar o produto")
 	public void queEstouLogadoNaPáginaParaFiltrarOProduto() {
+		filterLogic = new FilterProductLogic();
 		loginLogic = new LoginLogic();
 		loginLogic.startNavigation();
 		loginLogic.startLogin();

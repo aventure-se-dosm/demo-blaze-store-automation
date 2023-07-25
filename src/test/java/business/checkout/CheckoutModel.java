@@ -27,32 +27,32 @@ public class CheckoutModel {
 	}
 
 	public String getTxtFullName() {
-		// TODO Auto-generated method stub
+		
 		return this.txtFullName;
 	}
 
 	public String getTxtCountry() {
-		// TODO Auto-generated method stub
+		
 		return this.txtCountry;
 	}
 
 	public String getTxtCity() {
-		// TODO Auto-generated method stub
+		
 		return this.txtCity;
 	}
 
 	public String getTxtCcNumber() {
-		// TODO Auto-generated method stub
+		
 		return this.txtccNumber;
 	}
 
 	public String getTxtCcExMonth() {
-		// TODO Auto-generated method stub
+		
 		return this.txtccExMonth;
 	}
 
 	public String getTxtCcExYear() {
-		// TODO Auto-generated method stub
+		
 		return this.txtccExYear;
 	}
 

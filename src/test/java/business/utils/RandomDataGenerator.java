@@ -50,7 +50,7 @@ public class RandomDataGenerator {
 	}
 
 	private String generateCreditCard() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
@@ -63,22 +63,22 @@ public class RandomDataGenerator {
 	}
 
 	private String generateCity() {
-		// TODO Auto-generated method stub
+		
 		return "DEMO_CITY".concat(LocalDateTime.now().toString());
 	}
 
 	private String generateFullName() {
-		// TODO Auto-generated method stub
+		
 		return "DEMO_FULL_NAME".concat(LocalDateTime.now().toString());
 	}
 
 	private String generateRandomSurname() {
-		// TODO Auto-generated method stub
+		
 		return "DEMO_SURNAME".concat(LocalDateTime.now().toString());
 	}
 
 	private String generateRandomFirstName() {
-		// TODO Auto-generated method stub
+		
 		return "DEMO_FIRST_NAME".concat(LocalDateTime.now().toString());
 	}
 

@@ -36,7 +36,7 @@ public class Waits {
 	}
 
 	public void untilPageLoadComplete() {
-		untilPageLoadComplete(TestContext.getDriver(), 5L);
+		untilPageLoadComplete(TestContext.getDriver(), 10L);
 	}
 
 	public static void untilPageLoadComplete(WebDriver driver, Long timeoutInSeconds) {

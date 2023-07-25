@@ -97,7 +97,7 @@ public class AddProductToCartSteps {
 
 	@Então("a soma dos preços do primeiro e do segundo produtos")
 	public void aSomaDosPreçosDoPrimeiroEDoSegundoProdutos() {
-		// Write code here that turns the phrase above into concrete actions
+		
 		//TODO: Sum implementation
 		//throw new io.cucumber.java.PendingException();
 		Assert.assertTrue(true);

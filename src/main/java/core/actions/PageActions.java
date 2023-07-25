@@ -122,8 +122,11 @@ public class PageActions {
 		return webelement.findElement(By.xpath(".")) == null;
 	}
 
-	public void sendForm() {
-		
+
+	public void clickAfterLoading(WebElement element) {
+		getWait().untilJqueryIsDone();
+		getWait().untilPageLoadComplete();
+		click(element);
 		
 	}
 

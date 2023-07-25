@@ -159,12 +159,12 @@ public class AddProductToCartPage {
 	}
 
 	public List<WebElement> getAddedCartProductDeleteLinks() {
-		// TODO Auto-generated method stub
+		
 		return this.addedCartProductDeleteLinks;
 	}
 	
 	public WebElement getAddedCartProductDeleteLink(Integer index) {
-		// TODO Auto-generated method stub
+		
 		return getAddedCartProductDeleteLinks().get(index);
 	}
 
