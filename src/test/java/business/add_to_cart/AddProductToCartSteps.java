@@ -99,8 +99,8 @@ public class AddProductToCartSteps {
 	public void aSomaDosPreçosDoPrimeiroEDoSegundoProdutos() {
 		
 		//TODO: Sum implementation
-		//throw new io.cucumber.java.PendingException();
-		Assert.assertTrue(true);
+		throw new io.cucumber.java.PendingException();
+		
 	}
 
 }

@@ -148,15 +148,6 @@ public class CheckoutLogic extends Logic {
 		getActions().click(getPage().getBtnPlaceOrder());
 	}
 
-	/*
-	 * //for model with no random Data public void fillForm() {
-	 * getActions().write(getPage().getTxtFullName(), getModel().getTxtFullName());
-	 * getActions().write(getPage().getTxtCountry(), getModel().getTxtCountry());
-	 * getActions().write(getPage().getTxtccNumber(), getModel().getTxtccNumber());
-	 * getActions().write(getPage().getTxtccExMonth(),
-	 * getModel().getTxtccExMonth()); getActions().write(getPage().getTxtccExYear(),
-	 * getModel().getTxtccExYear()); }
-	 */
 
 	public void fillForm() {
 
@@ -178,9 +169,11 @@ public class CheckoutLogic extends Logic {
 	 
 		
 		String[] formResults = actions.getText(getPage().getFinishedOrderDetails()).split("\n");
-		return formResults[2].contains(getModel().getTxtCcNumber())
+		boolean isOrderFinished = formResults[2].contains(getModel().getTxtCcNumber())
 			&& formResults[3].contains(getModel().getTxtFullName())
 			&& actions.getWait().elementIsVisible(getPage().getLblThankYouForPurchasing());
+		actions.click(getPage().getBtnOkOrderFinished());
+		return isOrderFinished;
 	}
 
 }

@@ -86,6 +86,8 @@ public class CheckoutPage {
 	
 	@FindBy(xpath = "//h2[.='Thank you for your purchase!']")
 	private WebElement lblThankYouForYourPurchase;
+	@FindBy(css = "button.confirm")
+	private WebElement btnOrderFinishedOk;
 
 	public CheckoutPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -222,6 +224,11 @@ public class CheckoutPage {
 
 	public WebElement getLblThankYouForPurchasing() {
 		return this.lblThankYouForYourPurchase;
+	}
+
+	public WebElement getBtnOkOrderFinished() {
+		// TODO Auto-generated method stub
+		return this.btnOrderFinishedOk;
 	}
 
 }

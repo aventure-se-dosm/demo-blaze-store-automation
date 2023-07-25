@@ -1,11 +1,8 @@
 package business.checkout;
 
 import org.junit.Assert;
-import org.openqa.selenium.interactions.Actions;
 
-import business.add_to_cart.AddProductToCartLogic;
 import business.login.LoginLogic;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
@@ -13,11 +10,9 @@ import io.cucumber.java.pt.Quando;
 public class CheckoutSteps {
 
 	private CheckoutLogic checkoutLogic;
-	private AddProductToCartLogic addToCartLogic;
 
 	@Dado("que estou logado na aplicação para fechar um pedido")
 	public void queEstouLogadoNaAplicaçãoParaFecharUmPedido() {
-		addToCartLogic = new AddProductToCartLogic();
 		checkoutLogic = new CheckoutLogic();
 		LoginLogic loginLogic = new LoginLogic();
 		loginLogic.startNavigation();
@@ -30,7 +25,7 @@ public class CheckoutSteps {
 
 	@Quando("clico no botão order em business.checkout page")
 	public void clicoNoBotãoOrderEmCheckoutPage() {
-		// checkoutLogic = new CheckoutLogic();
+
 		checkoutLogic.placeOrder();
 
 	}

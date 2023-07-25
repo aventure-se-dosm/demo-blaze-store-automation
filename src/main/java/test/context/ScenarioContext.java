@@ -17,6 +17,9 @@ public class ScenarioContext {
 	public void comuputeKey(ScenarioContextKeys key, Object value) {
 		getMap().put(key, value);
 	}
+	public void comuputeKeyIfAbsent(ScenarioContextKeys key, Object value) {
+		getMap().putIfAbsent(key, value);
+		}
 
 	private Map<ScenarioContextKeys, Object> getMap() {
 		return this.map;
@@ -31,9 +34,11 @@ public class ScenarioContext {
 	}
 
 	public Object getValue(ScenarioContextKeys key) {
-		return getMap().get(key);
+		try {return getMap().get(key);
 	}
-
+		public boolean isKeyPresent(ScenarioContextKeys key) {
+			return getMap().containsKey(ScenarioContextKeys.PRODUCT_ID_0008_LIST);
+		}
 	public void resetScenarioContext() {
 		getMap().clear();
 	}

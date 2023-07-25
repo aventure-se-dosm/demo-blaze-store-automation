@@ -1,9 +1,8 @@
 package business.add_to_cart;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import business.step_classes.Logic;
@@ -63,10 +62,12 @@ public class AddProductToCartLogic extends Logic {
 				actions.getText(getPage().getProductPrice()));
 	}
 
+	@SuppressWarnings("unchecked")
 	public void saveCtxProductInfos() {
-		TestContext.getScenarioContext().comuputeKey(ScenarioContextKeys.SINGLE_PRODUCT_ID_0008, getProductDtoModel());
+			TestContext.getScenarioContext().comuputeKeyIfAbsent(ScenarioContextKeys.PRODUCT_ID_0008_LIST,
+					new ArrayList<ProductDtoModel>());
+		((ArrayList<ProductDtoModel>)TestContext.getScenarioContext().getValue(ScenarioContextKeys.PRODUCT_ID_0008_LIST)).add(getProductDtoModel());
 	}
-
 
 	public boolean isTheProductAddedToTheCart() {
 		ProductDtoModel pdto = (ProductDtoModel) TestContext.getScenarioContext()
@@ -109,7 +110,7 @@ public class AddProductToCartLogic extends Logic {
 
 	public void deleteAddedProduct() {
 		deleteAddedProduct(0);
-		
+
 	}
 
 	public void deleteAddedProduct(Integer index) {
@@ -139,14 +140,14 @@ public class AddProductToCartLogic extends Logic {
 
 	public boolean isCartEmpty() {
 		deleteAddedProducts();
-	return getActions().isEachWebElementNotPresent(getPage().getAddedCartProductDeleteLinks());
+		return getActions().isEachWebElementNotPresent(getPage().getAddedCartProductDeleteLinks());
 	}
 
 	public void deleteAddedProducts() {
 		while (true) {
 			try {
 				getActions().click(getPage().getAddedCartProductDeleteLink(0));
-			} catch (Exception  sreexc) {
+			} catch (Exception sreexc) {
 				break;
 			}
 
