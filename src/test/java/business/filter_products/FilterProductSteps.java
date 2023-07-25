@@ -35,11 +35,12 @@ public class FilterProductSteps {
 
 	@Então("Há pelo menos um produto com a marca desejada")
 	public void realizoEFilterProduct() {
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(3000);
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+		
 		filterLogic.isThereAtLeastOneProductOfTheGivenTrademark();
 	}
 

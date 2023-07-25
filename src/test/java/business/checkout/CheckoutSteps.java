@@ -1,9 +1,11 @@
 package business.checkout;
 
 import org.junit.Assert;
+import org.openqa.selenium.interactions.Actions;
 
 import business.add_to_cart.AddProductToCartLogic;
 import business.login.LoginLogic;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Então;
 import io.cucumber.java.pt.Quando;
@@ -48,23 +50,18 @@ public class CheckoutSteps {
 
 	@Quando("clico em submit em CheckoutForm")
 	public void clicoEmSubmitEmCheckoutForm() {
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(10000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		getCheckoutLogic().sendForm();
 
 	}
 
 	@Então("a compra foi realizada com sucesso")
 	public void aCompraFoiRealizadaComSucesso() {
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getCheckoutLogic().isOrderFinishedSuccessifully();
 	}
 }

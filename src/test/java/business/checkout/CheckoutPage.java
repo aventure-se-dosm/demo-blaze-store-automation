@@ -81,6 +81,11 @@ public class CheckoutPage {
 	private List<WebElement> addedCartProductDeleteLinks;
 	@FindBy(xpath = "//button[@onclick='purchaseOrder()']")
 	private WebElement btnPurchaseOrder;
+	@FindBy(css = "p.lead.text-muted")
+	private WebElement finishedOrderFetails;
+	
+	@FindBy(xpath = "//h2[.='Thank you for your purchase!']")
+	private WebElement lblThankYouForYourPurchase;
 
 	public CheckoutPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -208,6 +213,15 @@ public class CheckoutPage {
 
 	public WebElement getTxtCity() {
 		return this.TxtCity;
+	}
+
+	public WebElement getFinishedOrderDetails() {
+		// TODO Auto-generated method stub
+		return this.finishedOrderFetails;
+	}
+
+	public WebElement getLblThankYouForPurchasing() {
+		return this.lblThankYouForYourPurchase;
 	}
 
 }

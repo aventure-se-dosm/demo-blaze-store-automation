@@ -72,7 +72,7 @@ public class PageActions {
 		scrollIntoView(element);
 		getWait().untilJqueryIsDone();
 		element.sendKeys(keysToSend);
-	
+
 	}
 
 	public void write(WebElement element, WebElement container, String keysToSend) {
@@ -97,12 +97,12 @@ public class PageActions {
 			throw new RuntimeException("Texto não enviado: confirmação pendente!");
 		}
 		String alertMessage = alert.getText();
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(1000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		alert.dismiss();
 		return alertMessage;
 	}
@@ -122,12 +122,20 @@ public class PageActions {
 		return webelement.findElement(By.xpath(".")) == null;
 	}
 
-
 	public void clickAfterLoading(WebElement element) {
 		getWait().untilJqueryIsDone();
 		getWait().untilPageLoadComplete();
 		click(element);
-		
+
 	}
+
+	public void refreshPage() {
+		TestContext.getDriver().navigate().refresh();
+
+	}
+
+
+
+
 
 }
