@@ -97,12 +97,6 @@ public class PageActions {
 			throw new RuntimeException("Texto não enviado: confirmação pendente!");
 		}
 		String alertMessage = alert.getText();
-//		try {
-//			Thread.sleep(1000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		alert.dismiss();
 		return alertMessage;
 	}

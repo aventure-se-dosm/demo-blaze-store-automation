@@ -50,14 +50,7 @@ public class CheckoutSteps {
 
 	@Quando("clico em submit em CheckoutForm")
 	public void clicoEmSubmitEmCheckoutForm() {
-//		try {
-//			Thread.sleep(10000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 		getCheckoutLogic().sendForm();
-
 	}
 
 	@Então("a compra foi realizada com sucesso")
