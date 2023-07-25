@@ -142,7 +142,7 @@ public class TestContext {
 	}
 
 	public static String makePath(String... directories) {
-		return (String.join(FILE_SEPARATOR, directories)).replace("(" + FILE_SEPARATOR + "){1,}", FILE_SEPARATOR);
+		return String.join(FILE_SEPARATOR, directories).replace("(" + FILE_SEPARATOR + "){1,}", FILE_SEPARATOR);
 	}
 
 	public static void setupApplication(Scenario scenario) {

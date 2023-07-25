@@ -9,7 +9,6 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
 import core.utils.Waits;
-import core.utils.enums.ScenarioContextKeys;
 import test.context.TestContext;
 
 public class PageActions {
@@ -29,8 +28,7 @@ public class PageActions {
 		if (getWait().elementIsClickable(element)) {
 			element.click();
 		}
-		
-		
+
 	}
 
 	public String getText(WebElement element) {
@@ -61,7 +59,7 @@ public class PageActions {
 
 	private void setJavaScriptExecutor() {
 		this.jsExecutor = (JavascriptExecutor) TestContext.getDriver();
-		
+
 	}
 
 	private void setWait(Waits wait) {
@@ -69,9 +67,12 @@ public class PageActions {
 	}
 
 	public void write(WebElement element, String keysToSend) {
+		getWait().untilJqueryIsDone();
 		getWait().elementIsVisible(element);
 		scrollIntoView(element);
+		getWait().untilJqueryIsDone();
 		element.sendKeys(keysToSend);
+	
 	}
 
 	public void write(WebElement element, WebElement container, String keysToSend) {
@@ -88,10 +89,9 @@ public class PageActions {
 			return false;
 		}
 	}
-	
 
 	public String getAlertText() {
-	
+
 		Alert alert = getWait().alertIsPresent();
 		if (alert == null) {
 			throw new RuntimeException("Texto não enviado: confirmação pendente!");
@@ -109,7 +109,7 @@ public class PageActions {
 
 	public boolean isElementListEmpty(List<WebElement> elementList) {
 		return elementList.isEmpty();
-		
+
 	}
 
 	public boolean isEachWebElementNotPresent(List<WebElement> elements) {
@@ -118,12 +118,12 @@ public class PageActions {
 	}
 
 	public boolean isWebElementNotPresent(WebElement webelement) {
-		
-		return webelement.findElement(By.xpath("."))==null;
+
+		return webelement.findElement(By.xpath(".")) == null;
 	}
 
-	public void fillFormModel() {
-		// TODO Auto-generated method stub
+	public void sendForm() {
+		
 		
 	}
 

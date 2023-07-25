@@ -40,7 +40,7 @@ public class CheckoutSteps {
 	public void preenchoOsCamposDeCheckoutForm() {
 		// Write code here that turns the phrase above into concrete actions
 		getCheckoutLogic().fillForm();
-		throw new io.cucumber.java.PendingException();
+		//throw new io.cucumber.java.PendingException();
 	}
 
 	private CheckoutLogic getCheckoutLogic() {
@@ -54,13 +54,23 @@ public class CheckoutSteps {
 
 	@Quando("clico em submit em CheckoutForm")
 	public void clicoEmSubmitEmCheckoutForm() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		getCheckoutLogic().sendForm();
+		//throw new io.cucumber.java.PendingException();
 	}
 
 	@Então("a compra foi realizada com sucesso")
 	public void aCompraFoiRealizadaComSucesso() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

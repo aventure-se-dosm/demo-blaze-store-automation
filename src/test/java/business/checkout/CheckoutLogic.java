@@ -158,11 +158,19 @@ public class CheckoutLogic extends Logic {
 	}*/
 	
 	public void fillForm() {
+		
 		getActions().write(getPage().getTxtFullName(), getModel().getTxtFullName());
 		getActions().write(getPage().getTxtCountry(), getModel().getTxtCountry());
-		getActions().write(getPage().getTxtccNumber(), getModel().getTxtccNumber());
-		getActions().write(getPage().getTxtccExMonth(), getModel().getTxtccExMonth());
-		getActions().write(getPage().getTxtccExYear(), getModel().getTxtccExYear());
+		getActions().write(getPage().getTxtCity(), getModel().getTxtCity());
+		getActions().write(getPage().getTxtccNumber(), getModel().getTxtCcNumber());
+		getActions().write(getPage().getTxtccExMonth(), getModel().getTxtCcExMonth());
+		getActions().write(getPage().getTxtccExYear(), getModel().getTxtCcExYear());
+	}
+
+	public void sendForm() {
+		getActions().getWait().untilPageLoadComplete();
+		getActions().click(getPage().getBtnPurchaseOrder());
+		
 	}
 	
 }

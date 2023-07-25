@@ -79,6 +79,8 @@ public class CheckoutPage {
 
 	@FindBys(@FindBy(xpath = "//a[contains(@onclick,'delete')]"))
 	private List<WebElement> addedCartProductDeleteLinks;
+	@FindBy(xpath = "//button[@onclick='purchaseOrder()']")
+	private WebElement btnPurchaseOrder;
 
 	public CheckoutPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -123,9 +125,6 @@ public class CheckoutPage {
 		return this.txtPassword;
 	}
 
-	WebElement getTxtFullName() {
-		return this.txtUsername;
-	}
 
 	public WebElement getSigninLink() {
 		return this.signinLink;
@@ -179,9 +178,16 @@ public class CheckoutPage {
 	public WebElement getBtnPlaceOrder() {
 		return this.btnPlaceOrder;
 	}
+	public WebElement getBtnPurchaseOrder() {
+		return this.btnPurchaseOrder;
+	}
 
 	public WebElement getAddedCartProductDeleteLink(Integer index) {
 		return getAddedCartProductDeleteLinks().get(index);
+	}
+
+	WebElement getTxtFullName() {
+		return this.txtFullName;
 	}
 
 	public WebElement getTxtCountry() {
@@ -198,6 +204,10 @@ public class CheckoutPage {
 
 	public WebElement getTxtccExYear() {
 		return this.txtCardYear;
+	}
+
+	public WebElement getTxtCity() {
+		return this.TxtCity;
 	}
 
 }

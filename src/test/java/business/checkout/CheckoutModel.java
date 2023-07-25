@@ -4,20 +4,19 @@ import org.apache.commons.lang3.StringUtils;
 
 public class CheckoutModel {
 
-	
-	private String txtFullName;
-	private String txtCountry;
-	private String txtccNumber;
-	private String txtccExMonth;
-	private String txtccExYear;
+	private String txtFullName = "Chris Rock";
+	private String txtCountry = "US";
+	private String txtCity = "Dakota";
+	private String txtccNumber = "3784958327195306";
+	private String txtccExMonth = "12";
+	private String txtccExYear = "2030";
 
 	public CheckoutModel() {
-		setupRandomData();
+		// setupRandomData();
 	}
 
 	private void setupRandomData() {
-		this.txtFullName = "";
-		
+
 	}
 
 	enum ListGroupProductCategory {
@@ -37,17 +36,22 @@ public class CheckoutModel {
 		return this.txtCountry;
 	}
 
-	public String getTxtccNumber() {
+	public String getTxtCity() {
+		// TODO Auto-generated method stub
+		return this.txtCity;
+	}
+
+	public String getTxtCcNumber() {
 		// TODO Auto-generated method stub
 		return this.txtccNumber;
 	}
 
-	public String getTxtccExMonth() {
+	public String getTxtCcExMonth() {
 		// TODO Auto-generated method stub
 		return this.txtccExMonth;
 	}
 
-	public String getTxtccExYear() {
+	public String getTxtCcExYear() {
 		// TODO Auto-generated method stub
 		return this.txtccExYear;
 	}
