@@ -119,16 +119,12 @@ public class CheckoutLogic extends Logic {
 	}
 
 	public void deleteAddedProduct(WebElement elem) {
-		// TestContext.getDriver().navigate().refresh();
 		actions.click(elem);
 		getActions().getWait().untilJqueryIsDone();
-
 	}
 
 	public boolean isAddedProductRemoved() {
-
 		getActions().getWait().untilPageLoadComplete();
-		// actions.click((WebElement)TestContext.getScenarioContext().getValue(ScenarioContextKeys.DELETED_CART_PRODUCT));
 		return getActions().isWebElementNotPresent(
 				(WebElement) TestContext.getScenarioContext().getValue(ScenarioContextKeys.DELETED_CART_PRODUCT));
 	}
@@ -145,13 +141,28 @@ public class CheckoutLogic extends Logic {
 			} catch (Exception sreexc) {
 				break;
 			}
-
 		}
-
 	}
 
 	public void placeOrder() {
 		getActions().click(getPage().getBtnPlaceOrder());
-		
 	}
+
+/*	//for model with no random Data
+	public void fillForm() {
+		getActions().write(getPage().getTxtFullName(), getModel().getTxtFullName());
+		getActions().write(getPage().getTxtCountry(), getModel().getTxtCountry());
+		getActions().write(getPage().getTxtccNumber(), getModel().getTxtccNumber());
+		getActions().write(getPage().getTxtccExMonth(), getModel().getTxtccExMonth());
+		getActions().write(getPage().getTxtccExYear(), getModel().getTxtccExYear());
+	}*/
+	
+	public void fillForm() {
+		getActions().write(getPage().getTxtFullName(), getModel().getTxtFullName());
+		getActions().write(getPage().getTxtCountry(), getModel().getTxtCountry());
+		getActions().write(getPage().getTxtccNumber(), getModel().getTxtccNumber());
+		getActions().write(getPage().getTxtccExMonth(), getModel().getTxtccExMonth());
+		getActions().write(getPage().getTxtccExYear(), getModel().getTxtccExYear());
+	}
+	
 }

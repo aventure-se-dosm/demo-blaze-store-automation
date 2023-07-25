@@ -122,4 +122,9 @@ public class PageActions {
 		return webelement.findElement(By.xpath("."))==null;
 	}
 
+	public void fillFormModel() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

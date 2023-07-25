@@ -12,6 +12,18 @@ import org.openqa.selenium.support.PageFactory;
 import test.context.TestContext;
 
 public class CheckoutPage {
+	@FindBy(id = "name")
+	private WebElement txtFullName;
+	@FindBy(id = "city")
+	private WebElement TxtCity;
+	@FindBy(id = "country")
+	private WebElement txtCountry;
+	@FindBy(id = "card")
+	private WebElement txtCardNumber;
+	@FindBy(id = "month")
+	private WebElement txtCardMonth;
+	@FindBy(id = "year")
+	private WebElement txtCardYear;
 	@FindBy(id = "nava")
 	private WebElement HomePageLink;
 
@@ -111,7 +123,7 @@ public class CheckoutPage {
 		return this.txtPassword;
 	}
 
-	WebElement getTxtUsername() {
+	WebElement getTxtFullName() {
 		return this.txtUsername;
 	}
 
@@ -170,6 +182,22 @@ public class CheckoutPage {
 
 	public WebElement getAddedCartProductDeleteLink(Integer index) {
 		return getAddedCartProductDeleteLinks().get(index);
+	}
+
+	public WebElement getTxtCountry() {
+		return this.txtCountry;
+	}
+
+	public WebElement getTxtccNumber() {
+		return this.txtCardNumber;
+	}
+
+	public WebElement getTxtccExMonth() {
+		return this.txtCardMonth;
+	}
+
+	public WebElement getTxtccExYear() {
+		return this.txtCardYear;
 	}
 
 }

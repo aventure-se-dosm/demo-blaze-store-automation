@@ -21,7 +21,7 @@ public class AddProductToCartLogic extends Logic {
 
 	private final String ALERT_PRODUCT_ADDED = "Product added.";
 
-	AddProductToCartLogic() {
+	public AddProductToCartLogic() {
 		setupActions();
 		setupPage();
 		setupModel();
