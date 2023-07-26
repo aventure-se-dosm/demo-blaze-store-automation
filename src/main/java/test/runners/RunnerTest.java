@@ -17,8 +17,6 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 		monochrome = true,
 
 		snippets = SnippetType.CAMELCASE,
-
-		tags = "@ID_0012",
 		
 		dryRun = false
 )
