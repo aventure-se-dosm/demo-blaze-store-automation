@@ -155,14 +155,14 @@ public class AddProductToCartLogic extends Logic {
 
 	public boolean isCartEmpty() {
 		deleteAddedProducts();
-		return getActions().isEachWebElementNotPresent(getPage().getAddedCartProductDeleteLinks());
+		return getActions().getWait().isEachElementaNotPresent(getPage().getAddedCartProductDeleteLinks());
 	}
 
 	public void deleteAddedProducts() {
 		while (true) {
 			try {
-				getActions().click(getPage().getAddedCartProductDeleteLink(0));
 				getActions().getWait().untilPageLoadComplete();
+				getActions().click(getPage().getAddedCartProductDeleteLink());
 			} catch (Exception sreexc) {
 				break;
 			}
@@ -174,13 +174,14 @@ public class AddProductToCartLogic extends Logic {
 	@SuppressWarnings("unchecked")
 	public boolean isCartTotalEqualsToTheSumOfEverySingleProduct() {
 
+		actions.getWait().untilJqueryIsDone();
 		boolean sum = true;
 
-		Float a = Float.parseFloat(getActions().getText(getPage().getLblCartTotal()));
+		float a = Float.parseFloat(getActions().getText(getPage().getLblCartTotal()));
 
-		Float b = getSingleProductPriceSum();
+		float b = getSingleProductPriceSum();
 
-		return a.equals(b);
+		return  a==b;
 
 	}
 
@@ -188,7 +189,7 @@ public class AddProductToCartLogic extends Logic {
 		// TODO Auto-generated method stub
 		float a = ((ArrayList<ProductDtoModel>) TestContext.getScenarioContext()
 				.getValue(ScenarioContextKeys.PRODUCT_ID_0008_LIST)).stream().map(p -> Float.parseFloat(p.getPrice()))
-						.reduce((px, py) -> px + py).get();
+						.reduce(0F, (px, py) -> px + py).floatValue();
 		return a;
 	}
 }

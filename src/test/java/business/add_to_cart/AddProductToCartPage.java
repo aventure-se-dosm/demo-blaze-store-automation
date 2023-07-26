@@ -170,7 +170,7 @@ public class AddProductToCartPage {
 		return this.addedCartProductDeleteLinks;
 	}
 
-	public WebElement getAddedCartProductDeleteLink(Integer index) {
+	public WebElement getAddedCartProductDeleteLink() {
 
 		return this.addedCartProductDeleteLink;
 	}

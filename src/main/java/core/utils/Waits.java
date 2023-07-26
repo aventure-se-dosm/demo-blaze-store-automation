@@ -1,6 +1,7 @@
 package core.utils;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.function.Function;
 
 import org.openqa.selenium.Alert;
@@ -23,7 +24,7 @@ public class Waits {
 	}
 
 	public void untilJqueryIsDone() {
-		untilJqueryIsDone(TestContext.getDriver(), 5L);
+		untilJqueryIsDone(TestContext.getDriver(), 2L);
 	}
 
 	public void untilJqueryIsDone(WebDriver driver, Long timeoutInSeconds) {
@@ -36,7 +37,7 @@ public class Waits {
 	}
 
 	public void untilPageLoadComplete() {
-		untilPageLoadComplete(TestContext.getDriver(), 10L);
+		untilPageLoadComplete(TestContext.getDriver(), 5L);
 	}
 
 	public static void untilPageLoadComplete(WebDriver driver, Long timeoutInSeconds) {
@@ -96,8 +97,14 @@ public class Waits {
 	}
 
 	public Alert alertIsPresent() {
-		return fluentWait.pollingEvery(Duration.ofMillis(1000)).withTimeout(Duration.ofSeconds(5))
+		return fluentWait.pollingEvery(Duration.ofMillis(500)).withTimeout(Duration.ofSeconds(5))
 				.until(ExpectedConditions.alertIsPresent());
+	}
+
+	public boolean isEachElementaNotPresent(List<WebElement> elemList) {
+		if(elemList.size() == 0) return true;
+		return fluentWait.pollingEvery(Duration.ofMillis(300)).withTimeout(Duration.ofSeconds(2))
+				.until(ExpectedConditions.invisibilityOfAllElements(elemList));
 	}
 
 }
