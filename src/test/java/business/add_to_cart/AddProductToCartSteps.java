@@ -68,6 +68,16 @@ public class AddProductToCartSteps {
 	public void clicoEmDeleteEmCheckPage() {
 		getAddToCartLogic().deleteAddedProduct();
 	}
+	
+	@Quando("removo o primeiro produto")
+	public void removoOPrimeiroProduto() {
+		getAddToCartLogic().deleteAddedProduct();	
+	}
+	@Então("o preço final é o preço do ultimo produto")
+	public void oPreçoFinalÉOPreçoDoUltimoProduto() {
+	    // Write code here that turns the phrase above into concrete actions
+	   // throw new io.cucumber.java.PendingException();
+	}
 
 	@Então("o carrinho está vazio")
 	public void oCarrinhoEstáVazio() {
@@ -97,10 +107,7 @@ public class AddProductToCartSteps {
 
 	@Então("a soma dos preços do primeiro e do segundo produtos")
 	public void aSomaDosPreçosDoPrimeiroEDoSegundoProdutos() {
-		
-		//TODO: Sum implementation
-		throw new io.cucumber.java.PendingException();
-		
+		Assert.assertTrue(addToCartLogic.isCartTotalEqualsToTheSumOfEverySingleProduct());
 	}
 
 }

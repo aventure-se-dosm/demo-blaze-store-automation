@@ -34,7 +34,7 @@ public class ScenarioContext {
 	}
 
 	public Object getValue(ScenarioContextKeys key) {
-		try {return getMap().get(key);
+		return getMap().get(key);
 	}
 		public boolean isKeyPresent(ScenarioContextKeys key) {
 			return getMap().containsKey(ScenarioContextKeys.PRODUCT_ID_0008_LIST);

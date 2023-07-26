@@ -13,7 +13,7 @@ import test.context.TestContext;
 
 public class AddProductToCartPage {
 	@FindBy(id = "nava")
-	private  WebElement HomePageLink;
+	private WebElement HomePageLink;
 
 	@FindBy(xpath = "//button[@onclick='logIn()']")
 	private WebElement btnEntrar;
@@ -64,6 +64,13 @@ public class AddProductToCartPage {
 
 	@FindBys(@FindBy(xpath = "//a[contains(@onclick,'delete')]"))
 	private List<WebElement> addedCartProductDeleteLinks;
+	@FindBy(xpath = "//a[contains(@onclick,'delete')]")
+	private WebElement addedCartProductDeleteLink;
+	
+	
+
+	@FindBy(id = "totalp")
+	private WebElement lblCartTotal;
 
 	public AddProductToCartPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
@@ -159,13 +166,18 @@ public class AddProductToCartPage {
 	}
 
 	public List<WebElement> getAddedCartProductDeleteLinks() {
-		
+
 		return this.addedCartProductDeleteLinks;
 	}
-	
+
 	public WebElement getAddedCartProductDeleteLink(Integer index) {
-		
-		return getAddedCartProductDeleteLinks().get(index);
+
+		return this.addedCartProductDeleteLink;
+	}
+
+	public WebElement getLblCartTotal() {
+		// TODO Auto-generated method stub
+		return this.lblCartTotal;
 	}
 
 }
