@@ -1,7 +1,6 @@
 package business.add_to_cart;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -72,18 +71,24 @@ public class AddProductToCartLogic extends Logic {
 				.getValue(ScenarioContextKeys.PRODUCT_ID_0008_LIST)).add(getProductDtoModel());
 	}
 
+	public void deleteLastCtxProductInfos() {
+		actions.getWait().untilPageLoadComplete();
+		TestContext.getScenarioContext().comuputeKeyIfAbsent(ScenarioContextKeys.PRODUCT_ID_0008_LIST,
+				new ArrayList<ProductDtoModel>());
+		ArrayList<ProductDtoModel> list = ((ArrayList<ProductDtoModel>) TestContext.getScenarioContext()
+				.getValue(ScenarioContextKeys.PRODUCT_ID_0008_LIST));
+		
+		list.remove(list.size()-1);
+	}
+
 	public boolean isTheProductAddedToTheCart() {
 		ArrayList<ProductDtoModel> pdtoList = (ArrayList<ProductDtoModel>) TestContext.getScenarioContext()
 				.getValue(ScenarioContextKeys.PRODUCT_ID_0008_LIST);
-		
-		ProductDtoModel pdto = pdtoList.get(pdtoList.size()-1);
-		
+
+		ProductDtoModel pdto = pdtoList.get(pdtoList.size() - 1);
+
 		return actions.getWait().elementIsVisible(page.getProductTbody()
-				.findElement(By.xpath(".//td[.='"
-		+ pdto.getProductTitle()
-		+"']/../td[.='" 
-		+ pdto.getPrice() +
-		"']")));
+				.findElement(By.xpath(".//td[.='" + pdto.getProductTitle() + "']/../td[.='" + pdto.getPrice() + "']")));
 	}
 
 	public void goToNavBar() {
@@ -168,23 +173,20 @@ public class AddProductToCartLogic extends Logic {
 
 	@SuppressWarnings("unchecked")
 	public boolean isCartTotalEqualsToTheSumOfEverySingleProduct() {
-		// TODO Auto-generated method stub
 
 		boolean sum = true;
-		
-		Float a = Float.parseFloat(getActions().getText(getPage().getLblCartTotal())) ;
-				 
-			Float b =	getSingleProductPriceSum();
-			
-			
 
-	return a == b;
+		Float a = Float.parseFloat(getActions().getText(getPage().getLblCartTotal()));
+
+		Float b = getSingleProductPriceSum();
+
+		return a.equals(b);
 
 	}
 
 	private float getSingleProductPriceSum() {
 		// TODO Auto-generated method stub
-		float a =  ((ArrayList<ProductDtoModel>) TestContext.getScenarioContext()
+		float a = ((ArrayList<ProductDtoModel>) TestContext.getScenarioContext()
 				.getValue(ScenarioContextKeys.PRODUCT_ID_0008_LIST)).stream().map(p -> Float.parseFloat(p.getPrice()))
 						.reduce((px, py) -> px + py).get();
 		return a;
