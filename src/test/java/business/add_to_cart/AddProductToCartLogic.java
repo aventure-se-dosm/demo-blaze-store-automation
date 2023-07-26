@@ -155,14 +155,14 @@ public class AddProductToCartLogic extends Logic {
 
 	public boolean isCartEmpty() {
 		deleteAddedProducts();
-		return getActions().isEachWebElementNotPresent(getPage().getAddedCartProductDeleteLinks());
+		return getActions().getWait().isEachElementaNotPresent(getPage().getAddedCartProductDeleteLinks());
 	}
 
 	public void deleteAddedProducts() {
 		while (true) {
 			try {
-				getActions().click(getPage().getAddedCartProductDeleteLink(0));
 				getActions().getWait().untilPageLoadComplete();
+				getActions().click(getPage().getAddedCartProductDeleteLink());
 			} catch (Exception sreexc) {
 				break;
 			}

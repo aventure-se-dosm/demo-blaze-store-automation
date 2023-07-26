@@ -17,7 +17,7 @@ Funcionalidade: Preencher o formulário de compra para finalizá-la com sucesso
 
   @ID_0012
   Cenario: Preencher o formulário para finalizar a compra com sucesso
-    Quando a soma dos preços do primeiro e do segundo produtos
+    Quando a soma dos preços do primeiro e do segundo produtos é igual ao total
     E clico no botão order em business.checkout page
     E preencho os campos de CheckoutForm
     E clico em submit em CheckoutForm

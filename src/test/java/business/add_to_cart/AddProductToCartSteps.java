@@ -105,8 +105,8 @@ public class AddProductToCartSteps {
 		Assert.assertTrue(addToCartLogic.isTheProductAddedToTheCart());
 	}
 
-	@Então("a soma dos preços do primeiro e do segundo produtos")
-	public void aSomaDosPreçosDoPrimeiroEDoSegundoProdutos() {
+	@Então("a soma dos preços do primeiro e do segundo produtos é igual ao total")
+	public void aSomaDosPreçosDoPrimeiroEDoSegundoProdutosÉIgualAoTotal() {
 		Assert.assertTrue(addToCartLogic.isCartTotalEqualsToTheSumOfEverySingleProduct());
 	}
 
