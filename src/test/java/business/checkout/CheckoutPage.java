@@ -1,4 +1,4 @@
-package business.add_to_cart;
+package business.checkout;
 
 import java.util.List;
 
@@ -11,9 +11,24 @@ import org.openqa.selenium.support.PageFactory;
 
 import test.context.TestContext;
 
-public class AddProductToCartPage {
+public class CheckoutPage {
+	@FindBy(id = "name")
+	private WebElement txtFullName;
+	@FindBy(id = "city")
+	private WebElement TxtCity;
+	@FindBy(id = "country")
+	private WebElement txtCountry;
+	@FindBy(id = "card")
+	private WebElement txtCardNumber;
+	@FindBy(id = "month")
+	private WebElement txtCardMonth;
+	@FindBy(id = "year")
+	private WebElement txtCardYear;
 	@FindBy(id = "nava")
 	private WebElement HomePageLink;
+
+	@FindBy(xpath = "//button[@data-target='#orderModal']")
+	private WebElement btnPlaceOrder;
 
 	@FindBy(xpath = "//button[@onclick='logIn()']")
 	private WebElement btnEntrar;
@@ -64,15 +79,17 @@ public class AddProductToCartPage {
 
 	@FindBys(@FindBy(xpath = "//a[contains(@onclick,'delete')]"))
 	private List<WebElement> addedCartProductDeleteLinks;
-	@FindBy(xpath = "//a[contains(@onclick,'delete')]")
-	private WebElement addedCartProductDeleteLink;
+	@FindBy(xpath = "//button[@onclick='purchaseOrder()']")
+	private WebElement btnPurchaseOrder;
+	@FindBy(css = "p.lead.text-muted")
+	private WebElement finishedOrderFetails;
 	
-	
+	@FindBy(xpath = "//h2[.='Thank you for your purchase!']")
+	private WebElement lblThankYouForYourPurchase;
+	@FindBy(css = "button.confirm")
+	private WebElement btnOrderFinishedOk;
 
-	@FindBy(id = "totalp")
-	private WebElement lblCartTotal;
-
-	public AddProductToCartPage() {
+	public CheckoutPage() {
 		PageFactory.initElements(TestContext.getDriver(), this);
 	}
 
@@ -108,7 +125,6 @@ public class AddProductToCartPage {
 	}
 
 	protected WebElement getLoginModalDiv() {
-
 		return loginModalDiv;
 	}
 
@@ -116,9 +132,6 @@ public class AddProductToCartPage {
 		return this.txtPassword;
 	}
 
-	WebElement getTxtUsername() {
-		return this.txtUsername;
-	}
 
 	public WebElement getSigninLink() {
 		return this.signinLink;
@@ -166,18 +179,56 @@ public class AddProductToCartPage {
 	}
 
 	public List<WebElement> getAddedCartProductDeleteLinks() {
-
 		return this.addedCartProductDeleteLinks;
 	}
 
-	public WebElement getAddedCartProductDeleteLink(Integer index) {
-
-		return this.addedCartProductDeleteLink;
+	public WebElement getBtnPlaceOrder() {
+		return this.btnPlaceOrder;
+	}
+	public WebElement getBtnPurchaseOrder() {
+		return this.btnPurchaseOrder;
 	}
 
-	public WebElement getLblCartTotal() {
+	public WebElement getAddedCartProductDeleteLink(Integer index) {
+		return getAddedCartProductDeleteLinks().get(index);
+	}
+
+	WebElement getTxtFullName() {
+		return this.txtFullName;
+	}
+
+	public WebElement getTxtCountry() {
+		return this.txtCountry;
+	}
+
+	public WebElement getTxtccNumber() {
+		return this.txtCardNumber;
+	}
+
+	public WebElement getTxtccExMonth() {
+		return this.txtCardMonth;
+	}
+
+	public WebElement getTxtccExYear() {
+		return this.txtCardYear;
+	}
+
+	public WebElement getTxtCity() {
+		return this.TxtCity;
+	}
+
+	public WebElement getFinishedOrderDetails() {
 		// TODO Auto-generated method stub
-		return this.lblCartTotal;
+		return this.finishedOrderFetails;
+	}
+
+	public WebElement getLblThankYouForPurchasing() {
+		return this.lblThankYouForYourPurchase;
+	}
+
+	public WebElement getBtnOkOrderFinished() {
+		// TODO Auto-generated method stub
+		return this.btnOrderFinishedOk;
 	}
 
 }

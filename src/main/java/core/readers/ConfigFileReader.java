@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 
 import core.utils.enums.ConfigKeys;
@@ -72,6 +73,10 @@ public class ConfigFileReader {
 
 	private String getproperty(ConfigKeys configKey) {
 		return getProperties().getProperty(configKey.getValue().toLowerCase());
+	}
+
+	public Duration getImplicitlyWait() {
+		return Duration.ofSeconds(Integer.parseInt(getproperty(ConfigKeys.WAIT_IMPLICIT_SECONDS)));
 	}
 
 }

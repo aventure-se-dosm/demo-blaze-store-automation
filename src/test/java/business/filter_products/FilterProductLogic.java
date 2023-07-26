@@ -35,7 +35,8 @@ public class FilterProductLogic {
 	}
 
 	public boolean isThereAtLeastOneProductOfTheGivenTrademark() {
-
+		actions.refreshPage();
+		actions.getWait().untilPageLoadComplete();
 		WebElement targetProduct = getProductByTrademark(getModel().getTrademark());
 		actions.scrollIntoView(targetProduct);
 		return actions.getWait().elementIsVisible(targetProduct);

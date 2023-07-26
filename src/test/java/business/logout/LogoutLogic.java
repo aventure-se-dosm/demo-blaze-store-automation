@@ -5,10 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import business.logout.LogoutModel.LoginAttributes;
+import business.step_classes.Logic;
 import core.actions.PageActions;
 import test.context.TestContext;
 
-public class LogoutLogic {
+public class LogoutLogic extends Logic{
 	protected PageActions actions;
 	private LogoutModel logoutModel;
 	LogoutPage logoutPage;
@@ -34,11 +35,13 @@ public class LogoutLogic {
 	}
 
 	public boolean isUserProperlyLoggedIn() {
+		
 		String txtWelcome = actions.getText(getLogoutPage().getlblWelcomeUser());
 		return txtWelcome.contains(getModel().getUsername());
 	}
 
 	public boolean isUserProperlyLoggedOut() {
+		actions.getWait().untilPageLoadComplete();
 		return actions.isEachWebElementPresent(getLogoutPage().getLoginLink(), getLogoutPage().getSigninLink());
 	}
 
@@ -95,6 +98,7 @@ public class LogoutLogic {
 	}
 
 	public void logout() {
-		actions.click(getLogoutPage().getLogoutLink());
+		
+		actions.clickAfterLoading(getLogoutPage().getLogoutLink());
 	}
 }

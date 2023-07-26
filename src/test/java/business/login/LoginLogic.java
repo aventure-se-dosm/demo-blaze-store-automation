@@ -1,5 +1,8 @@
 package business.login;
 
+
+import java.time.format.DateTimeFormatter;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -55,8 +58,8 @@ public class LoginLogic {
 	}
 
 	public void preencherUsuarioLogin() {
-		String name = loginModel.getUsername();
-	
+		actions.getWait().untilPageLoadComplete();
+		String name = loginModel.getUsername();	
 		actions.write(getLoginPage().getTxtUsername(), getLoginPage().getLoginModalDiv(), name);
 	}
 
@@ -74,7 +77,8 @@ public class LoginLogic {
 		return TestContext.getDriver();
 	}
 
-	public boolean isUserProperlyLogged() {
+	public boolean isUserProperlyLoggedIn() {
+		actions.getWait().untilPageLoadComplete();
 		String txtWelcome = actions.getText(getLoginPage().getlblWelcomeUser());
 		boolean assertBool = txtWelcome.contains(getModel().getUsername());
 		return assertBool;
@@ -82,5 +86,8 @@ public class LoginLogic {
 
 	public void sendLoginForm() {
 		actions.click(getLoginPage().getBtnEntrar());
+		actions.getWait().untilJqueryIsDone();
+		actions.getWait().untilPageLoadComplete();
+		
 	}
 }

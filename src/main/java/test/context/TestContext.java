@@ -79,7 +79,8 @@ public class TestContext {
 	public static Row getRowByTaggedIdSheet() {
 
 		Row row = getExcelReader().actions()
-				.getRow(getScenarioContext().getStringValue(ScenarioContextKeys.SCENARIO_ID), FIRST_DATA_ROW_INDEX);
+				.getRow(getScenarioContext()
+						.getStringValue(ScenarioContextKeys.SCENARIO_ID), FIRST_DATA_ROW_INDEX);
 		return row;
 
 	}
@@ -141,7 +142,7 @@ public class TestContext {
 	}
 
 	public static String makePath(String... directories) {
-		return (String.join(FILE_SEPARATOR, directories)).replace("(" + FILE_SEPARATOR + "){1,}", FILE_SEPARATOR);
+		return String.join(FILE_SEPARATOR, directories).replace("(" + FILE_SEPARATOR + "){1,}", FILE_SEPARATOR);
 	}
 
 	public static void setupApplication(Scenario scenario) {
