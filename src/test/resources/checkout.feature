@@ -3,6 +3,9 @@ Funcionalidade: Preencher o formulário de compra para finalizá-la com sucesso
 
   Fundo: 
     Dado que estou logado na aplicação para fechar um pedido
+     Quando clico em Cart em NavBarPage
+    E o carrinho vazio
+    E retorno para HomePage
     Quando clico na primeira categoria desejada
     E clico sobre o primeiro produto
     E adiciono este produto ao carrinho
