@@ -60,12 +60,12 @@ public class LoginLogic {
 	public void preencherUsuarioLogin() {
 		actions.getWait().untilPageLoadComplete();
 		String name = loginModel.getUsername();	
-		actions.write(getLoginPage().getTxtUsername(), getLoginPage().getLoginModalDiv(), name);
+		actions.write(getLoginPage().getTxtUsername(), name);
 	}
 
 	public void preencherSenhaLogin() {
 		String password = loginModel.getPassword();
-		actions.write(getLoginPage().getTxtPassword(), getLoginPage().getLoginModalDiv(), password);
+		actions.write(getLoginPage().getTxtPassword(), password);
 	}
 
 
